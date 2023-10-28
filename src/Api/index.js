@@ -1,9 +1,9 @@
 import { useCreateRecipe, useDeleteSavedRecipe, useGetAllRecipes, useSearch } from "./Recipes";
-import { getUser, useAuth, useSaveRecipe, useSavedRecipes, useEditUser } from "./User"
+import { getUserId, useAuth, useSaveRecipe, useSavedRecipes, useEditUser } from "./User"
 import useRemoveToken from "./removeToken";
 export {
      useAuth,
-     getUser,
+     getUserId,
      useSaveRecipe,
      useGetAllRecipes,
      useCreateRecipe,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from '../../../axiosConfig'
-import { getUser } from '../../../Api';
+import { getUserId } from '../../../Api';
 import { Loading } from '../../../components';
 import { RecipeCard } from '../../../components/recipeCard';
 
@@ -15,13 +15,13 @@ export const EditRecipes = () => {
   const [showRecipes, setShowRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  const user = getUser();
+  const userId = getUserId();
 
   useEffect(() => {
     const waitForRecipes = async () => {
       setLoading(true);
       try {
-        const res = await axios.get(`/recipes/my-recipes/${user._id}`);
+        const res = await axios.get(`/recipes/my-recipes/${userId}`);
         setShowRecipes(res.data.allUserRecipes)
         setLoading(false);
       } catch (error) {
@@ -30,7 +30,7 @@ export const EditRecipes = () => {
       }
     };
     waitForRecipes();
-  }, [user._id]); 
+  }, [userId]); 
   
   // const handleChange = (event) => {
   //   const { name, value } = event.target;

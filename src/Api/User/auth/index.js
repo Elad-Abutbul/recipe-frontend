@@ -37,7 +37,7 @@ const useAuth = () => {
         return enqueueSnackbar(res.data.message, { variant: 'error' });
       } 
       setCookies("access_token", res.data.token);
-      window.localStorage.setItem('user',JSON.stringify(res.data.user));
+      window.localStorage.setItem('userId',JSON.stringify(res.data.userId));
       navigate(ROUTES.HOME) 
     } catch (error) {
       console.error(error);

@@ -2,13 +2,12 @@ import React, { useState } from 'react';
 import { ROUTES } from '../../constants';
 import { Link } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
-import { getUser, useRemoveToken } from '../../Api';
+import { useRemoveToken } from '../../Api';
 
 export const Navbar = () => {
   const [cookies, setCookies] = useCookies(['access_token']);
   const { logOut } = useRemoveToken();
   const [isProfileDropdownOpen, setIsProfileDropdownOpen] = useState(false);
-  const user = getUser();
   const toggleProfileDropdown = () => {
     setIsProfileDropdownOpen(!isProfileDropdownOpen);
   };

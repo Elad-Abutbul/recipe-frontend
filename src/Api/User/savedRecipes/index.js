@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import axios from '../../../axiosConfig';
-import { getUser } from '../getUser'
+import { getUserId } from '../getUserId'
 import { enqueueSnackbar } from 'notistack';
 
 const useSavedRecipes = () => {
-     const user = getUser();
+     const userId = getUserId();
      const axiosSavedRecipes = async () => {
           try {
-               const res = await axios.get(`auth/savedRecipes/${user._id}`);
+               const res = await axios.get(`auth/savedRecipes/${userId}`);
                if (!res.data.message) {
            return res.data.savedRecipes
                }

@@ -2,17 +2,17 @@ import { useCookies } from 'react-cookie';
 import axios from '../../../axiosConfig';
 import { enqueueSnackbar } from 'notistack';
 import useRemoveToken from '../../removeToken';
-import { getUser, useSavedRecipes } from '../../User';
+import { getUserId, useSavedRecipes } from '../../User';
 
 const useDeleteSavedRecipe = () => {
      const [cookies, setCookies] = useCookies(['access_token']);
   const { checkIfInvalidToken } = useRemoveToken();
-  let user = getUser()
+  let userId = getUserId()
   const { axiosSavedRecipes } =useSavedRecipes()
      const axiosDeleteSavedRecipe = async (recipeId) => {
        try {
         const res = await axios.delete('/recipes/delete/saved-recipe', {
-          data: { recipeId, userId:user._id },
+          data: { recipeId, userId },
           headers: { authorization: cookies.access_token}
         });
                 

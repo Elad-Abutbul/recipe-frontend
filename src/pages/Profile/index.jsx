@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 export const Profile = () => {
   return (
-       <div>
+    <div>
             <Link className='text-blue-500' to={ROUTES.EDIT_RECIPES}>Edit Recipes</Link>
            <Link className='text-blue-500' to={ROUTES.EDIT_PROFILE}>Edit Profile</Link> 
             <Outlet/>

@@ -1,29 +1,28 @@
 import React, { useState } from 'react';
 import { handleChangeState } from '../../../functions';
-import { getUser, useEditUser } from '../../../Api';
+import { useEditUser } from '../../../Api';
 import { enqueueSnackbar } from 'notistack';
 
 export const EditProfile = () => {
 
-  const user = getUser();
-  const { editUser } = useEditUser();
+  const { axiosEditUser } = useEditUser();
+  
   const [editUserField, setEditUserField] = useState({
-    username: user.username,
+    username: '',
     password: '',
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
     if (!editUserField.username || !editUserField.password) {
      return enqueueSnackbar('Must Fill Every Field.', { variant: 'warning' });
-    } else if (user.username === editUserField.username && user.password === editUserField.password) {
-     return enqueueSnackbar('Nothing Change.', { variant: 'warning' });
-    } 
-    return editUser(editUserField.username,editUserField.password);
+    } return await axiosEditUser(editUserField.username,editUserField.password);
   };
+
   const handlChange = (event) => {
     handleChangeState(event, setEditUserField, editUserField);
   };
+
   return (
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-4">Edit Profile</h1>
