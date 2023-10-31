@@ -1,17 +1,12 @@
 import { enqueueSnackbar } from "notistack";
-import axios from '../../../axiosConfig'
+import { recipeService } from "../../../services";
 
-const useGetAllRecipes = () => {
-   
-  const getAllRecipes = async () => {
+export const getAllRecipes = async () => {
     try {
-      const res = await axios.get('/recipes/getAllRecipes');
+      const res = await recipeService.getAll()
       return res.data;
     } catch (error) {
       console.error(error);
       enqueueSnackbar('Try Later', { variant: 'error' });
     }
  }
- return { getAllRecipes }
-}
-   export default useGetAllRecipes

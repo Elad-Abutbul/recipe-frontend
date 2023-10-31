@@ -1,21 +1,13 @@
-import { useState } from 'react';
-import axios from '../../../axiosConfig';
-import { getUserId } from '../getUserId'
+import { localStorageService, userService } from '../../../services';
 import { enqueueSnackbar } from 'notistack';
 
-const useSavedRecipes = () => {
-     const userId = getUserId();
-     const axiosSavedRecipes = async () => {
+     const userId = localStorageService.getItem("userId");
+  export const axiosSavedRecipes = async () => {
           try {
-               const res = await axios.get(`auth/savedRecipes/${userId}`);
-               if (!res.data.message) {
-           return res.data.savedRecipes
-               }
+               const res = await userService.savedRecipe(userId);
+               if (!res.data.message) return res.data.savedRecipes
           } catch (error) {
                enqueueSnackbar('Try Later', { variant: 'warning' });
                console.error(error);
           }
      }
-     return { axiosSavedRecipes };
-}
-export default useSavedRecipes

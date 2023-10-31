@@ -1,7 +1,7 @@
-import { useNavigate } from 'react-router-dom';
 import useRemoveToken from '../../removeToken';
+import { recipeService } from '../../../services';
+import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../../constants';
-import axios from '../../../axiosConfig';
 import { enqueueSnackbar } from 'notistack'
 import { useCookies } from 'react-cookie';
 
@@ -13,7 +13,7 @@ const useCreateRecipe = () => {
      
      const axiosCreateRecipe = async (recipe) => {
           try {
-              const res = await axios.post('/recipes/createRecip', recipe, { headers: { authorization:cookies.access_token } });
+              const res = await recipeService.createRecipe(recipe, cookies.access_token)
               if (checkIfInvalidToken(res.data)) return enqueueSnackbar("No Access Provaided.", { variant: 'error' });
 
               enqueueSnackbar(res.data.message, { variant: 'success' });

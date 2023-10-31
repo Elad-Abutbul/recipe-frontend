@@ -1,6 +1,6 @@
 import useCreateRecipe from "./createRecipe";
 import useDeleteSavedRecipe from "./deleteSavedRecipe";
-import useGetAllRecipes from "./getAllRecipes";
+import { getAllRecipes } from "./getAllRecipes";
 import useSearch from "./search";
 
-export { useGetAllRecipes, useCreateRecipe, useSearch, useDeleteSavedRecipe }
+export { getAllRecipes, useCreateRecipe, useSearch, useDeleteSavedRecipe }

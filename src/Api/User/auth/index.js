@@ -1,19 +1,17 @@
-import axios from '../../../axiosConfig'
-import { enqueueSnackbar } from 'notistack'
-import { useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie'
 import { ROUTES } from '../../../constants';
+import { userService } from '../../../services/userService';
+import { enqueueSnackbar } from 'notistack'
+import { useCookies } from 'react-cookie'
+import { useNavigate } from 'react-router-dom';
 
 const useAuth = () => {
    
    const [cookies, setCookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
-  const register = async ( username, password ) => {
+
+  const register = async (username, password) => {
     try {
-    const res = await axios.post('/auth/register', {
-      username,
-      password
-    });
+    const res = await userService.register(username,password)
     if (res.data.message === "User Already Exists!") {
        return enqueueSnackbar(res.data.message ,{variant:'error'})
     } 
@@ -28,11 +26,7 @@ const useAuth = () => {
   const login = async (username, password) => {
      
     try {
-      const res = await axios.post('/auth/login', {
-
-        username,
-        password 
-      });
+      const res = await userService.login(username,password)
       if (res.data.message) {
         return enqueueSnackbar(res.data.message, { variant: 'error' });
       } 
@@ -41,6 +35,8 @@ const useAuth = () => {
       navigate(ROUTES.HOME) 
     } catch (error) {
       console.error(error);
+      return enqueueSnackbar('Try Later', { variant: 'error' });
+
     }
   }
   

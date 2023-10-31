@@ -1,13 +1,12 @@
-import { useCreateRecipe, useDeleteSavedRecipe, useGetAllRecipes, useSearch } from "./Recipes";
-import { getUserId, useAuth, useSaveRecipe, useSavedRecipes, useEditUser } from "./User"
+import { useCreateRecipe, useDeleteSavedRecipe, getAllRecipes, useSearch } from "./Recipes";
+import { useAuth, useSaveRecipe, axiosSavedRecipes, useEditUser } from "./User"
 import useRemoveToken from "./removeToken";
 export {
      useAuth,
-     getUserId,
      useSaveRecipe,
-     useGetAllRecipes,
+     getAllRecipes,
      useCreateRecipe,
-     useSavedRecipes,
+     axiosSavedRecipes,
      useRemoveToken,
      useDeleteSavedRecipe,
      useSearch,

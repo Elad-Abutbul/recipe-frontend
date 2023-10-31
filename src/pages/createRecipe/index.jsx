@@ -1,21 +1,22 @@
-import React, { useState } from 'react';
-import { enqueueSnackbar } from 'notistack';
-import { useCreateRecipe } from '../../Api';
-import { handleChangeState } from '../../functions';
-import { useMutation, useQueryClient } from 'react-query';
+import React, { useState } from "react";
+import { enqueueSnackbar } from "notistack";
+import { useCreateRecipe } from "../../Api";
+import { handleChangeState } from "../../functions";
+import { useMutation, useQueryClient } from "react-query";
+import { localStorageService } from "../../services";
 
-export const CreateRecipe = ({ condition = 'regular' }) => {
+export const CreateRecipe = ({ condition = "regular" }) => {
   const queryClient = useQueryClient();
   const { axiosCreateRecipe } = useCreateRecipe();
-  const user = localStorage.getItem('user');
+  const userId = localStorageService.getItem("userId");
 
   const [recipe, setRecipe] = useState({
-    name: '',
+    name: "",
     ingredients: [],
-    instruction: '',
-    imageUrl: '',
+    instruction: "",
+    imageUrl: "",
     cookingTime: 0,
-    userOwner: user?._id,
+    userOwner: userId,
   });
 
   const handleChange = (event) => {
@@ -23,7 +24,7 @@ export const CreateRecipe = ({ condition = 'regular' }) => {
   };
 
   const addIngredient = () => {
-    setRecipe({ ...recipe, ingredients: [...recipe.ingredients, ''] });
+    setRecipe({ ...recipe, ingredients: [...recipe.ingredients, ""] });
   };
 
   const handleIngredientChange = (event, index) => {
@@ -35,16 +36,16 @@ export const CreateRecipe = ({ condition = 'regular' }) => {
 
   const createRecipeMutation = useMutation(axiosCreateRecipe, {
     onSuccess: () => {
-      queryClient.invalidateQueries(['allRecipes']);
-    }
+      queryClient.invalidateQueries(["allRecipes"]);
+    },
   });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (recipe.ingredients.length === 0) {
-      enqueueSnackbar('Must Have Ingredients.', { variant: 'warning' });
+      enqueueSnackbar("Must Have Ingredients.", { variant: "warning" });
     } else if (recipeIngredientsCheck()) {
-      enqueueSnackbar('Must Fill in All Ingredients.', { variant: 'warning' });
+      enqueueSnackbar("Must Fill in All Ingredients.", { variant: "warning" });
     } else {
       createRecipeMutation.mutate(recipe);
     }
@@ -52,7 +53,7 @@ export const CreateRecipe = ({ condition = 'regular' }) => {
 
   const recipeIngredientsCheck = () => {
     for (const ingredient of recipe.ingredients) {
-      if (ingredient === '') {
+      if (ingredient === "") {
         return true;
       }
     }
@@ -132,7 +133,7 @@ export const CreateRecipe = ({ condition = 'regular' }) => {
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
           disabled={createRecipeMutation.isLoading}
         >
-          {createRecipeMutation.isLoading ? 'Creating...' : 'Submit'}
+          {createRecipeMutation.isLoading ? "Creating..." : "Submit"}
         </button>
       </form>
     </div>
