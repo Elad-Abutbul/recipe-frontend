@@ -1,21 +1,25 @@
 import React, { useState } from "react";
-import { enqueueSnackbar } from "notistack";
-import { useCreateRecipe } from "../../Api";
+import { useCreateRecipe, useEditRecipe } from "../../Api";
+import { localStorageService } from "../../services";
 import { handleChangeState } from "../../functions";
 import { useMutation, useQueryClient } from "react-query";
-import { localStorageService } from "../../services";
+import { enqueueSnackbar } from "notistack";
+import { useLocation } from "react-router-dom";
 
-export const CreateRecipe = ({ condition = "regular" }) => {
+export const CreateRecipe = () => {
+  const location = useLocation();
+  const singleRecipe  = location.state?.singleRecipe;
   const queryClient = useQueryClient();
   const { axiosCreateRecipe } = useCreateRecipe();
+  const { axiosEditRecipe }=useEditRecipe()
   const userId = localStorageService.getItem("userId");
 
   const [recipe, setRecipe] = useState({
-    name: "",
-    ingredients: [],
-    instruction: "",
-    imageUrl: "",
-    cookingTime: 0,
+    name: singleRecipe?.name || "",
+    ingredients: singleRecipe?.ingredients || [],
+    instruction: singleRecipe?.instruction || "",
+    imageUrl:  singleRecipe?.imageUrl || "",
+    cookingTime: singleRecipe?.cookingTime || 0,
     userOwner: userId,
   });
 
@@ -40,12 +44,20 @@ export const CreateRecipe = ({ condition = "regular" }) => {
     },
   });
 
+  const editRecipeMutation = useMutation(()=>axiosEditRecipe(recipe,singleRecipe._id), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(["allOwnerRecipes"]);
+    },
+  });
   const handleSubmit = async (e) => {
+    debugger
     e.preventDefault();
     if (recipe.ingredients.length === 0) {
       enqueueSnackbar("Must Have Ingredients.", { variant: "warning" });
     } else if (recipeIngredientsCheck()) {
       enqueueSnackbar("Must Fill in All Ingredients.", { variant: "warning" });
+    } else if(location.pathname==='/edit-recipe'){
+      editRecipeMutation.mutate(recipe, singleRecipe._id);
     } else {
       createRecipeMutation.mutate(recipe);
     }
@@ -74,6 +86,7 @@ export const CreateRecipe = ({ condition = "regular" }) => {
           placeholder="Enter A Name.."
           name="name"
           onChange={handleChange}
+          value={recipe.name}
           required
           className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400"
         />
@@ -82,6 +95,7 @@ export const CreateRecipe = ({ condition = "regular" }) => {
           placeholder="Instruction.."
           cols="20"
           rows="3"
+          value={recipe.instruction}
           onChange={handleChange}
           required
           className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400"
@@ -100,7 +114,7 @@ export const CreateRecipe = ({ condition = "regular" }) => {
               type="text"
               name="ingredients"
               value={ingredient}
-              onChange={(e) => handleIngredientChange(e, index)}
+              onChange={(event) => handleIngredientChange(event, index)}
               className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400"
             />
             <button
@@ -118,6 +132,7 @@ export const CreateRecipe = ({ condition = "regular" }) => {
           name="imageUrl"
           onChange={handleChange}
           required
+          value={recipe.imageUrl}
           className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400"
         />
         <input
@@ -126,6 +141,7 @@ export const CreateRecipe = ({ condition = "regular" }) => {
           name="cookingTime"
           onChange={handleChange}
           required
+          value={recipe.cookingTime}
           className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400"
         />
         <button
@@ -133,7 +149,7 @@ export const CreateRecipe = ({ condition = "regular" }) => {
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
           disabled={createRecipeMutation.isLoading}
         >
-          {createRecipeMutation.isLoading ? "Creating..." : "Submit"}
+          {createRecipeMutation.isLoading ? location.pathname==='/edit-recipe'? "Editing" : "Creating..." : "Submit"}
         </button>
       </form>
     </div>

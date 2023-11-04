@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { GrFormView } from "react-icons/gr";
 import { ShowFullRecipe } from "../showFullRecipe";
-import { LiaSave } from "react-icons/lia";
+import { useSaveRecipe } from "../../Api";
+import { ROUTES } from "../../constants";
 import { useCookies } from "react-cookie";
 import { useMutation, useQueryClient } from "react-query";
 import { useNavigate } from "react-router-dom";
-import { useSaveRecipe } from "../../Api";
-import { ROUTES } from "../../constants";
+import { LiaSave } from "react-icons/lia";
+import { GrFormView } from "react-icons/gr";
+import { AiOutlineEdit } from "react-icons/ai";
 
-export const RecipeCard = ({ recipe }) => {
+export const RecipeCard = ({ recipe, condition = "regular" }) => {
   const [cookies, setCookies] = useCookies(["access_token"]);
   const [showFullRecipe, setShowFullRecipe] = useState(false);
 
@@ -56,6 +57,16 @@ export const RecipeCard = ({ recipe }) => {
                 onClick={() => setShowFullRecipe(true)}
                 className="cursor-pointer"
               />
+
+              {condition === "edit" && (
+                <AiOutlineEdit
+                  size={30}
+                  className="cursor-pointer"
+                  onClick={() =>
+                    navigate(ROUTES.EDIT_RECIPE,{state:{singleRecipe:recipe, condition:'edit'}})
+                  }
+                />
+              )}
               {showFullRecipe && (
                 <ShowFullRecipe
                   onClose={() => setShowFullRecipe(false)}
