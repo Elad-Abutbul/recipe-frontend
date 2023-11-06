@@ -8,17 +8,17 @@ import { useLocation } from "react-router-dom";
 
 export const CreateRecipe = () => {
   const location = useLocation();
-  const singleRecipe  = location.state?.singleRecipe;
+  const singleRecipe = location.state?.singleRecipe;
   const queryClient = useQueryClient();
   const { axiosCreateRecipe } = useCreateRecipe();
-  const { axiosEditRecipe }=useEditRecipe()
+  const { axiosEditRecipe } = useEditRecipe();
   const userId = localStorageService.getItem("userId");
 
   const [recipe, setRecipe] = useState({
     name: singleRecipe?.name || "",
     ingredients: singleRecipe?.ingredients || [],
     instruction: singleRecipe?.instruction || "",
-    imageUrl:  singleRecipe?.imageUrl || "",
+    imageUrl: singleRecipe?.imageUrl || "",
     cookingTime: singleRecipe?.cookingTime || 0,
     userOwner: userId,
   });
@@ -38,26 +38,29 @@ export const CreateRecipe = () => {
     setRecipe({ ...recipe, ingredients });
   };
 
-  const createRecipeMutation = useMutation(axiosCreateRecipe, {
+  const createRecipeMutation = useMutation({
+    mutationFn: async (recipe) => await axiosCreateRecipe(recipe),
     onSuccess: () => {
       queryClient.invalidateQueries(["allRecipes"]);
     },
   });
 
-  const editRecipeMutation = useMutation(()=>axiosEditRecipe(recipe,singleRecipe._id), {
+  const editRecipeMutation = useMutation({
+    mutationFn: async ({ recipe, recipeId }) =>
+      await axiosEditRecipe(recipe, recipeId),
     onSuccess: () => {
       queryClient.invalidateQueries(["allOwnerRecipes"]);
     },
   });
+
   const handleSubmit = async (e) => {
-    debugger
     e.preventDefault();
     if (recipe.ingredients.length === 0) {
       enqueueSnackbar("Must Have Ingredients.", { variant: "warning" });
     } else if (recipeIngredientsCheck()) {
       enqueueSnackbar("Must Fill in All Ingredients.", { variant: "warning" });
-    } else if(location.pathname==='/edit-recipe'){
-      editRecipeMutation.mutate(recipe, singleRecipe._id);
+    } else if (location.pathname === "/edit-recipe") {
+      editRecipeMutation.mutate({ recipe, recipeId: singleRecipe._id });
     } else {
       createRecipeMutation.mutate(recipe);
     }
@@ -149,7 +152,11 @@ export const CreateRecipe = () => {
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
           disabled={createRecipeMutation.isLoading}
         >
-          {createRecipeMutation.isLoading ? location.pathname==='/edit-recipe'? "Editing" : "Creating..." : "Submit"}
+          {createRecipeMutation.isLoading
+            ? location.pathname === "/edit-recipe"
+              ? "Editing"
+              : "Creating..."
+            : "Submit"}
         </button>
       </form>
     </div>

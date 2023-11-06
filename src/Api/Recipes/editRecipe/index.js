@@ -10,6 +10,7 @@ const useEditRecipe = () => {
   const [cookies, setCookies] = useCookies(["access_token"]);
 
   const axiosEditRecipe = async (recipe, recipeId) => {
+    console.log("recipe:", recipe, "recipeId:",recipeId)
        try {
       const res = await recipeService.editRecipe(
         recipe,

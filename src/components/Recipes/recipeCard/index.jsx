@@ -1,18 +1,15 @@
 import React, { useState } from "react";
-import { ShowFullRecipe } from "../showFullRecipe";
-import { useSaveRecipe } from "../../Api";
-import { ROUTES } from "../../constants";
-import { useCookies } from "react-cookie";
+import { FullRecipe, RecipeIcons } from "../../../components";
+import { ROUTES } from "../../../constants";
+import { useDeleteOwnerRecipe, useSaveRecipe } from "../../../Api";
 import { useMutation, useQueryClient } from "react-query";
+import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import { LiaSave } from "react-icons/lia";
-import { GrFormView } from "react-icons/gr";
-import { AiOutlineEdit } from "react-icons/ai";
 
 export const RecipeCard = ({ recipe, condition = "regular" }) => {
   const [cookies, setCookies] = useCookies(["access_token"]);
   const [showFullRecipe, setShowFullRecipe] = useState(false);
-
+  const { axiosDeleteOwnerRecipe } = useDeleteOwnerRecipe();
   const { axiosSaveRecipe } = useSaveRecipe();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -23,6 +20,13 @@ export const RecipeCard = ({ recipe, condition = "regular" }) => {
     },
   });
 
+  const deleteOwnerRecipeMutation = useMutation({
+    mutationFn: async (recipeId) => await axiosDeleteOwnerRecipe(recipeId),
+    onSuccess: () => {
+      queryClient.invalidateQueries(["allOwnerRecipes"]);
+    },
+  });
+  
   const handleSaveRecipe = async (recipeId) => {
     if (cookies.access_token) {
       return await saveRecipeseMutation.mutateAsync(recipeId);
@@ -47,28 +51,16 @@ export const RecipeCard = ({ recipe, condition = "regular" }) => {
             <h2 className="text-2xl font-semibold mb-2">{recipe.name}</h2>
 
             <div className="flex justify-center mt-2 gap-5">
-              <LiaSave
-                size={30}
-                disabled={saveRecipeseMutation.isLoading}
-                onClick={() => handleSaveRecipe(recipe._id)}
+              <RecipeIcons
+                condition={condition}
+                deleteOwnerRecipeMutation={deleteOwnerRecipeMutation}
+                handleSaveRecipe={handleSaveRecipe}
+                recipe={recipe}
+                saveRecipeseMutation={saveRecipeseMutation}
+                setShowFullRecipe={setShowFullRecipe}
               />
-              <GrFormView
-                size={30}
-                onClick={() => setShowFullRecipe(true)}
-                className="cursor-pointer"
-              />
-
-              {condition === "edit" && (
-                <AiOutlineEdit
-                  size={30}
-                  className="cursor-pointer"
-                  onClick={() =>
-                    navigate(ROUTES.EDIT_RECIPE,{state:{singleRecipe:recipe, condition:'edit'}})
-                  }
-                />
-              )}
               {showFullRecipe && (
-                <ShowFullRecipe
+                <FullRecipe
                   onClose={() => setShowFullRecipe(false)}
                   recipe={recipe}
                   key={recipe._id}

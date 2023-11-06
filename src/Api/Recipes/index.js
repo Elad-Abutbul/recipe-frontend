@@ -1,8 +1,8 @@
 import useCreateRecipe from "./createRecipe";
+import useDeleteOwnerRecipe from "./deleteOwnerRecipe";
 import useDeleteSavedRecipe from "./deleteSavedRecipe";
 import useEditRecipe from "./editRecipe";
 import { getAllOwnerRecipes } from "./getAllOwnerRecipes";
-import { getAllRecipes } from "./getAllRecipes";
+import { axiosGetAllRecipes } from "./getAllRecipes";
 import useSearch from "./search";
-
-export { getAllRecipes, useCreateRecipe, useSearch, useDeleteSavedRecipe, useEditRecipe, getAllOwnerRecipes  }
+export { axiosGetAllRecipes, useCreateRecipe, useSearch, useDeleteSavedRecipe, useEditRecipe, getAllOwnerRecipes, useDeleteOwnerRecipe  }

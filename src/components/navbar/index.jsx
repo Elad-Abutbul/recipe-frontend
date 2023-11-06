@@ -39,11 +39,12 @@ export const Navbar = () => {
           )}
 
           {cookies.access_token && (
-            <>
+            <div className='flex'>
+              {}
             <Link to={ROUTES.SAVE_RECIPE} className="hover:text-blue-500">
               Saved Recipes
             </Link>
-            </>
+            </div>
           )}
           {cookies.access_token ? (
             <button onClick={logOut} className="hover:text-red-500">

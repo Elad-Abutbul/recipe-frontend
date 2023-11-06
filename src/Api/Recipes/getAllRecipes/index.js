@@ -1,7 +1,7 @@
 import { enqueueSnackbar } from "notistack";
 import { recipeService } from "../../../services";
 
-export const getAllRecipes = async () => {
+export const axiosGetAllRecipes = async () => {
     try {
       const res = await recipeService.getAll()
       return res.data;
