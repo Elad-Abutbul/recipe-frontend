@@ -12,7 +12,6 @@ const useCreateRecipe = () => {
      const [cookies, setCookies] = useCookies(['access_token'])
      
      const axiosCreateRecipe = async (recipe) => {
-          debugger
           try {
 
               const res = await recipeService.createRecipe(recipe, cookies.access_token)

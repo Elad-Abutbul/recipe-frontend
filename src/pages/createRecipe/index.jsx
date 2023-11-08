@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useCreateRecipe, useEditRecipe } from "../../Api";
 import { localStorageService } from "../../services";
-import { handleChangeState } from "../../functions";
+import { handleChangeState } from "../../Functions";
 import { useMutation, useQueryClient } from "react-query";
 import { enqueueSnackbar } from "notistack";
 import { useLocation } from "react-router-dom";

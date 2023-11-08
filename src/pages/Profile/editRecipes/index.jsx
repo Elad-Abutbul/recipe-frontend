@@ -9,5 +9,5 @@ export const EditRecipes = () => {
     getAllOwnerRecipes
   );
   if (isLoading) return <Loading />;
-  return OwnerRecipes?.map((recipe) => (<RecipeCard recipe={recipe} key={recipe._id} condition="edit"/>))
+  return OwnerRecipes?.map((recipe) => (<RecipeCard recipe={recipe} key={recipe._id} condition="edit-recipes"/>))
 };

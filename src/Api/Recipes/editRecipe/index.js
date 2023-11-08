@@ -8,10 +8,9 @@ import { useCookies } from "react-cookie";
 const useEditRecipe = () => {
   const { checkIfInvalidToken } = useRemoveToken();
   const [cookies, setCookies] = useCookies(["access_token"]);
-
+  const navigate = useNavigate();
   const axiosEditRecipe = async (recipe, recipeId) => {
-    console.log("recipe:", recipe, "recipeId:",recipeId)
-       try {
+    try {
       const res = await recipeService.editRecipe(
         recipe,
         recipeId,
@@ -20,6 +19,7 @@ const useEditRecipe = () => {
       if (checkIfInvalidToken(res.data))
         return enqueueSnackbar("No Access Provaided.", { variant: "error" });
       enqueueSnackbar(res.data.message, { variant: "success" });
+      navigate(`${ROUTES.PROFILE}/${ROUTES.EDIT_RECIPES}`);
     } catch (error) {
       console.error(error);
       enqueueSnackbar("Try Later", { variant: "error" });

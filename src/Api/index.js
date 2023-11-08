@@ -2,14 +2,15 @@ import {
   useCreateRecipe,
   useDeleteSavedRecipe,
   axiosGetAllRecipes,
-  useSearch,
   useEditRecipe,
   getAllOwnerRecipes,
   useDeleteOwnerRecipe,
+  axiosSearch,
 } from "./Recipes";
 import { useAuth, useSaveRecipe, axiosSavedRecipes, useEditUser } from "./User";
 import useRemoveToken from "./removeToken";
 export {
+  axiosSearch,
   useAuth,
   useSaveRecipe,
   axiosGetAllRecipes,
@@ -17,9 +18,8 @@ export {
   axiosSavedRecipes,
   useRemoveToken,
   useDeleteSavedRecipe,
-  useSearch,
   useEditUser,
   useEditRecipe,
   getAllOwnerRecipes,
-  useDeleteOwnerRecipe
+  useDeleteOwnerRecipe,
 };

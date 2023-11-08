@@ -12,22 +12,26 @@ export const RecipeIcons = ({
   saveRecipeseMutation,
   deleteOwnerRecipeMutation,
   recipe,
+  deleteSavedRecipeMutation,
 }) => {
   const navigate = useNavigate();
   return (
     <div className="flex gap-5">
-      <LiaSave
-        size={30}
-        className="cursor-pointer"
-        disabled={saveRecipeseMutation.isLoading}
-        onClick={() => handleSaveRecipe(recipe._id)}
-      />
+      {(condition === "allRecipes" || condition === "ownerRecipes") && (
+        <LiaSave
+          size={30}
+          className="cursor-pointer"
+          disabled={saveRecipeseMutation.isLoading}
+          onClick={() => handleSaveRecipe(recipe._id)}
+        />
+      )}
+
       <GrFormView
         size={30}
         onClick={() => setShowFullRecipe(true)}
         className="cursor-pointer"
       />
-      {condition === "edit" && (
+      {condition === "edit-recipes" && (
         <>
           <AiOutlineEdit
             size={30}
@@ -38,12 +42,18 @@ export const RecipeIcons = ({
               })
             }
           />
-          <AiOutlineDelete
-            size={30}
-            className="cursor-pointer"
-            onClick={() => deleteOwnerRecipeMutation.mutate(recipe._id)}
-          />
         </>
+      )}
+      {(condition === "edit-recipes" || condition === "saved-recipes") && (
+        <AiOutlineDelete
+          size={30}
+          className="cursor-pointer"
+          onClick={() =>
+            condition === "edit-recipes"
+              ? deleteOwnerRecipeMutation.mutate(recipe._id)
+              : deleteSavedRecipeMutation.mutate(recipe._id)
+          }
+        />
       )}
     </div>
   );
