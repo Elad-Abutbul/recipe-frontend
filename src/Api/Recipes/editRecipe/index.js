@@ -9,7 +9,7 @@ const useEditRecipe = () => {
   const { checkIfInvalidToken } = useRemoveToken();
   const [cookies, setCookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
-  const axiosEditRecipe = async (recipe, recipeId) => {
+  const fetchEditRecipe = async (recipe, recipeId) => {
     try {
       const res = await recipeService.editRecipe(
         recipe,
@@ -25,6 +25,6 @@ const useEditRecipe = () => {
       enqueueSnackbar("Try Later", { variant: "error" });
     }
   };
-  return { axiosEditRecipe };
+  return { fetchEditRecipe };
 };
 export default useEditRecipe;

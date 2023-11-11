@@ -1,20 +1,19 @@
 import React from "react";
-import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
-import { GrFormView } from "react-icons/gr";
-import { LiaSave } from "react-icons/lia";
 import { ROUTES } from "../../../constants";
+import { useQureyMutation, useRecipeCard } from "../../../Functions";
 import { useNavigate } from "react-router-dom";
+import { GrFormView } from "react-icons/gr";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
+import { LiaSave } from "react-icons/lia";
 
-export const RecipeIcons = ({
-  setShowFullRecipe,
-  condition,
-  handleSaveRecipe,
-  saveRecipeseMutation,
-  deleteOwnerRecipeMutation,
-  recipe,
-  deleteSavedRecipeMutation,
-}) => {
+export const RecipeIcons = ({ setShowFullRecipe, condition, recipe }) => {
   const navigate = useNavigate();
+  const { handleSaveRecipe } = useRecipeCard();
+  const {
+    deleteOwnerRecipeMutation,
+    deleteSavedRecipeMutation,
+    saveRecipeseMutation,
+  } = useQureyMutation();
   return (
     <div className="flex gap-5">
       {(condition === "allRecipes" || condition === "ownerRecipes") && (

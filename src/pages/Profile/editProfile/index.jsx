@@ -4,7 +4,7 @@ import { useEditUser } from "../../../Api";
 import { enqueueSnackbar } from "notistack";
 
 export const EditProfile = () => {
-  const { axiosEditUser } = useEditUser();
+  const { fetchEditUser } = useEditUser();
 
   const [editUserField, setEditUserField] = useState({
     username: "",
@@ -16,7 +16,7 @@ export const EditProfile = () => {
     if (!editUserField.username || !editUserField.password) {
       return enqueueSnackbar("Must Fill Every Field.", { variant: "warning" });
     }
-    return await axiosEditUser(editUserField.username, editUserField.password);
+    return await fetchEditUser(editUserField.username, editUserField.password);
   };
 
   const handlChange = (event) => {

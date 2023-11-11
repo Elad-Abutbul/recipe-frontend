@@ -7,7 +7,7 @@ const useSaveRecipe = () => {
   let userId = localStorageService.getItem("userId");
   const { checkIfInvalidToken } = useRemoveToken();
   const [cookies, setCookies] = useCookies(["access_token"]);
-  const axiosSaveRecipe = async (recipeId) => {
+  const fetchSaveRecipe = async (recipeId) => {
     try {
       const res = await userService.saveRecipe(
         recipeId,
@@ -24,6 +24,6 @@ const useSaveRecipe = () => {
       enqueueSnackbar("Try Later", { variant: "error" });
     }
   };
-  return { axiosSaveRecipe };
+  return { fetchSaveRecipe };
 };
 export default useSaveRecipe;

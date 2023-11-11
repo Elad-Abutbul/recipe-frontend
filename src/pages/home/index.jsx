@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { Loading, RecipesFeed, Search } from "../../components";
-import { axiosGetAllRecipes } from "../../Api";
-import { useQuery } from "react-query";
+import { useGetAllRecipes } from "../../Api";
 
 export const Home = () => {
+  
   const [searchList, setSearchList] = useState([]);
-  const { isLoading, data: recipes } = useQuery(
-    ["allRecipes"],
-    axiosGetAllRecipes
-  );
+  const { isLoading, recipes } = useGetAllRecipes();
 
   if (isLoading) return <Loading />;
 
@@ -19,10 +16,8 @@ export const Home = () => {
       <Search setSearchList={setSearchList} />
       {recipes?.length === 0 ? (
         "Nothing To Show.."
-      ) : searchList.length === 0 ? (
-        <RecipesFeed recipes={recipes} />
       ) : (
-        <RecipesFeed recipes={searchList} />
+        <RecipesFeed recipes={searchList.length === 0 ? recipes : searchList} />
       )}
     </div>
   );

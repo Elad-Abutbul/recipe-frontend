@@ -1,22 +1,20 @@
 import React, { useState } from "react";
-import { axiosSavedRecipes } from "../../Api";
+import { useGetSavedRecipes } from "../../Api";
 import { Loading, RecipesFeed, Search } from "../../components";
 import { localStorageService } from "../../services";
-import { useQuery } from "react-query";
 
 export const SavedRecipe = () => {
   const [searchList, setSearchList] = useState([]);
+  const { isLoading, savedRecipes } = useGetSavedRecipes();
   const userId = localStorageService.getItem("userId");
-  const { isLoading, data: savedRecipes } = useQuery({
-    queryKey: ["savedRecipes"],
-    queryFn: axiosSavedRecipes,
-  });
 
   if (isLoading) return <Loading />;
+
   return (
-    <div className="m-10">
+    <div className="p-6 space-y-6">
+      <h1 className="text-3xl font-bold text-center">Saved Recipes</h1>
       {savedRecipes?.length === 0 ? (
-        "Nothing To Show.."
+        "Save A Recipe To See!"
       ) : (
         <>
           <Search

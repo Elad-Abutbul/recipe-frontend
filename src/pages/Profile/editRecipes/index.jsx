@@ -1,13 +1,10 @@
 import React from "react";
-import { getAllOwnerRecipes } from "../../../Api";
-import { Loading, RecipeCard } from "../../../components";
-import { useQuery } from "react-query";
+import { Loading, RecipesFeed } from "../../../components";
+import { useGetAllOwnerRecipes } from "../../../Api";
 
 export const EditRecipes = () => {
-  const { isLoading, data: OwnerRecipes } = useQuery(
-    ["allOwnerRecipes"],
-    getAllOwnerRecipes
-  );
+  const { isLoading, ownerRecipes } = useGetAllOwnerRecipes();
+  console.log(ownerRecipes?.length)
   if (isLoading) return <Loading />;
-  return OwnerRecipes?.map((recipe) => (<RecipeCard recipe={recipe} key={recipe._id} condition="edit-recipes"/>))
+  return ownerRecipes.length === 0 ? "Create A Recipe To See!" : <RecipesFeed recipes={ownerRecipes} condition={"edit-recipes"} />;
 };

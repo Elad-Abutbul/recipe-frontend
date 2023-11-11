@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import useDebounce from "../../Api/debounce";
-import { axiosSearch } from "../../Api/Recipes/search";
+import { fetchSearch } from "../../Api/Recipes/search";
+import { useDebounce } from "../../Functions";
 
 export const Search = ({
   permission = "allRecipes",
@@ -11,7 +11,7 @@ export const Search = ({
   const { debounceValue } = useDebounce(input, 300);
   useEffect(() => {
     const search = async () => {
-      const searchResults = await axiosSearch(
+      const searchResults = await fetchSearch(
         debounceValue,
         permission,
         userId

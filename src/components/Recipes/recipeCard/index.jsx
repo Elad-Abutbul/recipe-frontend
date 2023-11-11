@@ -1,48 +1,8 @@
 import React, { useState } from "react";
 import { FullRecipe, RecipeIcons } from "../../../components";
-import { ROUTES } from "../../../constants";
-import {
-  useDeleteOwnerRecipe,
-  useDeleteSavedRecipe,
-  useSaveRecipe,
-} from "../../../Api";
-import { useMutation, useQueryClient } from "react-query";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router-dom";
 
 export const RecipeCard = ({ recipe, condition = "allRecipes" }) => {
-  const [cookies, setCookies] = useCookies(["access_token"]);
   const [showFullRecipe, setShowFullRecipe] = useState(false);
-  const { axiosDeleteSavedRecipe } = useDeleteSavedRecipe();
-  const { axiosDeleteOwnerRecipe } = useDeleteOwnerRecipe();
-  const { axiosSaveRecipe } = useSaveRecipe();
-  const navigate = useNavigate();
-  const queryClient = useQueryClient();
-
-  const saveRecipeseMutation = useMutation(axiosSaveRecipe, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(["savedRecipes"]);
-    },
-  });
-
-  const deleteOwnerRecipeMutation = useMutation({
-    mutationFn: async (recipeId) => await axiosDeleteOwnerRecipe(recipeId),
-    onSuccess: () => {
-      queryClient.invalidateQueries(["allOwnerRecipes"]);
-    },
-  });
-
-  const handleSaveRecipe = async (recipeId) => {
-    if (cookies.access_token) {
-      return await saveRecipeseMutation.mutateAsync(recipeId);
-    }
-    navigate(ROUTES.LOGIN);
-  };
-
-  const deleteSavedRecipeMutation = useMutation({
-    mutationFn: async (recipeId) => axiosDeleteSavedRecipe(recipeId),
-    onSuccess: () => queryClient.invalidateQueries(["savedRecipes"]),
-  });
 
   return (
     <div>
@@ -63,12 +23,8 @@ export const RecipeCard = ({ recipe, condition = "allRecipes" }) => {
             <div className="flex justify-center mt-2 gap-5">
               <RecipeIcons
                 condition={condition}
-                deleteOwnerRecipeMutation={deleteOwnerRecipeMutation}
-                handleSaveRecipe={handleSaveRecipe}
                 recipe={recipe}
-                saveRecipeseMutation={saveRecipeseMutation}
                 setShowFullRecipe={setShowFullRecipe}
-                deleteSavedRecipeMutation={deleteSavedRecipeMutation}
               />
               {showFullRecipe && (
                 <FullRecipe
