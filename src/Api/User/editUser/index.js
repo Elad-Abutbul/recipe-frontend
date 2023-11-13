@@ -1,12 +1,13 @@
 import useRemoveToken from "../../removeToken";
-import { localStorageService, userService } from "../../../services";
+import { userService } from "../../../services";
+import { apiErrors, getUserId } from "../../../Functions";
 import { enqueueSnackbar } from "notistack";
 import { useCookies } from "react-cookie";
 
 const useEditUser = () => {
   const [cookies, setCookies] = useCookies(["access_token"]);
   const { checkIfInvalidToken } = useRemoveToken();
-  const userId = localStorageService.getItem("userId");
+  const userId = getUserId();
 
   const fetchEditUser = async (username, password) => {
     try {
@@ -16,14 +17,12 @@ const useEditUser = () => {
         password,
         cookies.access_token
       );
-      if (checkIfInvalidToken(res.data))
-        return enqueueSnackbar("No Access Provaided.", { variant: "error" });
+      if (checkIfInvalidToken(res.data)) return;
       if (res.data.message === "Edit User Was Complete!")
         return enqueueSnackbar(res.data.message, { variant: "success" });
       enqueueSnackbar(res.data.message, { variant: "warning" });
     } catch (error) {
-      console.error(error);
-      enqueueSnackbar("Try Later", { variant: "error" });
+      apiErrors(error);
     }
   };
   return { fetchEditUser };

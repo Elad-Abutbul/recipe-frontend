@@ -1,9 +1,9 @@
 import React from "react";
 import { ROUTES } from "../../../constants";
 import { useQureyMutation, useRecipeCard } from "../../../Functions";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { GrFormView } from "react-icons/gr";
-import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { LiaSave } from "react-icons/lia";
 
 export const RecipeIcons = ({ setShowFullRecipe, condition, recipe }) => {
@@ -16,7 +16,7 @@ export const RecipeIcons = ({ setShowFullRecipe, condition, recipe }) => {
   } = useQureyMutation();
   return (
     <div className="flex gap-5">
-      {(condition === "allRecipes" || condition === "ownerRecipes") && (
+      {condition === "all-recipes" && (
         <LiaSave
           size={30}
           className="cursor-pointer"
@@ -24,7 +24,6 @@ export const RecipeIcons = ({ setShowFullRecipe, condition, recipe }) => {
           onClick={() => handleSaveRecipe(recipe._id)}
         />
       )}
-
       <GrFormView
         size={30}
         onClick={() => setShowFullRecipe(true)}
@@ -35,11 +34,11 @@ export const RecipeIcons = ({ setShowFullRecipe, condition, recipe }) => {
           <AiOutlineEdit
             size={30}
             className="cursor-pointer"
-            onClick={() =>
+            onClick={() => {
               navigate(ROUTES.EDIT_RECIPE, {
                 state: { singleRecipe: recipe },
-              })
-            }
+              });
+            }}
           />
         </>
       )}

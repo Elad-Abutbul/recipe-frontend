@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FullRecipe, RecipeIcons } from "../../../components";
 
-export const RecipeCard = ({ recipe, condition = "allRecipes" }) => {
+export const RecipeCard = ({ recipe, condition = "all-recipes" }) => {
   const [showFullRecipe, setShowFullRecipe] = useState(false);
 
   return (

@@ -12,7 +12,7 @@ export const Profile = () => {
         <Link
           to={ROUTES.EDIT_RECIPES}
           onClick={() => setSelect("edit-recipes")}
-          className={`text-gray-800 font-semibold text-lg mx-4 transition duration-300 transform hover:scale-105 hover:shadow-md p-2 rounded-md  border-b-2 bg-gray-200 -z-10${
+          className={`text-gray-800 font-semibold text-lg mx-4 transition duration-300 transform hover:scale-105 hover:shadow-md p-2 rounded-md  border-b-2 bg-gray-200 -z-10 ${
             select === "edit-recipes" ? " border-black  " : "border-gray-200"
           }`}
         >
@@ -21,7 +21,7 @@ export const Profile = () => {
         <Link
           to={ROUTES.EDIT_PROFILE}
           onClick={() => setSelect("edit-profile")}
-          className={`text-gray-800 font-semibold text-lg mx-4 transition duration-300 transform hover:scale-105 hover:shadow-md p-2 rounded-md  border-b-2 bg-gray-200 -z-10${
+          className={`text-gray-800 font-semibold text-lg mx-4 transition duration-300 transform hover:scale-105 hover:shadow-md p-2 rounded-md  border-b-2 bg-gray-200 -z-10 ${
             select === "edit-profile" ? " border-black  " : "border-gray-200"
           }`}
         >

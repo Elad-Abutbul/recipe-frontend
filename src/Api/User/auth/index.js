@@ -1,5 +1,6 @@
+import { apiErrors } from "../../../Functions";
+import { userService } from "../../../services";
 import { ROUTES } from "../../../constants";
-import { userService } from "../../../services/userService";
 import { enqueueSnackbar } from "notistack";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
@@ -7,10 +8,12 @@ import { useNavigate } from "react-router-dom";
 const useAuth = () => {
   const [cookies, setCookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
+  
   const checkIfUserAuth = () => {
     if (cookies.access_token) return true;
     return false;
   };
+
   const register = async (username, password) => {
     try {
       const res = await userService.register(username, password);
@@ -20,8 +23,7 @@ const useAuth = () => {
       enqueueSnackbar(res.data.message, { variant: "success" });
       navigate(ROUTES.LOGIN);
     } catch (error) {
-      console.error(error);
-      enqueueSnackbar("Try Later", { variant: "error" });
+      apiErrors(error);
     }
   };
 
@@ -35,8 +37,7 @@ const useAuth = () => {
       window.localStorage.setItem("userId", JSON.stringify(res.data.userId));
       navigate(ROUTES.HOME);
     } catch (error) {
-      console.error(error);
-      return enqueueSnackbar("Try Later", { variant: "error" });
+      apiErrors(error);
     }
   };
 

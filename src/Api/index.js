@@ -4,14 +4,14 @@ import {
   useGetAllRecipes,
   useEditRecipe,
   useDeleteOwnerRecipe,
-  fetchSearch,
+  search,
   useGetSavedRecipes,
   useGetAllOwnerRecipes,
 } from "./Recipes";
 import { useAuth, useSaveRecipe, useEditUser } from "./User";
 import useRemoveToken from "./removeToken";
 export {
-  fetchSearch,
+  search,
   useAuth,
   useSaveRecipe,
   useGetAllRecipes,

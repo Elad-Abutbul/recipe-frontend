@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import useRemoveToken from "../../removeToken";
 import { recipeService } from "../../../services";
 import { ROUTES } from "../../../constants";
+import { apiErrors } from "../../../Functions";
 import { enqueueSnackbar } from "notistack";
 import { useCookies } from "react-cookie";
 
@@ -16,13 +17,11 @@ const useEditRecipe = () => {
         recipeId,
         cookies.access_token
       );
-      if (checkIfInvalidToken(res.data))
-        return enqueueSnackbar("No Access Provaided.", { variant: "error" });
+      if (checkIfInvalidToken(res.data)) return;
       enqueueSnackbar(res.data.message, { variant: "success" });
       navigate(`${ROUTES.PROFILE}/${ROUTES.EDIT_RECIPES}`);
     } catch (error) {
-      console.error(error);
-      enqueueSnackbar("Try Later", { variant: "error" });
+      apiErrors(error);
     }
   };
   return { fetchEditRecipe };

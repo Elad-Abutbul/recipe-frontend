@@ -1,13 +1,13 @@
 import useRemoveToken from "../../removeToken";
-import { localStorageService, recipeService } from "../../../services";
+import { recipeService } from "../../../services";
+import { apiErrors, getUserId } from "../../../Functions";
 import { useCookies } from "react-cookie";
 import { enqueueSnackbar } from "notistack";
 
 const useDeleteSavedRecipe = () => {
-
   const [cookies, setCookies] = useCookies(["access_token"]);
   const { checkIfInvalidToken } = useRemoveToken();
-  const userId = localStorageService.getItem("userId");
+  const userId = getUserId();
 
   const fetchDeleteSavedRecipe = async (recipeId) => {
     try {
@@ -17,11 +17,10 @@ const useDeleteSavedRecipe = () => {
         cookies.access_token
       );
 
-      if (checkIfInvalidToken(res.data))
-        return enqueueSnackbar("No Access Provided.", { variant: "error" });
+      if (checkIfInvalidToken(res.data)) return;
       enqueueSnackbar(res.data.message, { variant: "success" });
     } catch (error) {
-      console.error("Error deleting recipe:", error);
+      apiErrors();
     }
   };
 

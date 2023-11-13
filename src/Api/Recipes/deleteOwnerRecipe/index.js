@@ -1,5 +1,6 @@
 import useRemoveToken from "../../removeToken";
 import { recipeService } from "../../../services";
+import { apiErrors } from "../../../Functions";
 import { useCookies } from "react-cookie";
 import { enqueueSnackbar } from "notistack";
 
@@ -12,15 +13,13 @@ const useDeleteOwnerRecipe = () => {
         recipeId,
         cookies.access_token
       );
-      if (checkIfInvalidToken(res.data))
-        return enqueueSnackbar("No Access Provided.", { variant: "error" });
+      if (checkIfInvalidToken(res.data)) return;
       if (res.data.message === "Recipe Deleted Successfully.") {
         return enqueueSnackbar(res.data.message, { variant: "success" });
       }
       return enqueueSnackbar(res.data.message, { variant: "error" });
     } catch (error) {
-      console.error(error);
-      enqueueSnackbar("Try Later", { variant: "error" });
+      apiErrors(error);
     }
   };
 

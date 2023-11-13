@@ -1,6 +1,6 @@
-import { useQuery } from "react-query";
-import { enqueueSnackbar } from "notistack";
 import { recipeService } from "../../../services";
+import { apiErrors } from "../../../Functions";
+import { useQuery } from "react-query";
 
 const useGetAllRecipes = () => {
   const fetchGetAllRecipes = async () => {
@@ -8,8 +8,7 @@ const useGetAllRecipes = () => {
       const res = await recipeService.getAll();
       return res.data;
     } catch (error) {
-      console.error(error);
-      enqueueSnackbar("Try Later", { variant: "error" });
+      apiErrors(error);
     }
   };
   const { isLoading, data: recipes } = useQuery(

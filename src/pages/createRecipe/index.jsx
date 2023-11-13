@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { localStorageService } from "../../services";
 import {
   addIngredient,
   deleteIngredient,
+  getUserId,
   handleChangeState,
   handleIngredientChange,
   recipeIngredientsCheck,
@@ -16,7 +16,7 @@ export const CreateRecipe = () => {
   const location = useLocation();
   const singleRecipe = location.state?.singleRecipe;
   const { createRecipeMutation, editRecipeMutation } = useQureyMutation();
-  const userId = localStorageService.getItem("userId");
+  const userId = getUserId();
 
   const [recipe, setRecipe] = useState({
     name: singleRecipe?.name || "",

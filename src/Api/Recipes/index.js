@@ -5,9 +5,9 @@ import useEditRecipe from "./editRecipe";
 import useGetAllRecipes from "./getAllRecipes";
 import useGetSavedRecipes from "./savedRecipes";
 import useGetAllOwnerRecipes from "./getAllOwnerRecipes";
-import { fetchSearch } from "./search";
+import { search } from "./search";
 export {
-  fetchSearch,
+  search,
   useGetAllRecipes,
   useCreateRecipe,
   useDeleteSavedRecipe,

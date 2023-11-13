@@ -44,12 +44,13 @@ const useQureyMutation = () => {
   });
 
   const editRecipeMutation = useMutation({
-    mutationFn: async ({ recipe, recipeId }) =>
+    mutationFn: async ({recipe, recipeId}) =>
       await fetchEditRecipe(recipe, recipeId),
     onSuccess: () => {
       queryClient.invalidateQueries(["allOwnerRecipes"]);
     },
   });
+  
   return {
     deleteSavedRecipeMutation,
     saveRecipeseMutation,

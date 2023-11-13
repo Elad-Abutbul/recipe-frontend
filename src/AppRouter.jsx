@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
 import {
   CreateRecipe,
   EditProfile,
@@ -9,8 +8,9 @@ import {
   SavedRecipe,
   SignInOut,
 } from "./pages";
-import { EditRecipe, Navbar, RecipeCard } from "./components";
+import { Navbar } from "./components";
 import { ROUTES } from "./constants";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 export const AppRouter = () => {
   return (

@@ -1,10 +1,11 @@
 import { useRemoveToken } from "../..";
-import { localStorageService, userService } from "../../../services";
+import { apiErrors, getUserId } from "../../../Functions";
+import { userService } from "../../../services";
 import { enqueueSnackbar } from "notistack";
 import { useCookies } from "react-cookie";
 
 const useSaveRecipe = () => {
-  let userId = localStorageService.getItem("userId");
+  let userId = getUserId();
   const { checkIfInvalidToken } = useRemoveToken();
   const [cookies, setCookies] = useCookies(["access_token"]);
   const fetchSaveRecipe = async (recipeId) => {
@@ -14,14 +15,12 @@ const useSaveRecipe = () => {
         userId,
         cookies.access_token
       );
-      if (checkIfInvalidToken(res.data))
-        return enqueueSnackbar("No Access Provaided.", { variant: "error" });
+      if (checkIfInvalidToken(res.data)) return;
       else if (res.data.message === "Recipe Saved Already.")
         return enqueueSnackbar(res.data.message, { variant: "warning" });
       enqueueSnackbar(res.data.message, { variant: "success" });
     } catch (error) {
-      console.error(error);
-      enqueueSnackbar("Try Later", { variant: "error" });
+      apiErrors(error);
     }
   };
   return { fetchSaveRecipe };

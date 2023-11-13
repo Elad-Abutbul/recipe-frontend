@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { useGetSavedRecipes } from "../../Api";
 import { Loading, RecipesFeed, Search } from "../../components";
-import { localStorageService } from "../../services";
+import { getUserId } from "../../Functions";
 
 export const SavedRecipe = () => {
   const [searchList, setSearchList] = useState([]);
   const { isLoading, savedRecipes } = useGetSavedRecipes();
-  const userId = localStorageService.getItem("userId");
+  const userId = getUserId();
 
   if (isLoading) return <Loading />;
 

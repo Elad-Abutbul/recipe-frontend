@@ -1,11 +1,10 @@
+import { recipeService } from "../../../services";
+import { apiErrors, getUserId } from "../../../Functions";
 import { useQuery } from "react-query";
-import { localStorageService, recipeService } from "../../../services";
 import { enqueueSnackbar } from "notistack";
 
 const useGetAllOwnerRecipes = () => {
-
-  const userId = localStorageService.getItem("userId");
-  
+  const userId = getUserId();
   const getAllOwnerRecipes = async () => {
     try {
       const res = await recipeService.getAllOwnerRecipes(userId);
@@ -13,8 +12,7 @@ const useGetAllOwnerRecipes = () => {
         return enqueueSnackbar(res.data.message, { variant: "error" });
       return res.data.ownerRecipes ? res.data.ownerRecipes : [];
     } catch (error) {
-      console.error(error);
-      enqueueSnackbar("Try Later", { variant: "error" });
+      apiErrors(error);
     }
   };
   const { isLoading, data: ownerRecipes } = useQuery(
