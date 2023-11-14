@@ -1,23 +1,14 @@
 import React, { useState } from "react";
-import { handleChangeState } from "../../../Functions";
+import { editHandleSubmit, handleChangeState } from "../../../Functions";
 import { useEditUser } from "../../../Api";
-import { enqueueSnackbar } from "notistack";
 
 export const EditProfile = () => {
-  const { fetchEditUser } = useEditUser();
+  const { editUser } = useEditUser();
 
   const [editUserField, setEditUserField] = useState({
     username: "",
     password: "",
   });
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!editUserField.username || !editUserField.password) {
-      return enqueueSnackbar("Must Fill Every Field.", { variant: "warning" });
-    }
-    return await fetchEditUser(editUserField.username, editUserField.password);
-  };
 
   const handlChange = (event) => {
     handleChangeState(event, setEditUserField, editUserField);
@@ -28,7 +19,10 @@ export const EditProfile = () => {
       <h1 className="text-3xl font-semibold mb-4 text-blue-500">
         Edit Profile
       </h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form
+        onSubmit={(event) => editHandleSubmit(event, editUserField, editUser)}
+        className="space-y-4"
+      >
         <div className="flex flex-col">
           <label htmlFor="username" className="text-gray-600 font-medium">
             Username

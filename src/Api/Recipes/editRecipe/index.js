@@ -10,7 +10,7 @@ const useEditRecipe = () => {
   const { checkIfInvalidToken } = useRemoveToken();
   const [cookies, setCookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
-  const fetchEditRecipe = async (recipe, recipeId) => {
+  const editRecipe = async (recipe, recipeId) => {
     try {
       const res = await recipeService.editRecipe(
         recipe,
@@ -24,6 +24,6 @@ const useEditRecipe = () => {
       apiErrors(error);
     }
   };
-  return { fetchEditRecipe };
+  return { editRecipe };
 };
 export default useEditRecipe;

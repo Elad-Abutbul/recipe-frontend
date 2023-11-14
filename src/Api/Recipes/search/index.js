@@ -1,7 +1,7 @@
 import { apiErrors } from "../../../Functions";
 import axios from "../../../axiosConfig";
 
-const fetchSearch = async (input, permission, userId) => {
+const search = async (input, permission, userId) => {
   try {
     const res = await axios.post("/recipes/search", {
       input,
@@ -14,12 +14,12 @@ const fetchSearch = async (input, permission, userId) => {
   }
 };
 
-export const search = async (
+export const handleSearch = async (
   debounceValue,
   permission,
   userId,
   setSearchList
 ) => {
-  const searchResults = await fetchSearch(debounceValue, permission, userId);
+  const searchResults = await search(debounceValue, permission, userId);
   setSearchList(searchResults);
 };

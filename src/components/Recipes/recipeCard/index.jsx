@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FullRecipe, RecipeIcons } from "../../../components";
 
-export const RecipeCard = ({ recipe, condition = "all-recipes" }) => {
+export const RecipeCard = ({ recipe, mode = "all-recipes" }) => {
   const [showFullRecipe, setShowFullRecipe] = useState(false);
 
   return (
@@ -22,7 +22,7 @@ export const RecipeCard = ({ recipe, condition = "all-recipes" }) => {
 
             <div className="flex justify-center mt-2 gap-5">
               <RecipeIcons
-                condition={condition}
+                mode={mode}
                 recipe={recipe}
                 setShowFullRecipe={setShowFullRecipe}
               />

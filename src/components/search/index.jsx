@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useDebounce } from "../../Functions";
-import { search } from "../../Api";
+import { handleSearch } from "../../Api";
 
 export const Search = ({
   permission = "allRecipes",
@@ -10,7 +10,7 @@ export const Search = ({
   const [input, setInput] = useState("");
   const { debounceValue } = useDebounce(input, 300);
   useEffect(() => {
-    search(debounceValue, permission, userId, setSearchList);
+    handleSearch(debounceValue, permission, userId, setSearchList);
   }, [debounceValue]);
 
   return (

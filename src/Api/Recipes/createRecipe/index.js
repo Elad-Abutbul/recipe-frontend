@@ -10,7 +10,7 @@ const useCreateRecipe = () => {
   const navigate = useNavigate();
   const [cookies, setCookies] = useCookies(["access_token"]);
 
-  const fetchCreateRecipe = async (recipe) => {
+  const createRecipe = async (recipe) => {
     try {
       const res = await recipeService.createRecipe(
         recipe,
@@ -22,6 +22,6 @@ const useCreateRecipe = () => {
       apiErrors(error);
     }
   };
-  return { fetchCreateRecipe };
+  return { createRecipe };
 };
 export default useCreateRecipe;

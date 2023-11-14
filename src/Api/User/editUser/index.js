@@ -9,7 +9,7 @@ const useEditUser = () => {
   const { checkIfInvalidToken } = useRemoveToken();
   const userId = getUserId();
 
-  const fetchEditUser = async (username, password) => {
+  const editUser = async (username, password) => {
     try {
       const res = await userService.editUser(
         userId,
@@ -25,7 +25,7 @@ const useEditUser = () => {
       apiErrors(error);
     }
   };
-  return { fetchEditUser };
+  return { editUser };
 };
 
 export default useEditUser;

@@ -9,35 +9,35 @@ import {
 
 const useQureyMutation = () => {
   const queryClient = useQueryClient();
-  const { fetchDeleteSavedRecipe } = useDeleteSavedRecipe();
-  const { fetchSaveRecipe } = useSaveRecipe();
-  const { fetchDeleteOwnerRecipe } = useDeleteOwnerRecipe();
-  const { fetchCreateRecipe } = useCreateRecipe();
-  const { fetchEditRecipe } = useEditRecipe();
+  const { deleteSavedRecipe } = useDeleteSavedRecipe();
+  const { saveRecipe } = useSaveRecipe();
+  const { deleteOwnerRecipe } = useDeleteOwnerRecipe();
+  const { createRecipe } = useCreateRecipe();
+  const { editRecipe } = useEditRecipe();
 
   const deleteSavedRecipeMutation = useMutation({
-    mutationFn: async (recipeId) => fetchDeleteSavedRecipe(recipeId),
+    mutationFn: async (recipeId) => deleteSavedRecipe(recipeId),
     onSuccess: () => {
       queryClient.invalidateQueries(["savedRecipes"]);
     },
   });
 
   const saveRecipeseMutation = useMutation({
-    mutationFn: async (recipeId) => fetchSaveRecipe(recipeId),
+    mutationFn: async (recipeId) => saveRecipe(recipeId),
     onSuccess: () => {
       queryClient.invalidateQueries(["savedRecipes"]);
     },
   });
 
   const deleteOwnerRecipeMutation = useMutation({
-    mutationFn: async (recipeId) => await fetchDeleteOwnerRecipe(recipeId),
+    mutationFn: async (recipeId) => await deleteOwnerRecipe(recipeId),
     onSuccess: () => {
       queryClient.invalidateQueries(["allOwnerRecipes"]);
     },
   });
 
   const createRecipeMutation = useMutation({
-    mutationFn: async (recipe) => await fetchCreateRecipe(recipe),
+    mutationFn: async (recipe) => await createRecipe(recipe),
     onSuccess: () => {
       queryClient.invalidateQueries(["allRecipes"]);
     },
@@ -45,7 +45,7 @@ const useQureyMutation = () => {
 
   const editRecipeMutation = useMutation({
     mutationFn: async ({recipe, recipeId}) =>
-      await fetchEditRecipe(recipe, recipeId),
+      await editRecipe(recipe, recipeId),
     onSuccess: () => {
       queryClient.invalidateQueries(["allOwnerRecipes"]);
     },

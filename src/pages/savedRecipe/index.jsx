@@ -5,7 +5,7 @@ import { getUserId } from "../../Functions";
 
 export const SavedRecipe = () => {
   const [searchList, setSearchList] = useState([]);
-  const { isLoading, savedRecipes } = useGetSavedRecipes();
+  const { isLoading, recipes } = useGetSavedRecipes();
   const userId = getUserId();
 
   if (isLoading) return <Loading />;
@@ -13,7 +13,7 @@ export const SavedRecipe = () => {
   return (
     <div className="p-6 space-y-6">
       <h1 className="text-3xl font-bold text-center">Saved Recipes</h1>
-      {savedRecipes?.length === 0 ? (
+      {recipes?.length === 0 ? (
         "Save A Recipe To See!"
       ) : (
         <>
@@ -24,8 +24,8 @@ export const SavedRecipe = () => {
           />
 
           <RecipesFeed
-            recipes={searchList.length === 0 ? savedRecipes : searchList}
-            condition={"saved-recipes"}
+            recipes={searchList.length === 0 ? recipes : searchList}
+            mode={"saved-recipes"}
           />
         </>
       )}

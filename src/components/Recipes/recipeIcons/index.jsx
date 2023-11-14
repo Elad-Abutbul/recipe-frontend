@@ -1,12 +1,12 @@
 import React from "react";
 import { ROUTES } from "../../../constants";
 import { useQureyMutation, useRecipeCard } from "../../../Functions";
-import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { GrFormView } from "react-icons/gr";
 import { LiaSave } from "react-icons/lia";
 
-export const RecipeIcons = ({ setShowFullRecipe, condition, recipe }) => {
+export const RecipeIcons = ({ setShowFullRecipe, mode, recipe }) => {
   const navigate = useNavigate();
   const { handleSaveRecipe } = useRecipeCard();
   const {
@@ -16,7 +16,7 @@ export const RecipeIcons = ({ setShowFullRecipe, condition, recipe }) => {
   } = useQureyMutation();
   return (
     <div className="flex gap-5">
-      {condition === "all-recipes" && (
+      {mode === "all-recipes" && (
         <LiaSave
           size={30}
           className="cursor-pointer"
@@ -29,7 +29,7 @@ export const RecipeIcons = ({ setShowFullRecipe, condition, recipe }) => {
         onClick={() => setShowFullRecipe(true)}
         className="cursor-pointer"
       />
-      {condition === "edit-recipes" && (
+      {mode === "edit-recipes" && (
         <>
           <AiOutlineEdit
             size={30}
@@ -42,12 +42,12 @@ export const RecipeIcons = ({ setShowFullRecipe, condition, recipe }) => {
           />
         </>
       )}
-      {(condition === "edit-recipes" || condition === "saved-recipes") && (
+      {(mode === "edit-recipes" || mode === "saved-recipes") && (
         <AiOutlineDelete
           size={30}
           className="cursor-pointer"
           onClick={() =>
-            condition === "edit-recipes"
+            mode === "edit-recipes"
               ? deleteOwnerRecipeMutation.mutate(recipe._id)
               : deleteSavedRecipeMutation.mutate(recipe._id)
           }

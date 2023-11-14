@@ -8,7 +8,7 @@ const useSaveRecipe = () => {
   let userId = getUserId();
   const { checkIfInvalidToken } = useRemoveToken();
   const [cookies, setCookies] = useCookies(["access_token"]);
-  const fetchSaveRecipe = async (recipeId) => {
+  const saveRecipe = async (recipeId) => {
     try {
       const res = await userService.saveRecipe(
         recipeId,
@@ -23,6 +23,6 @@ const useSaveRecipe = () => {
       apiErrors(error);
     }
   };
-  return { fetchSaveRecipe };
+  return { saveRecipe };
 };
 export default useSaveRecipe;

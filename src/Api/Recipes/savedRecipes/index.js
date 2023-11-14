@@ -4,7 +4,7 @@ import { useQuery } from "react-query";
 
 const useGetSavedRecipes = () => {
   const userId = getUserId();
-  const fetchSavedRecipes = async () => {
+  const savedRecipes = async () => {
     try {
       const res = await userService.savedRecipe(userId);
       if (!res.data.message) return res.data.savedRecipes;
@@ -12,12 +12,12 @@ const useGetSavedRecipes = () => {
       apiErrors(error);
     }
   };
-  const { data: savedRecipes, isLoading } = useQuery({
+  const { data: recipes, isLoading } = useQuery({
     queryKey: ["savedRecipes"],
-    queryFn: fetchSavedRecipes,
+    queryFn: savedRecipes,
   });
 
-  return { savedRecipes, isLoading };
+  return { recipes, isLoading };
 };
 
 export default useGetSavedRecipes;

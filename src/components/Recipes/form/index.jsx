@@ -1,22 +1,22 @@
 import React, { useState } from "react";
+import { ROUTES } from "../../../constants";
+import { getUserId, useQureyMutation } from "../../../Functions";
 import {
   addIngredient,
   deleteIngredient,
-  getUserId,
   handleChangeState,
   handleIngredientChange,
-  recipeIngredientsCheck,
-  useQureyMutation,
-} from "../../Functions";
-import { ROUTES } from "../../constants";
-import { enqueueSnackbar } from "notistack";
-import { useLocation } from "react-router-dom";
+  formHandleSubmit,
+} from "../../../Functions";
 
-export const CreateRecipe = () => {
-  const location = useLocation();
-  const singleRecipe = location.state?.singleRecipe;
+export const Form = ({ singleRecipe, location }) => {
   const { createRecipeMutation, editRecipeMutation } = useQureyMutation();
+
   const userId = getUserId();
+
+  const handleChange = (event) => {
+    handleChangeState(event, setRecipe, recipe);
+  };
 
   const [recipe, setRecipe] = useState({
     name: singleRecipe?.name || "",
@@ -27,28 +27,26 @@ export const CreateRecipe = () => {
     userOwner: userId,
   });
 
-  const handleChange = (event) => {
-    handleChangeState(event, setRecipe, recipe);
-  };
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (recipe.ingredients.length === 0) {
-      enqueueSnackbar("Must Have Ingredients.", { variant: "warning" });
-    } else if (recipeIngredientsCheck(recipe)) {
-      enqueueSnackbar("Must Fill in All Ingredients.", { variant: "warning" });
-    } else if (location.pathname === ROUTES.EDIT_RECIPE) {
-      editRecipeMutation.mutate({ recipe, recipeId: singleRecipe._id });
-    } else {
-      createRecipeMutation.mutate(recipe);
-    }
-  };
-
+  const inputClassName ="w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400";
+  
   return (
     <div className="p-6 space-y-6">
       <h1 className="text-3xl font-bold text-center">
         {singleRecipe ? "Edit Recipes" : "Create Recipes"}
       </h1>
-      <form onSubmit={handleSubmit} className="space-y-4">
+      <form
+        onSubmit={(event) =>
+          formHandleSubmit(
+            event,
+            recipe,
+            location,
+            editRecipeMutation,
+            singleRecipe,
+            createRecipeMutation
+          )
+        }
+        className="space-y-4"
+      >
         <input
           type="text"
           placeholder="Enter A Name.."
@@ -56,7 +54,8 @@ export const CreateRecipe = () => {
           onChange={handleChange}
           value={recipe.name}
           required
-          className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400"
+          autoFocus
+          className={inputClassName}
         />
         <textarea
           name="instruction"
@@ -66,7 +65,7 @@ export const CreateRecipe = () => {
           value={recipe.instruction}
           onChange={handleChange}
           required
-          className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400"
+          className={inputClassName}
         />
         <button
           onClick={() => addIngredient(recipe, setRecipe)}
@@ -85,7 +84,7 @@ export const CreateRecipe = () => {
               onChange={(event) =>
                 handleIngredientChange(event, index, recipe, setRecipe)
               }
-              className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400"
+              className={inputClassName}
             />
             <button
               type="button"
@@ -103,7 +102,7 @@ export const CreateRecipe = () => {
           onChange={handleChange}
           required
           value={recipe.imageUrl}
-          className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400"
+          className={inputClassName}
         />
         <input
           type="number"
@@ -112,7 +111,7 @@ export const CreateRecipe = () => {
           onChange={handleChange}
           required
           value={recipe.cookingTime}
-          className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400"
+          className={inputClassName}
         />
         <button
           type="submit"

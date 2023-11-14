@@ -3,7 +3,7 @@ import { apiErrors } from "../../../Functions";
 import { useQuery } from "react-query";
 
 const useGetAllRecipes = () => {
-  const fetchGetAllRecipes = async () => {
+  const getAllRecipes = async () => {
     try {
       const res = await recipeService.getAll();
       return res.data;
@@ -13,7 +13,7 @@ const useGetAllRecipes = () => {
   };
   const { isLoading, data: recipes } = useQuery(
     ["allRecipes"],
-    fetchGetAllRecipes
+    getAllRecipes
   );
 
   return { isLoading, recipes };

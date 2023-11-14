@@ -7,7 +7,7 @@ import { enqueueSnackbar } from "notistack";
 const useDeleteOwnerRecipe = () => {
   const [cookies, setCookies] = useCookies(["access_token"]);
   const { checkIfInvalidToken } = useRemoveToken();
-  const fetchDeleteOwnerRecipe = async (recipeId) => {
+  const deleteOwnerRecipe = async (recipeId) => {
     try {
       const res = await recipeService.deleteOwnerRecipe(
         recipeId,
@@ -23,7 +23,7 @@ const useDeleteOwnerRecipe = () => {
     }
   };
 
-  return { fetchDeleteOwnerRecipe };
+  return { deleteOwnerRecipe };
 };
 
 export default useDeleteOwnerRecipe;

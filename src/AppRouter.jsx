@@ -11,6 +11,7 @@ import {
 import { Navbar } from "./components";
 import { ROUTES } from "./constants";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { RecipeForm } from "./pages/recipeForm";
 
 export const AppRouter = () => {
   return (
@@ -20,8 +21,8 @@ export const AppRouter = () => {
         <Route path={ROUTES.HOME} element={<Home />} />
         <Route path={ROUTES.LOGIN} element={<SignInOut />} />
         <Route path={ROUTES.REGISTER} element={<SignInOut />} />
-        <Route path={ROUTES.CREATE_RECIPE} element={<CreateRecipe />} />
-        <Route path={ROUTES.EDIT_RECIPE} element={<CreateRecipe />} />
+        <Route path={ROUTES.CREATE_RECIPE} element={<RecipeForm />} />
+        <Route path={ROUTES.EDIT_RECIPE} element={<RecipeForm />} />
         <Route path={ROUTES.SAVE_RECIPE} element={<SavedRecipe />} />
         <Route path={ROUTES.PROFILE} element={<Profile />}>
           <Route path={ROUTES.EDIT_PROFILE} element={<EditProfile />} />

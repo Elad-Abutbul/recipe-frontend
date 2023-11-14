@@ -9,7 +9,7 @@ const useDeleteSavedRecipe = () => {
   const { checkIfInvalidToken } = useRemoveToken();
   const userId = getUserId();
 
-  const fetchDeleteSavedRecipe = async (recipeId) => {
+  const deleteSavedRecipe = async (recipeId) => {
     try {
       const res = await recipeService.deleteSavedRecipe(
         recipeId,
@@ -24,7 +24,7 @@ const useDeleteSavedRecipe = () => {
     }
   };
 
-  return { fetchDeleteSavedRecipe };
+  return { deleteSavedRecipe };
 };
 
 export default useDeleteSavedRecipe;
