@@ -1,26 +1,25 @@
-// import { useState } from 'react'
-// import axios from '../../../axiosConfig';
-// import { enqueueSnackbar } from 'notistack';
+import { apiErrors } from "../../../Functions";
+import axios from "../../../axiosConfig";
 
-// const useSearch = () => {
-//      const [state, setState] = useState([]);
-//      const [loading, setLoading] = useState(false);
-//      const search = async ({input,permission}) => {
-//           try {
-//                if (state.length !== 0) {
-//                     setLoading(true);
-//                     const res = await axios.post('/recipes/search',{input,permission});
-//                     setState(res.data.search);
-//                     setLoading(false);
-//                } else {
-//                     setState([]);
-//                }
-//           } catch (error) {
-//                console.error(error);
-//                setLoading(false);
-//                enqueueSnackbar("An Error Occurred", { variant: 'error' });
-//           }
-//      }
-//      return { search, state, loading };
-// }
-// export default useSearch;
+const search = async (input, permission, userId) => {
+  try {
+    const res = await axios.post("/recipes/search", {
+      input,
+      permission,
+      userId,
+    });
+    return res.data.search;
+  } catch (error) {
+    apiErrors(error);
+  }
+};
+
+export const handleSearch = async (
+  debounceValue,
+  permission,
+  userId,
+  setSearchList
+) => {
+  const searchResults = await search(debounceValue, permission, userId);
+  setSearchList(searchResults);
+};

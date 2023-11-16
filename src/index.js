@@ -4,6 +4,7 @@ import App from './App';
 import { SnackbarProvider } from 'notistack'
 import './index.css';
 import {  QueryClient, QueryClientProvider } from 'react-query'
+import { ReactQueryDevtools } from 'react-query/devtools'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const queryClient = new QueryClient()
 
@@ -12,6 +13,7 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <SnackbarProvider>
         <App />
+        <ReactQueryDevtools initialIsOpen/>
       </SnackbarProvider>
     </QueryClientProvider>
   </React.Fragment>

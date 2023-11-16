@@ -1,17 +1,22 @@
-import { enqueueSnackbar } from "notistack";
-import axios from '../../../axiosConfig'
+import { recipeService } from "../../../services";
+import { apiErrors } from "../../../Functions";
+import { useQuery } from "react-query";
 
 const useGetAllRecipes = () => {
-   
   const getAllRecipes = async () => {
     try {
-      const res = await axios.get('/recipes/getAllRecipes');
+      const res = await recipeService.getAll();
       return res.data;
     } catch (error) {
-      console.error(error);
-      enqueueSnackbar('Try Later', { variant: 'error' });
+      apiErrors(error);
     }
- }
- return { getAllRecipes }
-}
-   export default useGetAllRecipes
+  };
+  const { isLoading, data: recipes } = useQuery(
+    ["allRecipes"],
+    getAllRecipes
+  );
+
+  return { isLoading, recipes };
+};
+
+export default useGetAllRecipes;

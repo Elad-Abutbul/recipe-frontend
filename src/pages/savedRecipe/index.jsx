@@ -1,54 +1,34 @@
-import React from 'react';
-import { useDeleteSavedRecipe, useSavedRecipes } from '../../Api';
-import { Loading } from '../../components';
-import { MdDeleteOutline } from 'react-icons/md';
-import { useMutation, useQuery, useQueryClient } from 'react-query'
+import React, { useState } from "react";
+import { useGetSavedRecipes } from "../../Api";
+import { Loading, RecipesFeed, Search } from "../../components";
+import { getUserId } from "../../Functions";
 
 export const SavedRecipe = () => {
-  const { axiosSavedRecipes } = useSavedRecipes();
-  const { axiosDeleteSavedRecipe } = useDeleteSavedRecipe()
-  const queryClient = useQueryClient();
-
-  const { isLoading, data: savedRecipes } = useQuery(['savedRecipes'], axiosSavedRecipes);
-
-  const deleteRecipeMutation = useMutation(axiosDeleteSavedRecipe,{
-    onSuccess: () => {
-      queryClient.invalidateQueries(['savedRecipes']);
-    }
-  });
-  
-  const handleDeleteRecipe = (recipeId) => {
-    deleteRecipeMutation.mutateAsync(recipeId)
-  }
+  const [searchList, setSearchList] = useState([]);
+  const { isLoading, recipes } = useGetSavedRecipes();
+  const userId = getUserId();
 
   if (isLoading) return <Loading />;
 
   return (
-    <div className='m-10'>
-      <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {savedRecipes.length === 0 ? "Nothing To Show" : savedRecipes.map((recipe) => (
-          <li
-            key={recipe._id}
-            className="bg-white shadow-md rounded-lg overflow-hidden"
-          >
-            <img
-              src={recipe.imageUrl}
-              alt={recipe.name}
-              className="w-full h-48 object-cover"
-            />
-            <div className="p-4">
-              <h2 className="text-2xl font-semibold mb-2">{recipe.name}</h2>
-              <p className="text-gray-600 overflow-clip">{recipe.instruction}</p>
-              <p className="text-gray-800">
-                Cooking Time: {recipe.cookingTime} (minutes)
-              </p>
-               <div className='flex m-5 justify-center'>
-                <MdDeleteOutline  className='cursor-pointer' size={32} color="red" onClick={() =>!deleteRecipeMutation.isLoading && handleDeleteRecipe(recipe._id)}  />
-              </div>
-            </div>
-          </li>
-        ))}
-      </ul>
+    <div className="p-6 space-y-6">
+      <h1 className="text-3xl font-bold text-center">Saved Recipes</h1>
+      {recipes?.length === 0 ? (
+        "Save A Recipe To See!"
+      ) : (
+        <>
+          <Search
+            permission="savedRecipes"
+            setSearchList={setSearchList}
+            userId={userId}
+          />
+
+          <RecipesFeed
+            recipes={searchList.length === 0 ? recipes : searchList}
+            mode={"saved-recipes"}
+          />
+        </>
+      )}
     </div>
   );
 };
