@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 const useAuth = () => {
   const [cookies, setCookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
-  
+
   const checkIfUserAuth = () => {
     if (cookies.access_token) return true;
     return false;
@@ -34,7 +34,7 @@ const useAuth = () => {
         return enqueueSnackbar(res.data.message, { variant: "error" });
       }
       setCookies("access_token", res.data.token);
-      window.localStorage.setItem("userId", JSON.stringify(res.data.userId));
+      window.localStorage.setItem("user", JSON.stringify(res.data.user));
       navigate(ROUTES.HOME);
     } catch (error) {
       apiErrors(error);

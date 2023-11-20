@@ -1,17 +1,17 @@
 import React from "react";
 import {
-  CreateRecipe,
   EditProfile,
   EditRecipes,
   Home,
   Profile,
-  SavedRecipe,
+  RecipeForm,
+  SavedRecipes,
   SignInOut,
+  User,
 } from "./pages";
 import { Navbar } from "./components";
 import { ROUTES } from "./constants";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { RecipeForm } from "./pages/recipeForm";
 
 export const AppRouter = () => {
   return (
@@ -23,11 +23,12 @@ export const AppRouter = () => {
         <Route path={ROUTES.REGISTER} element={<SignInOut />} />
         <Route path={ROUTES.CREATE_RECIPE} element={<RecipeForm />} />
         <Route path={ROUTES.EDIT_RECIPE} element={<RecipeForm />} />
-        <Route path={ROUTES.SAVE_RECIPE} element={<SavedRecipe />} />
+        <Route path={ROUTES.SAVE_RECIPES} element={<SavedRecipes />} />
         <Route path={ROUTES.PROFILE} element={<Profile />}>
           <Route path={ROUTES.EDIT_PROFILE} element={<EditProfile />} />
           <Route path={ROUTES.EDIT_RECIPES} element={<EditRecipes />} />
         </Route>
+        <Route path="user/:id" element={<User />} />
       </Routes>
     </BrowserRouter>
   );

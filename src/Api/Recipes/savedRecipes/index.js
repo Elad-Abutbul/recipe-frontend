@@ -1,12 +1,12 @@
 import { userService } from "../../../services";
-import { apiErrors, getUserId } from "../../../Functions";
+import { apiErrors, getUser } from "../../../Functions";
 import { useQuery } from "react-query";
 
 const useGetSavedRecipes = () => {
-  const userId = getUserId();
+  const user = getUser();
   const savedRecipes = async () => {
     try {
-      const res = await userService.savedRecipe(userId);
+      const res = await userService.savedRecipe(user.id);
       if (!res.data.message) return res.data.savedRecipes;
     } catch (error) {
       apiErrors(error);

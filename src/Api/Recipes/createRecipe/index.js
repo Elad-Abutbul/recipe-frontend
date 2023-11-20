@@ -4,6 +4,7 @@ import { ROUTES } from "../../../constants";
 import { apiErrors } from "../../../Functions";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { enqueueSnackbar } from "notistack";
 
 const useCreateRecipe = () => {
   const { checkIfInvalidToken } = useRemoveToken();
@@ -17,6 +18,7 @@ const useCreateRecipe = () => {
         cookies.access_token
       );
       if (checkIfInvalidToken(res.data)) return;
+      enqueueSnackbar(res.data.message, { variant: "success" });
       navigate(ROUTES.HOME);
     } catch (error) {
       apiErrors(error);

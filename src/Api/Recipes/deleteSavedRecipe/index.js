@@ -1,19 +1,19 @@
 import useRemoveToken from "../../removeToken";
 import { recipeService } from "../../../services";
-import { apiErrors, getUserId } from "../../../Functions";
+import { apiErrors, getUser } from "../../../Functions";
 import { useCookies } from "react-cookie";
 import { enqueueSnackbar } from "notistack";
 
 const useDeleteSavedRecipe = () => {
   const [cookies, setCookies] = useCookies(["access_token"]);
   const { checkIfInvalidToken } = useRemoveToken();
-  const userId = getUserId();
+  const user = getUser();
 
   const deleteSavedRecipe = async (recipeId) => {
     try {
       const res = await recipeService.deleteSavedRecipe(
         recipeId,
-        userId,
+        user.id,
         cookies.access_token
       );
 

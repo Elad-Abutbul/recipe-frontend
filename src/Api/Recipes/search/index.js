@@ -17,8 +17,8 @@ const search = async (input, permission, userId) => {
 export const handleSearch = async (
   debounceValue,
   permission,
-  userId,
-  setSearchList
+  setSearchList,
+  userId
 ) => {
   const searchResults = await search(debounceValue, permission, userId);
   setSearchList(searchResults);

@@ -32,6 +32,7 @@ export const FullRecipe = ({ recipe, onClose }) => (
         <h2 className="font-bold text-lg">Cooking Time</h2>
         <p className="mb-2 text-gray-800">{recipe.cookingTime} (minutes)</p>
       </div>
+ 
     </div>
   </div>
 );

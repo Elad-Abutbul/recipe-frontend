@@ -1,18 +1,18 @@
 import { useRemoveToken } from "../..";
-import { apiErrors, getUserId } from "../../../Functions";
+import { apiErrors, getUser } from "../../../Functions";
 import { userService } from "../../../services";
 import { enqueueSnackbar } from "notistack";
 import { useCookies } from "react-cookie";
 
 const useSaveRecipe = () => {
-  let userId = getUserId();
+  let user = getUser();
   const { checkIfInvalidToken } = useRemoveToken();
   const [cookies, setCookies] = useCookies(["access_token"]);
   const saveRecipe = async (recipeId) => {
     try {
       const res = await userService.saveRecipe(
         recipeId,
-        userId,
+        user.id,
         cookies.access_token
       );
       if (checkIfInvalidToken(res.data)) return;

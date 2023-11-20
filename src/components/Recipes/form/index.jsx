@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { ROUTES } from "../../../constants";
-import { getUserId, useQureyMutation } from "../../../Functions";
+import { getUser, useQureyMutation } from "../../../Functions";
 import {
   addIngredient,
   deleteIngredient,
@@ -12,23 +12,26 @@ import {
 export const Form = ({ singleRecipe, location }) => {
   const { createRecipeMutation, editRecipeMutation } = useQureyMutation();
 
-  const userId = getUserId();
+  const user = getUser();
 
   const handleChange = (event) => {
     handleChangeState(event, setRecipe, recipe);
   };
-
   const [recipe, setRecipe] = useState({
     name: singleRecipe?.name || "",
     ingredients: singleRecipe?.ingredients || [],
     instruction: singleRecipe?.instruction || "",
     imageUrl: singleRecipe?.imageUrl || "",
     cookingTime: singleRecipe?.cookingTime || 0,
-    userOwner: userId,
+    userOwner: {
+      id: user.id,
+      username: user.username,
+    },
   });
 
-  const inputClassName ="w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400";
-  
+  const inputClassName =
+    "w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400";
+
   return (
     <div className="p-6 space-y-6">
       <h1 className="text-3xl font-bold text-center">

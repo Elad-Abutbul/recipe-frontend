@@ -11,10 +11,7 @@ const useGetAllRecipes = () => {
       apiErrors(error);
     }
   };
-  const { isLoading, data: recipes } = useQuery(
-    ["allRecipes"],
-    getAllRecipes
-  );
+  const { isLoading, data: recipes } = useQuery(["allRecipes"], getAllRecipes);
 
   return { isLoading, recipes };
 };

@@ -8,9 +8,10 @@ import {
   useGetAllOwnerRecipes,
   handleSearch,
 } from "./Recipes";
-import { useAuth, useSaveRecipe, useEditUser } from "./User";
+import { useAuth, useSaveRecipe, useEditUser, useGetUser } from "./User";
 import useRemoveToken from "./removeToken";
 export {
+  useGetUser,
   handleSearch,
   useAuth,
   useSaveRecipe,

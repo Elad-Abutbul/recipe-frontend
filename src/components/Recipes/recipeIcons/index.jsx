@@ -6,7 +6,11 @@ import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { GrFormView } from "react-icons/gr";
 import { LiaSave } from "react-icons/lia";
 
-export const RecipeIcons = ({ setShowFullRecipe, mode, recipe }) => {
+export const RecipeIcons = ({
+  setShowFullRecipe,
+  mode,
+  recipe,
+}) => {
   const navigate = useNavigate();
   const { handleSaveRecipe } = useRecipeCard();
   const {
@@ -14,6 +18,7 @@ export const RecipeIcons = ({ setShowFullRecipe, mode, recipe }) => {
     deleteSavedRecipeMutation,
     saveRecipeseMutation,
   } = useQureyMutation();
+  
   return (
     <div className="flex gap-5">
       {mode === "all-recipes" && (

@@ -10,14 +10,14 @@ import useDebounce from "./debounce";
 import useRecipeCard from "./RecipeCard";
 import useQureyMutation from "./mutation";
 import useSignInOut from "./signInOut";
-import { getUserId } from "./getUserId";
+import { getUser } from "./getUser";
 import { apiErrors } from "./Api";
 import { editHandleSubmit } from "./editProfile";
 
 export {
   editHandleSubmit,
   formHandleSubmit,
-  getUserId,
+  getUser,
   handleChangeState,
   deleteIngredient,
   addIngredient,

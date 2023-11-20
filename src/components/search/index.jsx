@@ -10,7 +10,9 @@ export const Search = ({
   const [input, setInput] = useState("");
   const { debounceValue } = useDebounce(input, 300);
   useEffect(() => {
-    handleSearch(debounceValue, permission, userId, setSearchList);
+    if (input !== "")
+      handleSearch(debounceValue, permission, setSearchList, userId);
+    else setSearchList([]);
   }, [debounceValue]);
 
   return (
@@ -19,7 +21,7 @@ export const Search = ({
       value={input}
       placeholder="search.."
       onChange={(e) => setInput(e.target.value)}
-      className="px-4 py-2 border rounded-lg shadow-md focus:outline-none "
+      className="flex px-4 py-2 border rounded-lg shadow-md focus:outline-none "
     />
   );
 };

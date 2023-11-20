@@ -1,8 +1,18 @@
 import { Home } from "./home";
 import { SignInOut } from "./Auth";
-import { SavedRecipe } from "./savedRecipe";
 import { Profile } from "./Profile";
 import { EditProfile } from "./Profile/editProfile";
 import { EditRecipes } from "./Profile/editRecipes";
+import { SavedRecipes } from "./savedRecipes";
 import { RecipeForm } from "./recipeForm";
-export { Home, SavedRecipe, SignInOut, Profile, EditProfile, EditRecipes };
+import { User } from "./user";
+export {
+  User,
+  Home,
+  SignInOut,
+  RecipeForm,
+  SavedRecipes,
+  Profile,
+  EditProfile,
+  EditRecipes,
+};

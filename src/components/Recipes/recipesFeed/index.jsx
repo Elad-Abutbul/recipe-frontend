@@ -1,5 +1,5 @@
 import React from "react";
-import { RecipeCard } from "..";
+import { RecipeCard } from "../recipeCard";
 
 export const RecipesFeed = ({ recipes, mode }) => (
   <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
