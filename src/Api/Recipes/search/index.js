@@ -1,9 +1,9 @@
 import { apiErrors } from "../../../Functions";
-import axios from "../../../axiosConfig";
+import axiosInstance from "../../../axiosConfig";
 
 const search = async (input, permission, userId) => {
   try {
-    const res = await axios.post("/recipes/search", {
+    const res = await axiosInstance.post("/recipes/search", {
       input,
       permission,
       userId,

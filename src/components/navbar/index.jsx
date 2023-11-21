@@ -16,7 +16,7 @@ export const Navbar = () => {
           to={ROUTES.HOME}
           className="text-2xl font-extrabold text-white hover:text-blue-600"
         >
-          MyRecipes
+          Recipes
         </Link>
 
         <button

@@ -1,25 +1,25 @@
-import axios from "../../axiosConfig";
+import axiosInstance from "../../axiosConfig";
 
 export const userService = {
   register: async (username, password) =>
-    await axios.post("/auth/register", { username, password }),
+    await axiosInstance.post("/auth/register", { username, password }),
 
   login: async (username, password) =>
-    await axios.post("/auth/login", { username, password }),
+    await axiosInstance.post("/auth/login", { username, password }),
 
-  getUser: async (userId) => await axios.get(`/auth/getUser/${userId}`),
+  getUser: async (userId) => await axiosInstance.get(`/auth/getUser/${userId}`),
 
-  savedRecipe: async (userId) => await axios.get(`auth/savedRecipes/${userId}`),
+  savedRecipe: async (userId) => await axiosInstance.get(`auth/savedRecipes/${userId}`),
 
   editUser: async (userId, username, password, accessToken) =>
-    await axios.put(
+    await axiosInstance.put(
       `/auth/editUser/${userId}`,
       { username, password },
       { headers: { authorization: accessToken } }
     ),
 
   saveRecipe: async (recipeId, userId, accessToken) =>
-    await axios.put(
+    await axiosInstance.put(
       "/recipes/saveRecipe",
       { recipeId, userId },
       { headers: { authorization: accessToken } }
