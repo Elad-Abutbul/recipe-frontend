@@ -11,7 +11,7 @@ import {
 
 export const Form = ({ singleRecipe, location }) => {
   const { createRecipeMutation, editRecipeMutation } = useQureyMutation();
-
+  const [kosherType, setKosherType] = useState('');
   const user = getUser();
 
   const handleChange = (event) => {
@@ -45,7 +45,8 @@ export const Form = ({ singleRecipe, location }) => {
             location,
             editRecipeMutation,
             singleRecipe,
-            createRecipeMutation
+            createRecipeMutation,
+            kosherType
           )
         }
         className="space-y-4"
@@ -107,6 +108,12 @@ export const Form = ({ singleRecipe, location }) => {
           value={recipe.imageUrl}
           className={inputClassName}
         />
+        <select onChange={e => setKosherType(e.target.value)} required>
+          <option selected disabled value={''}>Kosher Type</option>
+          <option value={'Parve'}>Parve</option>
+          <option value={'Dairy'}>Dairy</option>
+          <option value={'Meet'}>Meet</option>
+        </select>
         <input
           type="number"
           placeholder="Cooking Time (minutes).."

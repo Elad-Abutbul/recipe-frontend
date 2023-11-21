@@ -25,13 +25,16 @@ export const formHandleSubmit = async (
   location,
   editRecipeMutation,
   singleRecipe,
-  createRecipeMutation
+  createRecipeMutation,
+  kosherType
 ) => {
   event.preventDefault();
   if (recipe.ingredients.length === 0) {
     enqueueSnackbar("Must Have Ingredients.", { variant: "warning" });
   } else if (recipeIngredientsCheck(recipe)) {
     enqueueSnackbar("Must Fill in All Ingredients.", { variant: "warning" });
+  } else if (kosherType === "") {
+    enqueueSnackbar("Must Have Kosher Type.", { variant: "warning" });
   } else if (location.pathname === ROUTES.EDIT_RECIPE) {
     editRecipeMutation.mutate({ recipe, recipeId: singleRecipe._id });
   } else {

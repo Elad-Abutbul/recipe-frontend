@@ -6,7 +6,6 @@ export const Home = () => {
   const [searchList, setSearchList] = useState([]);
   const [select, setSelect] = useState("users");
   const { isLoading, recipes } = useGetAllRecipes();
-  console.log(searchList);
 
   if (isLoading) return <Loading />;
   
