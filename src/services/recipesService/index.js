@@ -2,8 +2,14 @@ import axiosInstance from "../../axiosConfig";
 import { API_URL } from "../../constants";
 
 export const recipeService = {
-  getAll: async () => await axiosInstance.get(API_URL.RECIPES.GET_ALL),
-
+  getAllRecipes: async () =>
+    await axiosInstance.get(API_URL.RECIPES.GET_ALL_RECIPES),
+  getRecipes: async (recipesSelected) => {
+    console.log(recipesSelected)
+    return await axiosInstance.get(
+      `${API_URL.RECIPES.GET_RECIPES}/${recipesSelected}`
+    );
+  },
   createRecipe: async (recipe, accessToken) =>
     await axiosInstance.post(API_URL.RECIPES.CREATE_RECIPE, recipe, {
       headers: { authorization: accessToken },

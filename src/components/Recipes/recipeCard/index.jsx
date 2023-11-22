@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { FullRecipe, RecipeIcons } from "../../../components";
 import { Link } from "react-router-dom";
+import { ROUTES } from "../../../constants";
 
 export const RecipeCard = ({ recipe, mode = "all-recipes" }) => {
   const [showFullRecipe, setShowFullRecipe] = useState(false);
@@ -21,7 +22,7 @@ export const RecipeCard = ({ recipe, mode = "all-recipes" }) => {
             <h2 className="text-2xl font-semibold mb-2">{recipe.name}</h2>
             <div>
               <h2 className="font-bold text-lg inline">By </h2>
-              <Link to={`/user/${recipe?.userOwner?.id}`}>
+              <Link to={`${ROUTES.USER}/${recipe?.userOwner?.id}`}>
                 <p className="mb-2 text-gray-800 hover:text-blue-500 inline">
                   {recipe?.userOwner?.username}
                 </p>

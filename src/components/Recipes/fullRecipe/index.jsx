@@ -29,6 +29,10 @@ export const FullRecipe = ({ recipe, onClose }) => (
         <p>{recipe.instruction}</p>
       </div>
       <div>
+        <h2 className="font-bold text-lg">Kosher Type</h2>
+        <p className="mb-2 text-gray-800">{recipe.kosherType}</p>
+      </div>
+      <div>
         <h2 className="font-bold text-lg">Cooking Time</h2>
         <p className="mb-2 text-gray-800">{recipe.cookingTime} (minutes)</p>
       </div>

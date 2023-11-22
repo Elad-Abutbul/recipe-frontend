@@ -2,13 +2,11 @@ import useCreateRecipe from "./createRecipe";
 import useDeleteOwnerRecipe from "./deleteOwnerRecipe";
 import useDeleteSavedRecipe from "./deleteSavedRecipe";
 import useEditRecipe from "./editRecipe";
-import useGetAllRecipes from "./getAllRecipes";
 import useGetSavedRecipes from "./savedRecipes";
 import useGetAllOwnerRecipes from "./getAllOwnerRecipes";
 import { handleSearch } from "./search";
 export {
   handleSearch,
-  useGetAllRecipes,
   useCreateRecipe,
   useDeleteSavedRecipe,
   useEditRecipe,

@@ -1,9 +1,11 @@
 import {
   Form,
   FullRecipe,
+  Recipes,
   RecipeCard,
   RecipeIcons,
   RecipesFeed,
+  SelectRecipesType,
 } from "./Recipes";
 import { UserCard, UserFeed } from "./User";
 import { Loading } from "./loading";
@@ -20,4 +22,6 @@ export {
   RecipeIcons,
   Search,
   Form,
+  Recipes,
+  SelectRecipesType,
 };

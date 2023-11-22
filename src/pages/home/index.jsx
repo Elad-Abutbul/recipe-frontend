@@ -1,17 +1,13 @@
 import React, { useState } from "react";
-import { Loading, RecipesFeed, Search, UserFeed } from "../../components";
-import { useGetAllRecipes } from "../../Api";
+import { SelectRecipesType } from "../../components";
 
 export const Home = () => {
-  const [searchList, setSearchList] = useState([]);
   const [select, setSelect] = useState("users");
-  const { isLoading, recipes } = useGetAllRecipes();
-
-  if (isLoading) return <Loading />;
   
   return (
     <div className="p-6 space-y-8">
-      <h1 className="text-3xl font-bold">Recipes</h1>
+      <SelectRecipesType/>
+      {/* <h1 className="text-3xl font-bold">Recipes</h1>
       {recipes?.length === 0 ? (
         "Nothing To Show.."
       ) : (
@@ -37,7 +33,7 @@ export const Home = () => {
         <RecipesFeed
           recipes={searchList.length === 0 ? recipes : searchList}
         />
-      )}
+      )} */}
     </div>
   );
 };

@@ -10,24 +10,24 @@ import {
 } from "../../../Functions";
 
 export const Form = ({ singleRecipe, location }) => {
-  const { createRecipeMutation, editRecipeMutation } = useQureyMutation();
-  const [kosherType, setKosherType] = useState('');
   const user = getUser();
-
-  const handleChange = (event) => {
-    handleChangeState(event, setRecipe, recipe);
-  };
+  const { createRecipeMutation, editRecipeMutation } = useQureyMutation();
   const [recipe, setRecipe] = useState({
     name: singleRecipe?.name || "",
     ingredients: singleRecipe?.ingredients || [],
     instruction: singleRecipe?.instruction || "",
     imageUrl: singleRecipe?.imageUrl || "",
+    kosherType:singleRecipe?.kosherType||'',
     cookingTime: singleRecipe?.cookingTime || 0,
     userOwner: {
       id: user.id,
       username: user.username,
     },
   });
+  
+  const handleChange = (event) => {
+    handleChangeState(event, setRecipe, recipe);
+  };
 
   const inputClassName =
     "w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400";
@@ -46,7 +46,6 @@ export const Form = ({ singleRecipe, location }) => {
             editRecipeMutation,
             singleRecipe,
             createRecipeMutation,
-            kosherType
           )
         }
         className="space-y-4"
@@ -108,11 +107,11 @@ export const Form = ({ singleRecipe, location }) => {
           value={recipe.imageUrl}
           className={inputClassName}
         />
-        <select onChange={e => setKosherType(e.target.value)} required>
+        <select onChange={handleChange} name="kosherType" required>
           <option selected disabled value={''}>Kosher Type</option>
-          <option value={'Parve'}>Parve</option>
-          <option value={'Dairy'}>Dairy</option>
-          <option value={'Meet'}>Meet</option>
+          <option value={'parve'}>Parve</option>
+          <option value={'dairy'}>Dairy</option>
+          <option value={'meet'}>Meet</option>
         </select>
         <input
           type="number"

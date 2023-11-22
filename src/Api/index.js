@@ -1,7 +1,6 @@
 import {
   useCreateRecipe,
   useDeleteSavedRecipe,
-  useGetAllRecipes,
   useEditRecipe,
   useDeleteOwnerRecipe,
   useGetSavedRecipes,
@@ -15,7 +14,6 @@ export {
   handleSearch,
   useAuth,
   useSaveRecipe,
-  useGetAllRecipes,
   useCreateRecipe,
   useRemoveToken,
   useDeleteSavedRecipe,
