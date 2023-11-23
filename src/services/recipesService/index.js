@@ -5,7 +5,6 @@ export const recipeService = {
   getAllRecipes: async () =>
     await axiosInstance.get(API_URL.RECIPES.GET_ALL_RECIPES),
   getRecipes: async (recipesSelected) => {
-    console.log(recipesSelected)
     return await axiosInstance.get(
       `${API_URL.RECIPES.GET_RECIPES}/${recipesSelected}`
     );

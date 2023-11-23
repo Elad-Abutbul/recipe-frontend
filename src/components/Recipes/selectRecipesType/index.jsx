@@ -1,35 +1,30 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { ROUTES } from '../../../constants';
-
-export const SelectRecipesType = () => {
-  const linkClass= "bg-gray-100 p-6 mx-4 my-2 rounded-lg shadow-lg transform hover:scale-105 transition duration-300"
+export const SelectRecipesType = ({setCategory}) => {
+  const handleCategoryChange = (event) => {
+    const category = event?.target?.value || 'all-recipes'
+    setCategory(category);
+    switch (category) {
+      case "all-recipes":
+        setCategory("all-recipes")
+        break;
+      case "meat-recipes":
+        setCategory("meat")
+        break;
+      case "dairy-recipes":
+        setCategory("dairy")
+        break;
+      case "parve-recipes":
+        setCategory("parve")
+        break;
+      default:
+        break;
+    }
+  };
   return (
-    <div className="flex justify-center items-center h-72">
-            <Link
-        to={`${ROUTES.RECIPES}/${ROUTES.ALL_RECIPES}`}
-        className={linkClass}
-      >
-        <div>All Recipes</div>
-      </Link>
-      <Link
-        to={`${ROUTES.RECIPES}/${ROUTES.PARVE}`}
-        className={linkClass}
-      >
-        <div>Parve Recipes</div>
-      </Link>
-      <Link
-        to={`${ROUTES.RECIPES}/${ROUTES.MEAT}`}
-        className={linkClass}
-      >
-        <div>Meat Recipes</div>
-      </Link>
-      <Link
-        to={`${ROUTES.RECIPES}/${ROUTES.DAIRY}`}
-        className={linkClass}
-      >
-        <div>Dairy Recipes</div>
-      </Link>
-    </div>
+    <select name="recipeCategory" onChange={handleCategoryChange}>
+      <option value="all-recipes" selected>All Recipes</option>
+      <option value="meat-recipes">Meat Recipes</option>
+      <option value="dairy-recipes">Dairy Recipes</option>
+      <option value="parve-recipes">Parve Recipes</option>
+    </select>
   );
 };

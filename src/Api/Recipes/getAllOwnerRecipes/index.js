@@ -6,7 +6,6 @@ import { enqueueSnackbar } from "notistack";
 const useGetAllOwnerRecipes = () => {
   const user = getUser();
   const getAllOwnerRecipes = async () => {
-    debugger
     try {
       const res = await recipeService.getAllOwnerRecipes(user.id);
       if (res.data.message)

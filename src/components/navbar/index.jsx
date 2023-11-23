@@ -13,7 +13,7 @@ export const Navbar = () => {
     <nav className="bg-gray-800 text-white sticky top-0 z-20">
       <div className="container mx-auto flex items-center justify-between py-4">
         <Link
-          to={ROUTES.HOME}
+          to={`/`}
           className="text-2xl font-extrabold text-white hover:text-blue-600"
         >
           Recipes

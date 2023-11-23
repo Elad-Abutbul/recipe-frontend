@@ -16,11 +16,11 @@ const useGetUser = (userId) => {
       apiErrors(error);
     }
   };
-  const { loading, data } = useQuery({
+  const { loading, data: user } = useQuery({
     queryFn: getUser,
-    queryKey: ["user"],
+    queryKey: [`user ${userId}`],
   });
-  return { loading, data };
+  return { loading, user };
 };
 
 export default useGetUser;

@@ -6,6 +6,7 @@ import { EditRecipes } from "./Profile/editRecipes";
 import { SavedRecipes } from "./savedRecipes";
 import { RecipeForm } from "./recipeForm";
 import { User } from "./user";
+import { Layout } from "./layout";
 export {
   User,
   Home,
@@ -15,4 +16,5 @@ export {
   Profile,
   EditProfile,
   EditRecipes,
+  Layout,
 };

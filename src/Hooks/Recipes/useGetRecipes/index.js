@@ -12,10 +12,7 @@ const useGetRecipes = (recipesSelected) => {
     }
   };
 
-  const { isLoading, data: recipes } = useQuery(
-    ["allOwnerRecipes"],
-    getRecipes
-  );
+  const { isLoading, data: recipes } = useQuery([recipesSelected], getRecipes);
 
   return { isLoading, recipes };
 };

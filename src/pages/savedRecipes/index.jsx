@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useGetSavedRecipes } from "../../Api";
 import { Loading, RecipesFeed, Search } from "../../components";
 import { getUser } from "../../Functions";
+import { Layout } from "../../pages";
 
 export const SavedRecipes = () => {
   const [searchList, setSearchList] = useState([]);
@@ -10,7 +11,7 @@ export const SavedRecipes = () => {
 
   if (isLoading) return <Loading />;
   return (
-    <div className="p-6 space-y-6">
+    <Layout>
       <h1 className="text-3xl font-bold text-center">Saved Recipes</h1>
 
       {recipes?.length === 0 ? (
@@ -28,6 +29,6 @@ export const SavedRecipes = () => {
           />
         </>
       )}
-    </div>
+    </Layout>
   );
 };

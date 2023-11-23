@@ -14,5 +14,5 @@ export const ROUTES = {
   DAIRY: `dairy`,
   PARVE: `parve`,
   ALL_RECIPES: "all-recipes",
-  RECIPES: `/recipes`,
+  // RECIPES: `/recipes`,
 };

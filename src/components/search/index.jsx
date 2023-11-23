@@ -3,14 +3,12 @@ import { useDebounce } from "../../Functions";
 import { handleSearch } from "../../Api";
 
 export const Search = ({
-  permission = "allRecipes",
+  permission = "all-recipes",
   setSearchList,
   userId = null,
-  select = null,
 }) => {
   const [input, setInput] = useState("");
   const { debounceValue } = useDebounce(input, 300);
-
   useEffect(() => {
     if (input !== "") {
       handleSearch(debounceValue, permission, setSearchList, userId);
@@ -21,9 +19,9 @@ export const Search = ({
   
   useEffect(() => {
     setInput("");
-  }, [select]);
+  }, [permission]);
   return (
-    <div className="flex items-center">
+    <div className="flex items-center my-6">
       <input
         type="search"
         value={input}

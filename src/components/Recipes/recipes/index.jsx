@@ -1,19 +1,9 @@
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React from "react";
 import { useGetRecipes } from '../../../Hooks';
-import { RecipesFeed } from '..';
-import { Loading } from '../../loading';
-import { Search } from '../../search';
+import { Loading, RecipesFeed } from '../../../components';
 
-export const Recipes = () => {
-  const { pathname } = useLocation();
-  const [searchList, setSearchList] = useState([]);
-  const { recipes, isLoading } = useGetRecipes(pathname.substring(9));
-if(isLoading) return <Loading/>
-  return (
-    <div className='p-4'>
-      <Search setSearchList={setSearchList} />
-<RecipesFeed recipes={recipes}/>
-    </div>
-  );
+export const Recipes = ({ category,searchList=null }) => {
+  const { recipes, isLoading } = useGetRecipes(category);
+  if (isLoading) return <Loading />;
+  return <RecipesFeed recipes={searchList?.length===0?recipes:searchList} />;
 };

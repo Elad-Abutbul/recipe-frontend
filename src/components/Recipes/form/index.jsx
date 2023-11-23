@@ -24,7 +24,6 @@ export const Form = ({ singleRecipe, location }) => {
       username: user.username,
     },
   });
-  
   const handleChange = (event) => {
     handleChangeState(event, setRecipe, recipe);
   };
@@ -107,12 +106,21 @@ export const Form = ({ singleRecipe, location }) => {
           value={recipe.imageUrl}
           className={inputClassName}
         />
-        <select onChange={handleChange} name="kosherType" required>
-          <option selected disabled value={''}>Kosher Type</option>
-          <option value={'parve'}>Parve</option>
-          <option value={'dairy'}>Dairy</option>
-          <option value={'meet'}>Meet</option>
-        </select>
+<select onChange={handleChange} name="kosherType" required>
+  <option disabled={!singleRecipe?.kosherType} value={''} selected={!singleRecipe}>
+    Kosher Type
+  </option>
+  <option value={'parve'} selected={singleRecipe?.kosherType === 'parve'}>
+    Parve
+  </option>
+  <option value={'dairy'} selected={singleRecipe?.kosherType === 'dairy'}>
+    Dairy
+  </option>
+  <option value={'meat'} selected={singleRecipe?.kosherType === 'meat'}>
+    Meat
+  </option>
+</select>
+
         <input
           type="number"
           placeholder="Cooking Time (minutes).."

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 import { ROUTES } from "../../constants";
+import { Layout } from "../layout";
 
 export const Profile = () => {
   const [select, setSelect] = useState("edit-recipes");
 
   return (
-    <div className="p-8 z-10">
+    <Layout>
       <div className="flex justify-center mb-4 ">
         <Link
           to={ROUTES.EDIT_RECIPES}
@@ -28,6 +29,6 @@ export const Profile = () => {
         </Link>
       </div>
       <Outlet />
-    </div>
+    </Layout>
   );
 };
