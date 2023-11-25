@@ -1,10 +1,10 @@
 import React from "react";
 import { ROUTES } from "../../../constants";
-import { useQureyMutation, useRecipeCard } from "../../../Functions";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
 import { GrFormView } from "react-icons/gr";
 import { LiaSave } from "react-icons/lia";
+import { useQueryMutation, useRecipeCard } from "../../../Hooks";
 
 export const RecipeIcons = ({
   setShowFullRecipe,
@@ -17,7 +17,7 @@ export const RecipeIcons = ({
     deleteOwnerRecipeMutation,
     deleteSavedRecipeMutation,
     saveRecipeseMutation,
-  } = useQureyMutation();
+  } = useQueryMutation();
   
   return (
     <div className="flex gap-5">

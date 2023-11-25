@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useDebounce } from "../../Functions";
-import { handleSearch } from "../../Api";
+import { handleSearch } from "../../Functions";
+import { useDebounce } from "../../Hooks";
 
 export const Search = ({
   permission = "all-recipes",

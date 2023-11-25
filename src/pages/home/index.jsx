@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Recipes, Search, SelectRecipesType } from "../../components";
+import { RecipesCategory, Search, SelectRecipesType } from "../../components";
 import { Layout } from "../../pages";
 
 export const Home = () => {
+  
   const [searchList, setSearchList] = useState([]);
   const [category, setCategory] = useState('all-recipes');
     
@@ -12,7 +13,7 @@ export const Home = () => {
         <Search setSearchList={setSearchList} permission={category} />
         <SelectRecipesType setCategory={setCategory} />
       </div>
-      <Recipes category={category} searchList={searchList} />
+      <RecipesCategory category={category} searchList={searchList} />
     </Layout>
   );
 };

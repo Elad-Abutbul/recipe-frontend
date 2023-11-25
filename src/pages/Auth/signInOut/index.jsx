@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { useSignInOut } from "../../../Hooks";
 import { ROUTES } from "../../../constants";
 import { Link, useLocation } from "react-router-dom";
-import { useSignInOut } from "../../../Functions";
 
 export const SignInOut = () => {
   const [username, setUsername] = useState("");

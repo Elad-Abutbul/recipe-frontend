@@ -1,17 +1,18 @@
 import React, { useState } from "react";
+import { useQueryMutation } from "../../../Hooks";
 import { ROUTES } from "../../../constants";
-import { getUser, useQureyMutation } from "../../../Functions";
 import {
   addIngredient,
   deleteIngredient,
   handleChangeState,
   handleIngredientChange,
   formHandleSubmit,
+  getUser
 } from "../../../Functions";
 
 export const Form = ({ singleRecipe, location }) => {
   const user = getUser();
-  const { createRecipeMutation, editRecipeMutation } = useQureyMutation();
+  const { createRecipeMutation, editRecipeMutation } = useQueryMutation();
   const [recipe, setRecipe] = useState({
     name: singleRecipe?.name || "",
     ingredients: singleRecipe?.ingredients || [],

@@ -3,7 +3,7 @@ import { RecipesFeed } from "./recipesFeed";
 import { FullRecipe } from "./fullRecipe";
 import { RecipeIcons } from "./recipeIcons";
 import { Form } from "./form";
-import { Recipes } from "./recipes";
+import { RecipesCategory } from "./recipesCategory";
 import { SelectRecipesType } from "./selectRecipesType";
 
 export {
@@ -12,6 +12,6 @@ export {
   FullRecipe,
   RecipeIcons,
   Form,
-  Recipes,
+  RecipesCategory,
   SelectRecipesType,
 };

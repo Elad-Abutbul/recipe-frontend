@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useGetSavedRecipes } from "../../Api";
-import { Loading, RecipesFeed, Search } from "../../components";
-import { getUser } from "../../Functions";
+import { useGetSavedRecipes } from "../../Hooks";
 import { Layout } from "../../pages";
+import { getUser } from "../../Functions";
+import { Loading, RecipesFeed, Search } from "../../components";
 
 export const SavedRecipes = () => {
   const [searchList, setSearchList] = useState([]);

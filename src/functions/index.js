@@ -1,31 +1,36 @@
 import { handleChangeState } from "./handleChangeState";
-import {
-  deleteIngredient,
-  addIngredient,
-  handleIngredientChange,
-  recipeIngredientsCheck,
-  formHandleSubmit,
-} from "./recipeForm";
-import useDebounce from "./debounce";
-import useRecipeCard from "./RecipeCard";
-import useQureyMutation from "./mutation";
-import useSignInOut from "./signInOut";
-import { getUser } from "./getUser";
-import { apiErrors } from "./Api";
-import { editHandleSubmit } from "./editProfile";
 
-export {
-  editHandleSubmit,
-  formHandleSubmit,
-  getUser,
-  handleChangeState,
-  deleteIngredient,
+import { apiErrors } from "./Api";
+import { editHandleSubmit } from "./User/editProfile";
+import { handleSearch } from "./search";
+import {
   addIngredient,
+  deleteIngredient,
+  formHandleSubmit,
   handleIngredientChange,
   recipeIngredientsCheck,
-  useDebounce,
-  useRecipeCard,
-  useSignInOut,
-  useQureyMutation,
+} from "./Recipes";
+import { getUser } from "./User";
+export {
+  //******* Recipes *******
+  //form
+  addIngredient,
+  deleteIngredient,
+  handleIngredientChange,
+  recipeIngredientsCheck,
+  formHandleSubmit,
+
+  //  ******* Recipes *******
+
+  //******* users *******
+  editHandleSubmit,
+  getUser,
+  //******* users *******
+
+  //******* search *******
+  handleSearch,
+  //******* search *******
+  
+  handleChangeState,
   apiErrors,
 };

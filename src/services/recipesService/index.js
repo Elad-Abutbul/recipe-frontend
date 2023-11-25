@@ -4,9 +4,9 @@ import { API_URL } from "../../constants";
 export const recipeService = {
   getAllRecipes: async () =>
     await axiosInstance.get(API_URL.RECIPES.GET_ALL_RECIPES),
-  getRecipes: async (recipesSelected) => {
+  getRecipes: async (recipesSelected, page) => {
     return await axiosInstance.get(
-      `${API_URL.RECIPES.GET_RECIPES}/${recipesSelected}`
+      `${API_URL.RECIPES.GET_RECIPES}/${recipesSelected}?page=${page}`
     );
   },
   createRecipe: async (recipe, accessToken) =>

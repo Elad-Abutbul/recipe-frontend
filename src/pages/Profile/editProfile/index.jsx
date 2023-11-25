@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { editHandleSubmit, getUser, handleChangeState } from "../../../Functions";
-import { useEditUser } from "../../../Api";
 import { Layout } from "../../../pages";
+import { useEditUser } from "../../../Hooks";
 
 export const EditProfile = () => {
   const { editUser } = useEditUser();

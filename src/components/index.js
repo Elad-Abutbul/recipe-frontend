@@ -1,7 +1,7 @@
 import {
   Form,
   FullRecipe,
-  Recipes,
+  RecipesCategory,
   RecipeCard,
   RecipeIcons,
   RecipesFeed,
@@ -22,6 +22,6 @@ export {
   RecipeIcons,
   Search,
   Form,
-  Recipes,
+  RecipesCategory,
   SelectRecipesType,
 };
