@@ -4,7 +4,11 @@ const RECIPE_DELETE_BASE = `${RECIPES_BASE}/delete`;
 export const API_URL = {
   RECIPES: {
     RECIPES: RECIPES_BASE,
-    GET_ALL: `${RECIPES_BASE}/getAllRecipes`,
+    GET_ALL_RECIPES: `${RECIPES_BASE}/getAllRecipes`,
+    GET_MEAT_RECIPES: `${RECIPES_BASE}/getMeatRecipes`,
+    GET_PARVE_RECIPES: `${RECIPES_BASE}/getParveRecipes`,
+    GET_DAIRY_RECIPES: `${RECIPES_BASE}/getDairyRecipes`,
+    GET_RECIPES:`${RECIPES_BASE}/getRecipes`,
     CREATE_RECIPE: `${RECIPES_BASE}/createRecipe`,
     EDIT_RECIPE: `${RECIPES_BASE}/editRecipe`,
     GET_ALL_OWNER_RECIPE: `${RECIPES_BASE}/getAllOwnerRecipes`,

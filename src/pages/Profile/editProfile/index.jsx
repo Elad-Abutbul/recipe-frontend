@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import { editHandleSubmit, handleChangeState } from "../../../Functions";
-import { useEditUser } from "../../../Api";
+import { editHandleSubmit, getUser, handleChangeState } from "../../../Functions";
+import { Layout } from "../../../pages";
+import { useEditUser } from "../../../Hooks";
 
 export const EditProfile = () => {
   const { editUser } = useEditUser();
-
+  const user= getUser()
   const [editUserField, setEditUserField] = useState({
-    username: "",
+    username: user.username,
     password: "",
   });
-
   const handlChange = (event) => {
     handleChangeState(event, setEditUserField, editUserField);
   };
 
   return (
-    <div className="bg-white m-10 rounded-lg ">
+    <Layout>
       <h1 className="text-3xl font-semibold mb-4 text-blue-500">
         Edit Profile
       </h1>
@@ -56,6 +56,6 @@ export const EditProfile = () => {
           Save
         </button>
       </form>
-    </div>
+    </Layout>
   );
 };

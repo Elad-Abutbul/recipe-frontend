@@ -1,24 +1,19 @@
 import React, { useState } from "react";
-import { Loading, RecipesFeed, Search } from "../../components";
-import { useGetAllRecipes } from "../../Api";
+import { RecipesCategory, Search, SelectRecipesType } from "../../components";
+import { Layout } from "../../pages";
 
 export const Home = () => {
   
   const [searchList, setSearchList] = useState([]);
-  const { isLoading, recipes } = useGetAllRecipes();
-
-  if (isLoading) return <Loading />;
-
+  const [category, setCategory] = useState('all-recipes');
+    
   return (
-    <div className="p-6 space-y-8">
-      <h1 className="text-3xl font-bold">Recipes</h1>
-
-      <Search setSearchList={setSearchList} />
-      {recipes?.length === 0 ? (
-        "Nothing To Show.."
-      ) : (
-        <RecipesFeed recipes={searchList.length === 0 ? recipes : searchList} />
-      )}
-    </div>
+    <Layout>
+      <div className="flex items-center gap-5">
+        <Search setSearchList={setSearchList} permission={category} />
+        <SelectRecipesType setCategory={setCategory} />
+      </div>
+      <RecipesCategory category={category} searchList={searchList} />
+    </Layout>
   );
 };

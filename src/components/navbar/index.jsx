@@ -1,7 +1,7 @@
 import React, { useState } from "react";
+import { useGetSavedRecipes,useAuth,useRemoveToken } from "../../Hooks";
 import { ROUTES } from "../../constants";
 import { Link } from "react-router-dom";
-import { useAuth, useGetSavedRecipes, useRemoveToken } from "../../Api";
 
 export const Navbar = () => {
   const { recipes } = useGetSavedRecipes();
@@ -9,22 +9,18 @@ export const Navbar = () => {
   const { logOut } = useRemoveToken();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
-  };
-
   return (
     <nav className="bg-gray-800 text-white sticky top-0 z-20">
       <div className="container mx-auto flex items-center justify-between py-4">
         <Link
-          to={ROUTES.HOME}
+          to={`/`}
           className="text-2xl font-extrabold text-white hover:text-blue-600"
         >
-          MyRecipes
+          Recipes
         </Link>
 
         <button
-          onClick={toggleMobileMenu}
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="lg:hidden block text-white hover:text-blue-500"
         >
           ☰
@@ -54,7 +50,7 @@ export const Navbar = () => {
           {checkIfUserAuth() && (
             <div className="flex gap-1">
               <Link
-                to={ROUTES.SAVE_RECIPE}
+                to={ROUTES.SAVE_RECIPES}
                 className="block text-white hover:text-blue-500"
               >
                 Saved Recipes
