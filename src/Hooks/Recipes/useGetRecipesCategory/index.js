@@ -2,10 +2,11 @@ import { recipeService } from "../../../services";
 import { apiErrors } from "../../../Functions";
 import { useQuery } from "react-query";
 
-const useGetRecipesCategory = (recipesSelected, page) => {
+const useGetRecipesCategory = (category, page) => {
   const getRecipesCategory = async () => {
+    debugger;
     try {
-      const res = await recipeService.getRecipes(recipesSelected, page);
+      const res = await recipeService.getRecipes(category, page);
       return res.data;
     } catch (error) {
       apiErrors(error);
@@ -13,7 +14,7 @@ const useGetRecipesCategory = (recipesSelected, page) => {
   };
   const { isLoading, data } = useQuery({
     queryFn: getRecipesCategory,
-    queryKey: [recipesSelected, page],
+    queryKey: ["home", category, page],
   });
 
   return { isLoading, data };

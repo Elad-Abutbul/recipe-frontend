@@ -16,8 +16,11 @@ const useQueryMutation = () => {
   const { editRecipe } = useEditRecipe();
 
   const deleteSavedRecipeMutation = useMutation({
-    mutationFn: async (recipeId) => deleteSavedRecipe(recipeId),
-    onSuccess: () => queryClient.invalidateQueries(["savedRecipes"]),
+    mutationFn: async ([userId]) => deleteSavedRecipe(userId),
+    onSuccess: (data, variables) => {
+      const [userId, category, page] = variables;
+      queryClient.invalidateQueries(["savedRecipes", category, page]);
+    },
   });
 
   const saveRecipeseMutation = useMutation({

@@ -8,11 +8,5 @@ export const ROUTES = {
   PROFILE: "/profile",
   EDIT_PROFILE: "edit-profile",
   EDIT_RECIPES: "edit-recipes",
-  RECIPE_CARD: "recipe-card",
   USER: `/user`,
-  MEAT: `meat`,
-  DAIRY: `dairy`,
-  PARVE: `parve`,
-  ALL_RECIPES: "all-recipes",
-  // RECIPES: `/recipes`,
 };

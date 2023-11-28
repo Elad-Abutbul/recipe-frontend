@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { Loading, RecipesFeed, Search } from "../../components";
 import { useGetUser } from "../../Hooks";
 import { Layout } from "../layout";
+import { Loading, RecipesFeed, Search } from "../../components";
+import { useParams } from "react-router-dom";
 
 export const User = () => {
   const { id } = useParams();
   const { loading, user } = useGetUser(id);
-  const [searchList, setSearchList] = useState([]);
+  const [search, setSearch] = useState([]);
   if (loading) return <Loading />;
   return (
     <Layout>
@@ -17,8 +17,8 @@ export const User = () => {
           {user?.username}'s Recipes
         </h3>
       </div>
-      <Search setSearchList={setSearchList} permission="userCard"  userId={user?.id}/>
-      {user?.recipes && <RecipesFeed recipes={searchList.length===0?user?.recipes:searchList} />}
+      <Search setSearch={setSearch} permission="userCard"  userId={user?.id}/>
+      {user?.recipes && <RecipesFeed recipes={search?.totalRecipesCount<=0?user?.recipes:search.searchRecipes} />}
     </div>
     </Layout>
   );

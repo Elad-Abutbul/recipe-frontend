@@ -1,19 +1,12 @@
-import React, { useState } from "react";
-import { RecipesCategory, Search, SelectRecipesType } from "../../components";
 import { Layout } from "../../pages";
+import { useGetRecipesCategory } from "../../Hooks";
+import { Recipes } from "../../components";
+
 
 export const Home = () => {
-  
-  const [searchList, setSearchList] = useState([]);
-  const [category, setCategory] = useState('all-recipes');
-    
   return (
     <Layout>
-      <div className="flex items-center gap-5">
-        <Search setSearchList={setSearchList} permission={category} />
-        <SelectRecipesType setCategory={setCategory} />
-      </div>
-      <RecipesCategory category={category} searchList={searchList} />
+    <Recipes urlParams={'home'} useRecipe={useGetRecipesCategory} />
     </Layout>
   );
 };

@@ -1,14 +1,13 @@
 import { apiErrors } from "..";
 import axiosInstance from "../../axiosConfig";
 
-const search = async (input, permission, userId) => {
+const search = async (input, urlPath, userId) => {
   try {
-    const res = await axiosInstance.post("/recipes/search", {
-      input,
-      permission,
+    const res = await axiosInstance.post(urlPath, {
       userId,
+      input,
     });
-    return res.data.search;
+    return res.data;
   } catch (error) {
     apiErrors(error);
   }
@@ -16,10 +15,10 @@ const search = async (input, permission, userId) => {
 
 export const handleSearch = async (
   debounceValue,
-  permission,
-  setSearchList,
+  urlPath,
+  setSearch,
   userId
 ) => {
-  const searchResults = await search(debounceValue, permission, userId);
-  setSearchList(searchResults);
+  const searchResults = await search(debounceValue, urlPath, userId);
+  setSearch(searchResults);
 };

@@ -4,11 +4,10 @@ import { ROUTES } from "../../constants";
 import { Link } from "react-router-dom";
 
 export const Navbar = () => {
-  const { recipes } = useGetSavedRecipes();
+  const { data } = useGetSavedRecipes();
   const { checkIfUserAuth } = useAuth();
   const { logOut } = useRemoveToken();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
   return (
     <nav className="bg-gray-800 text-white sticky top-0 z-20">
       <div className="container mx-auto flex items-center justify-between py-4">
@@ -55,9 +54,9 @@ export const Navbar = () => {
               >
                 Saved Recipes
               </Link>
-              {recipes?.length > 0 && (
+              {data?.totalRecipesCount > 0 && (
                 <span className=" bg-white text-gray-800 rounded-full px-2 ">
-                  {recipes.length}
+                  {data.totalRecipesCount}
                 </span>
               )}
             </div>

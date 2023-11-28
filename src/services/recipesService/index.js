@@ -4,11 +4,13 @@ import { API_URL } from "../../constants";
 export const recipeService = {
   getAllRecipes: async () =>
     await axiosInstance.get(API_URL.RECIPES.GET_ALL_RECIPES),
-  getRecipes: async (recipesSelected, page) => {
+
+  getRecipes: async (category, page) => {
     return await axiosInstance.get(
-      `${API_URL.RECIPES.GET_RECIPES}/${recipesSelected}?page=${page}`
+      `${API_URL.RECIPES.GET_RECIPES}/${category}/${page}`
     );
   },
+
   createRecipe: async (recipe, accessToken) =>
     await axiosInstance.post(API_URL.RECIPES.CREATE_RECIPE, recipe, {
       headers: { authorization: accessToken },
@@ -19,11 +21,13 @@ export const recipeService = {
       data: { recipeId, userId },
       headers: { authorization: accessToken },
     }),
+
   deleteOwnerRecipe: async (recipeId, accessToken) =>
     await axiosInstance.delete(API_URL.RECIPES.DELETE.OWNER_RECIPE, {
       data: { recipeId },
       headers: { authorization: accessToken },
     }),
+
   editRecipe: async (recipe, recipeId, accessToken) =>
     await axiosInstance.put(
       API_URL.RECIPES.EDIT_RECIPE,
@@ -31,8 +35,8 @@ export const recipeService = {
       { headers: { authorization: accessToken } }
     ),
 
-  getAllOwnerRecipes: async (userId) =>
+  getAllOwnerRecipes: async (userId, category, page) =>
     await axiosInstance.get(
-      `${API_URL.RECIPES.GET_ALL_OWNER_RECIPE}/${userId}`
+      `${API_URL.RECIPES.GET_ALL_OWNER_RECIPE}/${category}/${page}/${userId}`
     ),
 };

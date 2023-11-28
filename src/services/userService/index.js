@@ -9,7 +9,8 @@ export const userService = {
 
   getUser: async (userId) => await axiosInstance.get(`/auth/getUser/${userId}`),
 
-  savedRecipe: async (userId) => await axiosInstance.get(`auth/savedRecipes/${userId}`),
+  savedRecipe: async (userId, category, page) =>
+    await axiosInstance.get(`auth/savedRecipes/${category}/${page}/${userId}`),
 
   editUser: async (userId, username, password, accessToken) =>
     await axiosInstance.put(

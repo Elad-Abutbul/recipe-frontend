@@ -10,6 +10,8 @@ export const RecipeIcons = ({
   setShowFullRecipe,
   mode,
   recipe,
+  page,
+  category
 }) => {
   const navigate = useNavigate();
   const { handleSaveRecipe } = useRecipeCard();
@@ -54,8 +56,8 @@ export const RecipeIcons = ({
           onClick={() =>
             mode === "edit-recipes"
               ? deleteOwnerRecipeMutation.mutate(recipe._id)
-              : deleteSavedRecipeMutation.mutate(recipe._id)
-          }
+             : deleteSavedRecipeMutation.mutate([recipe._id, category, page])
+            }
         />
       )}
     </div>

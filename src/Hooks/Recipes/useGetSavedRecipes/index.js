@@ -2,22 +2,24 @@ import { userService } from "../../../services";
 import { apiErrors, getUser } from "../../../Functions";
 import { useQuery } from "react-query";
 
-const useGetSavedRecipes = () => {
+const useGetSavedRecipes = (category = "all-recipes", page = 1) => {
   const user = getUser();
   const savedRecipes = async () => {
+    debugger
     try {
-      const res = await userService.savedRecipe(user.id);
-      if (!res.data.message) return res.data.savedRecipes;
+      const res = await userService.savedRecipe(user.id, category, page);
+      if (!res.data.message) return res.data;
     } catch (error) {
       apiErrors(error);
     }
   };
-  const { data: recipes, isLoading } = useQuery({
-    queryKey: ["savedRecipes"],
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["savedRecipes", category, page],
     queryFn: savedRecipes,
   });
 
-  return { recipes, isLoading };
+  return { data, isLoading };
 };
 
 export default useGetSavedRecipes;
