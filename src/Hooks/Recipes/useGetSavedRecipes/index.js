@@ -5,7 +5,6 @@ import { useQuery } from "react-query";
 const useGetSavedRecipes = (category = "all-recipes", page = 1) => {
   const user = getUser();
   const savedRecipes = async () => {
-    debugger
     try {
       const res = await userService.savedRecipe(user.id, category, page);
       if (!res.data.message) return res.data;

@@ -10,12 +10,10 @@ export const Recipes = ({ urlParams, useRecipe, mode, userId = null }) => {
   const { data, isLoading } = useRecipe(category, currentPage);
   const userIdSuffix = urlParams === 'savedRecipes' ? `/${userId}` : '';
   const dynamicUrl = `${API_URL.RECIPES.SEARCH.RECIPES}/${urlParams}/${category}/${currentPage}${userIdSuffix}`;
-  console.log(dynamicUrl);
   const totalPages = Math.ceil(search?.totalRecipesCount > 0 ? search?.totalRecipesCount / 9 : data?.totalRecipesCount / 9);
   useEffect(() => {
     setCurrentPage(1);
   }, [category]);
-
   return (
     <Layout>
       <div className="flex gap-5">

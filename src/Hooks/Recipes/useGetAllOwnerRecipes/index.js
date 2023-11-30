@@ -14,12 +14,15 @@ const useGetAllOwnerRecipes = (category, page) => {
       );
       if (res.data.message)
         return enqueueSnackbar(res.data.message, { variant: "error" });
-      return res.data
+      return res.data;
     } catch (error) {
       apiErrors(error);
     }
   };
-  const { isLoading, data } = useQuery(["allOwnerRecipes"], getAllOwnerRecipes);
+  const { isLoading, data } = useQuery(
+    ["allOwnerRecipes", category, page],
+    getAllOwnerRecipes
+  );
   return { isLoading, data };
 };
 export default useGetAllOwnerRecipes;

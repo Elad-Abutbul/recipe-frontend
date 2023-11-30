@@ -1,6 +1,6 @@
 import {
   useCreateRecipe,
-  useGetRecipesCategory,
+  useGetHomeRecipes,
   useGetSavedRecipes,
   useDeleteSavedRecipe,
   useEditRecipe,
@@ -24,7 +24,7 @@ import useDebounce from "./useDebounce";
 
 export {
   //recipes
-  useGetRecipesCategory,
+  useGetHomeRecipes,
   useCreateRecipe,
   useGetSavedRecipes,
   useDeleteSavedRecipe,
