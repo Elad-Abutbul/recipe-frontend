@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { useGetSavedRecipes,useAuth,useRemoveToken } from "../../Hooks";
 import { ROUTES } from "../../constants";
 import { Link } from "react-router-dom";
+import {  UsersSearch } from "../User";
+import { getUser } from "../../Functions";
 
 export const Navbar = () => {
   const { data } = useGetSavedRecipes();
   const { checkIfUserAuth } = useAuth();
   const { logOut } = useRemoveToken();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const user=getUser()
   return (
     <nav className="bg-gray-800 text-white sticky top-0 z-20">
       <div className="container mx-auto flex items-center justify-between py-4">
@@ -17,7 +20,6 @@ export const Navbar = () => {
         >
           Recipes
         </Link>
-
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="lg:hidden block text-white hover:text-blue-500"
@@ -26,10 +28,11 @@ export const Navbar = () => {
         </button>
 
         <div
-          className={`lg:flex lg:space-x-4 ${
+          className={`lg:flex lg:space-x-4 items-center ${
             isMobileMenuOpen ? "block" : "hidden"
           }`}
         >
+        <UsersSearch/>
           {checkIfUserAuth() && (
             <Link
               to={`${ROUTES.PROFILE}/${ROUTES.EDIT_RECIPES}`}
@@ -38,6 +41,7 @@ export const Navbar = () => {
               Profile
             </Link>
           )}
+          
           {checkIfUserAuth() && (
             <Link
               to={ROUTES.CREATE_RECIPE}
@@ -61,6 +65,7 @@ export const Navbar = () => {
               )}
             </div>
           )}
+          
           {checkIfUserAuth() ? (
             <button
               onClick={logOut}

@@ -23,7 +23,7 @@ export const RecipeIcons = ({
   
   return (
     <div className="flex gap-5">
-      {mode === "all-recipes" && (
+      {(mode === "all-recipes" || mode==='user') && (
         <LiaSave
           size={30}
           className="cursor-pointer"
@@ -56,7 +56,7 @@ export const RecipeIcons = ({
           onClick={() =>
             mode === "edit-recipes"
               ? deleteOwnerRecipeMutation.mutate(recipe._id)
-             : deleteSavedRecipeMutation.mutate([recipe._id, category, page])
+             : deleteSavedRecipeMutation.mutate(recipe._id)
             }
         />
       )}

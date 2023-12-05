@@ -3,10 +3,10 @@ import { apiErrors } from "../../../Functions";
 import { useQuery } from "react-query";
 import { enqueueSnackbar } from "notistack";
 
-const useGetUser = (userId) => {
+const useGetUser = (category, page, userId) => {
   const getUser = async () => {
     try {
-      const res = await userService.getUser(userId);
+      const res = await userService.getUser(category, page, userId);
       if (res.data.message) {
         return enqueueSnackbar(res.data.message, { variant: "warning" });
       } else {
@@ -16,11 +16,11 @@ const useGetUser = (userId) => {
       apiErrors(error);
     }
   };
-  const { loading, data: user } = useQuery({
+  const { loading, data } = useQuery({
     queryFn: getUser,
-    queryKey: [`user ${userId}`],
+    queryKey: [`user ${userId}`, category, page],
   });
-  return { loading, user };
+  return { loading, data };
 };
 
 export default useGetUser;

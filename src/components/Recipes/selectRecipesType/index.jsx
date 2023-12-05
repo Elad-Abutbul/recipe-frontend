@@ -1,7 +1,6 @@
 export const SelectRecipesType = ({ setCategory }) => {
   const handleCategoryChange = (event) => {
     const selectedCategory = event?.target?.value || 'all-recipes';
-
     switch (selectedCategory) {
       case "all-recipes":
         setCategory("all-recipes");
@@ -21,15 +20,17 @@ export const SelectRecipesType = ({ setCategory }) => {
   };
 
   return (
-    <select
-      name="recipeCategory"
-      onChange={handleCategoryChange}
-      className="border border-gray-300 bg-white px-2 py-1 rounded-md focus:outline-none focus:border-blue-500"
-    >
-      <option value="all-recipes">All Recipes</option>
-      <option value="meat-recipes">Meat Recipes</option>
-      <option value="dairy-recipes">Dairy Recipes</option>
-      <option value="parve-recipes">Parve Recipes</option>
-    </select>
+    <div className="flex items-center">
+      <select
+        name="recipeCategory"
+        onChange={handleCategoryChange}
+        className="border px-4 py-2 rounded-md focus:outline-none shadow-md"
+      >
+        <option value="all-recipes">All Recipes</option>
+        <option value="meat-recipes">Meat Recipes</option>
+        <option value="dairy-recipes">Dairy Recipes</option>
+        <option value="parve-recipes">Parve Recipes</option>
+      </select>
+    </div>
   );
 };

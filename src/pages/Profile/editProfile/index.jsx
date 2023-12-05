@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { editHandleSubmit, getUser, handleChangeState } from "../../../Functions";
-import { Layout } from "../../../pages";
 import { useEditUser } from "../../../Hooks";
 
 export const EditProfile = () => {
@@ -15,8 +14,8 @@ export const EditProfile = () => {
   };
 
   return (
-    <Layout>
-      <h1 className="text-3xl font-semibold mb-4 text-blue-500">
+    <div className="mx-10">
+    <h1 className="text-3xl font-semibold mb-4 text-blue-500">
         Edit Profile
       </h1>
       <form
@@ -56,6 +55,6 @@ export const EditProfile = () => {
           Save
         </button>
       </form>
-    </Layout>
+    </div>
   );
 };

@@ -1,6 +1,5 @@
 import React from "react";
-import { RecipeCard } from "../recipeCard";
-import { Pagination } from "../pagination";
+import { Pagination,RecipeCard } from "../../../components";
 
 export const RecipesFeed = ({ recipes, mode, currentPage, totalPages, setCurrentPage,category }) => {
   return (

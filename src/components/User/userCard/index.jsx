@@ -1,18 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export const UserCard = ({ item }) => 
-   (
-    <Link to={`user/${item.user?.id}`}>
-      {item.user && (
+export const UserCard = ({ user }) => {
+ const navigate= useNavigate()
+  return (
+    <div onClick={()=>navigate(`/user/${user?._id}`,{state:{username:user?.username}})}>
+      {user && (
         <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
           <div className="px-6 py-4">
-            <div className="font-bold text-xl mb-2">{item.user?.username}</div>
+            <h2 className="font-bold text-xl mb-2 text-black">{user?.username}</h2>
             <p className="text-gray-700 text-base">
-              {item.recipesLength} Recipes
+              {user?.recipeCount} Recipes
             </p>
           </div>
         </div>
       )}
-    </Link>
-  );
+    </div>
+
+  )}

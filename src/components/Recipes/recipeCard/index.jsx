@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { FullRecipe, RecipeIcons } from "../../../components";
-import { Link } from "react-router-dom";
-import { ROUTES } from "../../../constants";
+import {  useNavigate } from "react-router-dom";
 
 export const RecipeCard = ({ recipe, mode = "all-recipes", page, category }) => {
-  const [showFullRecipe, setShowFullRecipe] = useState(false);
+  const [showFullRecipe, setShowFullRecipe] = useState(false)
+  const navigate = useNavigate()
   return (
     <div>
       <li
@@ -28,12 +28,12 @@ export const RecipeCard = ({ recipe, mode = "all-recipes", page, category }) => 
               </p>
               </div>
               <div>
-              <h2 className="font-bold text-lg inline">By </h2>
-              <Link to={`${ROUTES.USER}/${recipe?.userOwner?.id}`}>
+                <div onClick={()=>navigate(`/user/${recipe?.userOwner?.id}`,{state:{username:recipe?.userOwner?.username}})}>
+                <h2 className="font-bold text-lg inline">By </h2>
                 <p className="mb-2 text-gray-800 hover:text-blue-500 inline">
                   {recipe?.userOwner?.username}
                 </p>
-              </Link>
+              </div>
               </div>
             </div>
             <div className="flex justify-center mt-2 gap-5">

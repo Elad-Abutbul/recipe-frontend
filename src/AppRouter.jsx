@@ -15,7 +15,7 @@ export const AppRouter = () => {
         <Route path={ROUTES.REGISTER} element={<SignInOut />} />
         <Route path={ROUTES.CREATE_RECIPE} element={<RecipeForm />} />
         <Route path={ROUTES.EDIT_RECIPE} element={<RecipeForm />} />
-        <Route path={ROUTES.SAVE_RECIPES} element={<Suspense fallback={<div>Loading...</div>}> <SavedRecipes /> </Suspense>} />
+        <Route path={ROUTES.SAVE_RECIPES} element={<SavedRecipes />} />
         <Route path={`${ROUTES.USER}/:id`} element={<User />} />
         <Route path={ROUTES.PROFILE} element={<Profile />}>
           <Route path={ROUTES.EDIT_PROFILE} element={<EditProfile />} />
