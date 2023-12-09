@@ -4,6 +4,6 @@ import { getUser } from "../../../Functions";
 
 export const EditRecipes = () => {
   const user = getUser();
-  return <RecipesWithSearch userId={user.id} urlParams={'editRecipes'} useRecipe={useGetAllOwnerRecipes} mode={"edit-recipes"} />
+  return <RecipesWithSearch userId={user.id} urlParams={'user'} useRecipe={useGetAllOwnerRecipes} mode={"edit-recipes"} />
     
 };

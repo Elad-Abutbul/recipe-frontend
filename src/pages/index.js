@@ -7,7 +7,9 @@ import { SavedRecipes } from "./savedRecipes";
 import { RecipeForm } from "./recipeForm";
 import { User } from "./user";
 import { Layout } from "./layout";
+import { Recipe } from "./recipe";
 export {
+  Recipe,
   User,
   Home,
   SignInOut,

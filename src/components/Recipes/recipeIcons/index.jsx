@@ -25,21 +25,21 @@ export const RecipeIcons = ({
     <div className="flex gap-5">
       {(mode === "all-recipes" || mode==='user') && (
         <LiaSave
-          size={30}
+          size={40}
           className="cursor-pointer"
           disabled={saveRecipeseMutation.isLoading}
           onClick={() => handleSaveRecipe(recipe._id)}
         />
       )}
       <GrFormView
-        size={30}
+        size={40}
         onClick={() => setShowFullRecipe(true)}
         className="cursor-pointer"
       />
       {mode === "edit-recipes" && (
         <>
           <AiOutlineEdit
-            size={30}
+            size={40}
             className="cursor-pointer"
             onClick={() => {
               navigate(ROUTES.EDIT_RECIPE, {
@@ -51,7 +51,7 @@ export const RecipeIcons = ({
       )}
       {(mode === "edit-recipes" || mode === "saved-recipes") && (
         <AiOutlineDelete
-          size={30}
+          size={40}
           className="cursor-pointer"
           onClick={() =>
             mode === "edit-recipes"

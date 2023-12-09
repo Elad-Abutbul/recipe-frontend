@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { EditProfile, EditRecipes, Home, Profile, RecipeForm, SignInOut, User,SavedRecipes } from "./pages";
+import { EditProfile, EditRecipes, Home, Profile, RecipeForm, SignInOut, User,SavedRecipes, Recipe } from "./pages";
 import { Loading, Navbar } from "./components";
 import { ROUTES } from "./constants";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
@@ -16,6 +16,7 @@ export const AppRouter = () => {
         <Route path={ROUTES.CREATE_RECIPE} element={<RecipeForm />} />
         <Route path={ROUTES.EDIT_RECIPE} element={<RecipeForm />} />
         <Route path={ROUTES.SAVE_RECIPES} element={<SavedRecipes />} />
+        <Route path={ROUTES.RECIPE} element={<Recipe />} />
         <Route path={`${ROUTES.USER}/:id`} element={<User />} />
         <Route path={ROUTES.PROFILE} element={<Profile />}>
           <Route path={ROUTES.EDIT_PROFILE} element={<EditProfile />} />

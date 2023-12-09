@@ -11,6 +11,13 @@ export const recipeService = {
     );
   },
 
+  getRatingStars: async () =>
+    await axiosInstance.get(`${API_URL.RECIPES.GET_RATING_STARS}`),
+  getUserStars: async (recipeId, userId) =>
+    await axiosInstance.get(
+      `${API_URL.RECIPES.GET_USER_STARS}/${recipeId}/${userId}`
+    ),
+
   createRecipe: async (recipe, accessToken) =>
     await axiosInstance.post(API_URL.RECIPES.CREATE_RECIPE, recipe, {
       headers: { authorization: accessToken },
