@@ -6,20 +6,15 @@ export const RatingStars = ({
   mode = "recipe-card",
   recipeId,
 }) => {
-  const { renderStars, rating } = useRatingStarComp(
-    mode,
-    initialRating,
-    recipeId
-  );
+  const { renderStars } = useRatingStarComp(mode, initialRating, recipeId);
   const { checkIfUserAuth } = useAuth();
 
   return (
     <div>
       {checkIfUserAuth() && mode === "full-recipe" ? (
         <>
-          <p>Your Rating:</p>
+          <p className="font-bold text-lg">Your Rating:</p>
           <div className="flex space-x-2">{renderStars()}</div>
-          <p>Selected Rating: {rating}</p>
         </>
       ) : (
         mode === "recipe-card" && (

@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { FaStar } from "react-icons/fa";
 import { useQueryMutation } from "../../Hooks";
 import { getUser } from "../User";
+import { FaStar } from "react-icons/fa";
+
 const useRatingStarComp = (mode, initialRating, recipeId) => {
   const { changeRecipeStarsMutation } = useQueryMutation();
   const user = getUser();
@@ -51,6 +52,6 @@ const useRatingStarComp = (mode, initialRating, recipeId) => {
     }
     return stars;
   };
-  return { renderStars, rating };
+  return { renderStars };
 };
 export default useRatingStarComp;
