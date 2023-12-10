@@ -7,6 +7,7 @@ import {
   useRecipeCard,
   useDeleteOwnerRecipe,
   useGetAllOwnerRecipes,
+  useGetComments,
 } from "./Recipes";
 import {
   useAuth,
@@ -33,6 +34,7 @@ export {
   useRecipeCard,
   useDeleteOwnerRecipe,
   useGetAllOwnerRecipes,
+  useGetComments,
 
   //user
   useAuth,

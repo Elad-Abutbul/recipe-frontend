@@ -11,6 +11,10 @@ export const recipeService = {
     );
   },
 
+  getComments: async () => {
+    await axiosInstance.get(`${API_URL.RECIPES.COMMENTS}`);
+  },
+
   getRatingStars: async () =>
     await axiosInstance.get(`${API_URL.RECIPES.GET_RATING_STARS}`),
   getUserStars: async (recipeId, userId) =>

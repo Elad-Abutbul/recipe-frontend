@@ -1,5 +1,5 @@
 import { AiOutlineClose } from "react-icons/ai";
-import { RatingStars } from "../..";
+import { RatingStars, CommentsFeed } from "../../../components";
 
 export const FullRecipe = ({
   recipe,
@@ -66,16 +66,7 @@ export const FullRecipe = ({
           )}
         </div>
       </div>
-      <div className="border shadow-md flex-grow mx-10 my-4 relative">
-        <h1 className="text-center text-lg font-bold">Recipe Comments</h1>
-        <hr />
-        <div></div>
-        <input
-          type="search"
-          placeholder="Enter Comment"
-          className="absolute bottom-3 left-0 right-0 m-5 px-3 border-2 border-gray-300 rounded-md"
-        />
-      </div>
+      {mode !== "peek" && <CommentsFeed />}
     </div>
   );
 };
