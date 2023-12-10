@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { API_URL } from "../../../constants";
+import { API_URL, PAGINATION } from "../../../constants";
 import { Search, Loading, RecipesFeed, SelectRecipesType } from "../..";
 
 export const RecipesWithSearch = ({
@@ -15,11 +15,14 @@ export const RecipesWithSearch = ({
   const userIdSuffix =
     urlParams === "savedRecipes" || urlParams === "user" ? `/${userId}` : null;
   const dynamicUrl = `${API_URL.RECIPES.SEARCH.RECIPES}/${urlParams}/${category}/${currentPage}${userIdSuffix}`;
-  const totalPages = Math.ceil(
-    search?.totalRecipesCount > 0
-      ? search?.totalRecipesCount / 9
-      : data?.totalRecipesCount / 9
-  );
+  const totalRecipesCount =
+    search?.totalRecipesCount || data?.totalRecipesCount;
+  const totalPages = totalRecipesCount
+    ? Math.ceil(totalRecipesCount / PAGINATION.RECIPES_PER_PAGE)
+    : 0;
+  const recipes =
+    search?.totalRecipesCount > 0 ? search?.recipes : data?.recipes;
+
   useEffect(() => {
     setCurrentPage(1);
   }, [category]);
@@ -33,9 +36,7 @@ export const RecipesWithSearch = ({
         <Loading />
       ) : (
         <RecipesFeed
-          recipes={
-            search?.totalRecipesCount > 0 ? search?.recipes : data?.recipes
-          }
+          recipes={recipes}
           currentPage={currentPage}
           totalPages={totalPages}
           category={category}

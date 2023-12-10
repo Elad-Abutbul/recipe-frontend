@@ -15,8 +15,7 @@ export const RecipeCard = ({
     <div onClick={() => navigate(ROUTES.RECIPE, { state: { recipe } })}>
       <li
         key={recipe._id}
-        className="bg-white shadow-md rounded-lg overflow-hidden"
-        style={{ height: "100%" }}
+        className="bg-white shadow-md rounded-lg overflow-hidden opacity-[85%] hover:opacity-100"
       >
         <div className="h-full flex flex-col">
           <img

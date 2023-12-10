@@ -7,7 +7,6 @@ import {
   useRecipeCard,
   useDeleteOwnerRecipe,
   useGetAllOwnerRecipes,
-  useGetRatingStars,
 } from "./Recipes";
 import {
   useAuth,
@@ -26,7 +25,6 @@ import useGetUserStars from "./useGetUserStars";
 export {
   //recipes
   useGetUserStars,
-  useGetRatingStars,
   useGetHomeRecipes,
   useCreateRecipe,
   useGetSavedRecipes,

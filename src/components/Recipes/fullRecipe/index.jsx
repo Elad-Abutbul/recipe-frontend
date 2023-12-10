@@ -7,6 +7,10 @@ export const FullRecipe = ({
   mode = "peek",
   initialRating,
 }) => {
+  const handleOuterClick = (event) => {
+    event.stopPropagation();
+    if (onClose) onClose();
+  };
   return (
     <div
       className={`${
@@ -14,10 +18,9 @@ export const FullRecipe = ({
           ? "fixed bg-gray-600 bg-opacity-40 top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center"
           : ""
       }`}
-      onClick={onClose}
+      onClick={handleOuterClick}
     >
       <div
-        onClick={(event) => event.stopPropagation()}
         className={`${
           mode === "peek"
             ? "w-[600px] h-[400px] bg-white rounded-xl p-4 flex flex-col relative overflow-y-auto gap-4"
@@ -55,7 +58,7 @@ export const FullRecipe = ({
         </div>
         {mode !== "peek" && (
           <RatingStars
-          initialRating={initialRating}
+            initialRating={initialRating}
             mode={mode}
             recipeId={recipe._id}
           />
