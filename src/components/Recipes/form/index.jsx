@@ -7,7 +7,7 @@ import {
   handleChangeState,
   handleIngredientChange,
   formHandleSubmit,
-  getUser
+  getUser,
 } from "../../../Functions";
 
 export const Form = ({ singleRecipe, location }) => {
@@ -18,7 +18,7 @@ export const Form = ({ singleRecipe, location }) => {
     ingredients: singleRecipe?.ingredients || [],
     instruction: singleRecipe?.instruction || "",
     imageUrl: singleRecipe?.imageUrl || "",
-    kosherType:singleRecipe?.kosherType||'',
+    kosherType: singleRecipe?.kosherType || "",
     cookingTime: singleRecipe?.cookingTime || 0,
     userOwner: {
       id: user.id,
@@ -28,6 +28,9 @@ export const Form = ({ singleRecipe, location }) => {
   const handleChange = (event) => {
     handleChangeState(event, setRecipe, recipe);
   };
+
+  const [name, setName] = useState();
+  const a = { name: ";ead", image: "asdkadad" };
 
   const inputClassName =
     "w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400";
@@ -45,7 +48,7 @@ export const Form = ({ singleRecipe, location }) => {
             location,
             editRecipeMutation,
             singleRecipe,
-            createRecipeMutation,
+            createRecipeMutation
           )
         }
         className="space-y-4"
@@ -107,20 +110,30 @@ export const Form = ({ singleRecipe, location }) => {
           value={recipe.imageUrl}
           className={inputClassName}
         />
-<select onChange={handleChange} name="kosherType" required>
-  <option disabled={!singleRecipe?.kosherType} value={''} selected={!singleRecipe}>
-    Kosher Type
-  </option>
-  <option value={'parve'} selected={singleRecipe?.kosherType === 'parve'}>
-    Parve
-  </option>
-  <option value={'dairy'} selected={singleRecipe?.kosherType === 'dairy'}>
-    Dairy
-  </option>
-  <option value={'meat'} selected={singleRecipe?.kosherType === 'meat'}>
-    Meat
-  </option>
-</select>
+        <select onChange={handleChange} name="kosherType" required>
+          <option
+            disabled={!singleRecipe?.kosherType}
+            value={""}
+            selected={!singleRecipe}
+          >
+            Kosher Type
+          </option>
+          <option
+            value={"parve"}
+            selected={singleRecipe?.kosherType === "parve"}
+          >
+            Parve
+          </option>
+          <option
+            value={"dairy"}
+            selected={singleRecipe?.kosherType === "dairy"}
+          >
+            Dairy
+          </option>
+          <option value={"meat"} selected={singleRecipe?.kosherType === "meat"}>
+            Meat
+          </option>
+        </select>
 
         <input
           type="number"

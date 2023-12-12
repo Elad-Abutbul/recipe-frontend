@@ -6,7 +6,6 @@ const useGetUserStars = (recipeId, userId) => {
   const userStar = async () => {
     try {
       const res = await recipeService.getUserStars(recipeId, userId);
-      console.log(res.data);
       return res.data;
     } catch (error) {
       apiErrors(error);

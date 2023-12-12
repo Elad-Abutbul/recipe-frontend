@@ -8,6 +8,7 @@ import {
   useDeleteOwnerRecipe,
   useGetAllOwnerRecipes,
   useGetComments,
+  useAddComment,
 } from "./Recipes";
 import {
   useAuth,
@@ -23,6 +24,7 @@ import useQueryMutation from "./useQueryMutaion";
 
 import useDebounce from "./useDebounce";
 import useGetUserStars from "./useGetUserStars";
+
 export {
   //recipes
   useGetUserStars,
@@ -35,7 +37,7 @@ export {
   useDeleteOwnerRecipe,
   useGetAllOwnerRecipes,
   useGetComments,
-
+  useAddComment,
   //user
   useAuth,
   useEditUser,

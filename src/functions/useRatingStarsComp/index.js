@@ -21,7 +21,6 @@ const useRatingStarComp = (mode, initialRating, recipeId) => {
   );
 
   const handleClickRate = (localRating) => {
-    debugger;
     setRating(localRating);
     if (mode === "full-recipe") {
       changeRecipeStarsMutation.mutate({

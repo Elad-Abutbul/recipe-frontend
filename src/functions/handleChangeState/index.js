@@ -1,4 +1,4 @@
-export const handleChangeState = (event, setEntry, entry) => {
+export const handleChangeState = (event, setEntry, state) => {
   const { name, value } = event.target;
-  setEntry({ ...entry, [name]: value });
+  setEntry({ ...state, [name]: value });
 };

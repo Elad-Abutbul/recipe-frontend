@@ -5,18 +5,23 @@ export const recipeService = {
   getAllRecipes: async () =>
     await axiosInstance.get(API_URL.RECIPES.GET_ALL_RECIPES),
 
-  getRecipes: async (category, page) => {
-    return await axiosInstance.get(
+  getRecipes: async (category, page) =>
+    await axiosInstance.get(
       `${API_URL.RECIPES.GET_RECIPES}/${category}/${page}`
-    );
-  },
+    ),
 
-  getComments: async () => {
-    await axiosInstance.get(`${API_URL.RECIPES.COMMENTS}`);
-  },
+  getComments: async (recipeId) =>
+    await axiosInstance.get(`${API_URL.RECIPES.COMMENTS}/${recipeId}`),
 
+  addComment: async (comment, recipeId, userId) =>
+    await axiosInstance.post(`${API_URL.RECIPES.ADD_COMMENT}`, {
+      comment,
+      recipeId,
+      userId,
+    }),
   getRatingStars: async () =>
     await axiosInstance.get(`${API_URL.RECIPES.GET_RATING_STARS}`),
+  
   getUserStars: async (recipeId, userId) =>
     await axiosInstance.get(
       `${API_URL.RECIPES.GET_USER_STARS}/${recipeId}/${userId}`

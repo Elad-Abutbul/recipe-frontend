@@ -15,6 +15,7 @@ export const API_URL = {
     GET_RATING_STARS: `${RECIPES_BASE}/ratingStars`,
     GET_USER_STARS: `${RECIPES_BASE}/userStars`,
     COMMENTS: `${RECIPES_BASE}/comments`,
+    ADD_COMMENT: `${RECIPES_BASE}/comments/addComment`,
     DELETE: {
       SAVED_RECIPE: `${RECIPE_DELETE_BASE}/saved-recipe`,
       OWNER_RECIPE: `${RECIPE_DELETE_BASE}/owner-recipe`,

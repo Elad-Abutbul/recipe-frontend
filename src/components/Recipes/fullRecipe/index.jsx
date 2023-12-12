@@ -1,5 +1,5 @@
 import { AiOutlineClose } from "react-icons/ai";
-import { RatingStars, CommentsFeed } from "../../../components";
+import { RatingStars, Comments } from "../../../components";
 
 export const FullRecipe = ({
   recipe,
@@ -13,7 +13,7 @@ export const FullRecipe = ({
   };
 
   return (
-    <div className="flex">
+    <div className="flex justify-center items-center">
       <div
         className={`${
           mode === "peek" &&
@@ -66,7 +66,7 @@ export const FullRecipe = ({
           )}
         </div>
       </div>
-      {mode !== "peek" && <CommentsFeed />}
+      {mode !== "peek" && <Comments recipeId={recipe._id} />}
     </div>
   );
 };

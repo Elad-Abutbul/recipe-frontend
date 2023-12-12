@@ -5,6 +5,7 @@ import {
   useDeleteOwnerRecipe,
   useCreateRecipe,
   useEditRecipe,
+  useAddComment,
 } from "../../Hooks";
 import { changeRecipeRating } from "../../Functions";
 
@@ -15,6 +16,7 @@ const useQueryMutation = () => {
   const { deleteOwnerRecipe } = useDeleteOwnerRecipe();
   const { createRecipe } = useCreateRecipe();
   const { editRecipe } = useEditRecipe();
+  const { addComment } = useAddComment();
 
   const deleteSavedRecipeMutation = useMutation({
     mutationFn: async (userId) => deleteSavedRecipe(userId),
@@ -31,6 +33,13 @@ const useQueryMutation = () => {
     onSuccess: () => queryClient.invalidateQueries(["allOwnerRecipes"]),
   });
 
+  const addCommentMutation = useMutation({
+    mutationFn: async ({ comment, recipeId }) =>
+      await addComment(comment, recipeId),
+    onSuccess: (data, { recipeId }, context) =>
+      queryClient.invalidateQueries(["recipeComments", recipeId]),
+  });
+
   const createRecipeMutation = useMutation({
     mutationFn: async (recipe) => await createRecipe(recipe),
     onSuccess: () => queryClient.invalidateQueries(["home"]),
@@ -38,7 +47,7 @@ const useQueryMutation = () => {
   const changeRecipeStarsMutation = useMutation({
     mutationFn: async ({ userId, rating, recipeId }) =>
       await changeRecipeRating(userId, rating, recipeId),
-    onSuccess: () => queryClient.invalidateQueries(["all-recipes"]),
+    onSuccess: () => queryClient.invalidateQueries(),
   });
   const editRecipeMutation = useMutation({
     mutationFn: async ({ recipe, recipeId }) =>
@@ -53,6 +62,7 @@ const useQueryMutation = () => {
     createRecipeMutation,
     editRecipeMutation,
     changeRecipeStarsMutation,
+    addCommentMutation,
   };
 };
 export default useQueryMutation;

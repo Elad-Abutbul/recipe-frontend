@@ -6,7 +6,8 @@ import { Form } from "./form";
 import { RecipesWithSearch } from "./recipesWithSearch";
 import { SelectRecipesType } from "./selectRecipesType";
 import { RatingStars } from "./ratingStars";
-import { CommentsFeed, SingleRecipeComment } from "./RecipeComments";
+import { CommentsFeed, RecipeComment, Comments } from "./RecipeComments";
+
 export {
   RatingStars,
   RecipeCard,
@@ -16,6 +17,7 @@ export {
   Form,
   RecipesWithSearch,
   SelectRecipesType,
-  SingleRecipeComment,
+  RecipeComment,
   CommentsFeed,
+  Comments,
 };

@@ -6,11 +6,13 @@ const useGetHomeRecipes = (category, page) => {
   const getHomeRecipes = async () => {
     try {
       const res = await recipeService.getRecipes(category, page);
+      console.log(res.data.recipes);
       return res.data;
     } catch (error) {
       apiErrors(error);
     }
   };
+
   const { isLoading, data } = useQuery({
     queryFn: getHomeRecipes,
     queryKey: ["home", category, page],

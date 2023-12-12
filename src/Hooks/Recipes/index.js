@@ -7,6 +7,7 @@ import useGetAllOwnerRecipes from "./useGetAllOwnerRecipes";
 import { useDeleteOwnerRecipe, useEditRecipe } from "./Profile";
 import useRecipes from "./useRecipes";
 import useGetComments from "./useGetComments";
+import useAddComment from "./useAddComment";
 
 export {
   useRecipes,
@@ -19,4 +20,5 @@ export {
   useDeleteOwnerRecipe,
   useEditRecipe,
   useGetComments,
+  useAddComment,
 };

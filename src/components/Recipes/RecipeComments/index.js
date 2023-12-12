@@ -1,4 +1,5 @@
 import { CommentsFeed } from "./commentsFeed";
-import { SingleRecipeComment } from "./singleRecipeComment";
+import { RecipeComment } from "./recipeComment";
+import { Comments } from "./comments";
 
-export { CommentsFeed, SingleRecipeComment };
+export { CommentsFeed, RecipeComment, Comments };
