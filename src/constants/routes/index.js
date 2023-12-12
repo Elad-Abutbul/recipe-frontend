@@ -9,4 +9,5 @@ export const ROUTES = {
   EDIT_PROFILE: "edit-profile",
   EDIT_RECIPES: "edit-recipes",
   USER: `/user`,
+  RECIPE: "/recipe",
 };

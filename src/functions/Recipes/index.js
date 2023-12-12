@@ -1,3 +1,4 @@
+import { changeRecipeRating } from "./changeRecipeRating";
 import {
   addIngredient,
   deleteIngredient,
@@ -5,7 +6,6 @@ import {
   handleIngredientChange,
   recipeIngredientsCheck,
 } from "./recipeForm";
-
 export {
   //recipeForm
   addIngredient,
@@ -13,4 +13,6 @@ export {
   formHandleSubmit,
   handleIngredientChange,
   recipeIngredientsCheck,
+  //
+  changeRecipeRating,
 };

@@ -5,8 +5,9 @@ import { RecipeIcons } from "./recipeIcons";
 import { Form } from "./form";
 import { RecipesWithSearch } from "./recipesWithSearch";
 import { SelectRecipesType } from "./selectRecipesType";
-
+import { RatingStars } from "./ratingStars";
 export {
+  RatingStars,
   RecipeCard,
   RecipesFeed,
   FullRecipe,

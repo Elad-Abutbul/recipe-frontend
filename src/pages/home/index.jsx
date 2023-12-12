@@ -3,13 +3,12 @@ import { useGetHomeRecipes } from "../../Hooks";
 import { RecipesWithSearch } from "../../components";
 import { getUser } from "../../Functions";
 
-
 export const Home = () => {
-  const user=getUser()
+  const user = getUser();
   return (
     <Layout>
-      {user&&<h2 className="text-center font-bold text-lg">Hello {user?.username}</h2>}
-    <RecipesWithSearch urlParams={'home'} useRecipe={useGetHomeRecipes} />
+      {user && <h2 className="text-center text-2xl">Hello {user?.username}</h2>}
+      <RecipesWithSearch urlParams={"home"} useRecipe={useGetHomeRecipes} />
     </Layout>
   );
 };

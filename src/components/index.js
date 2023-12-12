@@ -6,6 +6,7 @@ import {
   RecipeIcons,
   RecipesFeed,
   SelectRecipesType,
+  RatingStars,
 } from "./Recipes";
 import { UserCard, UserFeed, UsersSearch } from "./User";
 import { Loading } from "./loading";
@@ -23,6 +24,7 @@ export {
   Search,
 
   // ** recipes ***
+  RatingStars,
   RecipeCard,
   RecipesFeed,
   FullRecipe,

@@ -21,9 +21,10 @@ import useRemoveToken from "./useRemoveToken";
 import useQueryMutation from "./useQueryMutaion";
 
 import useDebounce from "./useDebounce";
-
+import useGetUserStars from "./useGetUserStars";
 export {
   //recipes
+  useGetUserStars,
   useGetHomeRecipes,
   useCreateRecipe,
   useGetSavedRecipes,
@@ -32,7 +33,7 @@ export {
   useRecipeCard,
   useDeleteOwnerRecipe,
   useGetAllOwnerRecipes,
-  
+
   //user
   useAuth,
   useEditUser,

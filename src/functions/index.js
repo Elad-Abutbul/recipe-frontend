@@ -1,10 +1,10 @@
 import { handleChangeState } from "./handleChangeState";
-
 import { apiErrors } from "./Api";
 import { editHandleSubmit } from "./User/editProfile";
 import { handleSearch } from "./search";
 import {
   addIngredient,
+  changeRecipeRating,
   deleteIngredient,
   formHandleSubmit,
   handleIngredientChange,
@@ -19,6 +19,8 @@ export {
   handleIngredientChange,
   recipeIngredientsCheck,
   formHandleSubmit,
+  //
+  changeRecipeRating,
 
   //  ******* Recipes *******
 
@@ -30,7 +32,6 @@ export {
   //******* search *******
   handleSearch,
   //******* search *******
-  
   handleChangeState,
   apiErrors,
 };
