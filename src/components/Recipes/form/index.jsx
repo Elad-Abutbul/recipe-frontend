@@ -25,18 +25,16 @@ export const Form = ({ singleRecipe, location }) => {
       username: user.username,
     },
   });
+  
   const handleChange = (event) => {
     handleChangeState(event, setRecipe, recipe);
   };
-
-  const [name, setName] = useState();
-  const a = { name: ";ead", image: "asdkadad" };
 
   const inputClassName =
     "w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400";
 
   return (
-    <div className="p-6 space-y-6">
+    <div className=" space-y-6">
       <h1 className="text-3xl font-bold text-center">
         {singleRecipe ? "Edit Recipes" : "Create Recipes"}
       </h1>

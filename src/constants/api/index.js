@@ -9,6 +9,7 @@ export const API_URL = {
     GET_PARVE_RECIPES: `${RECIPES_BASE}/getParveRecipes`,
     GET_DAIRY_RECIPES: `${RECIPES_BASE}/getDairyRecipes`,
     GET_RECIPES: `${RECIPES_BASE}/getRecipes`,
+    GET_RECIPE: `${RECIPES_BASE}/getRecipe`,
     CREATE_RECIPE: `${RECIPES_BASE}/createRecipe`,
     EDIT_RECIPE: `${RECIPES_BASE}/editRecipe`,
     GET_ALL_OWNER_RECIPE: `${RECIPES_BASE}/getAllOwnerRecipes`,
@@ -16,6 +17,7 @@ export const API_URL = {
     GET_USER_STARS: `${RECIPES_BASE}/userStars`,
     COMMENTS: `${RECIPES_BASE}/comments`,
     ADD_COMMENT: `${RECIPES_BASE}/comments/addComment`,
+    CONTENT: `${RECIPES_BASE}/content`,
     DELETE: {
       SAVED_RECIPE: `${RECIPE_DELETE_BASE}/saved-recipe`,
       OWNER_RECIPE: `${RECIPE_DELETE_BASE}/owner-recipe`,

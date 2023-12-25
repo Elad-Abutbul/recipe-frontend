@@ -1,17 +1,14 @@
 import { AiOutlineClose } from "react-icons/ai";
-import { RatingStars, Comments } from "../../../components";
+import { RatingStars, Comments, Loading } from "../../../components";
+import { useRecipeContent } from "../../../Hooks";
 
-export const FullRecipe = ({
-  recipe,
-  onClose = null,
-  mode = "peek",
-  initialRating,
-}) => {
+export const FullRecipe = ({ recipeId, onClose = null, mode = "peek" }) => {
+  const { isLoading, data: recipe } = useRecipeContent(recipeId);
   const handleOuterClick = (event) => {
     event.stopPropagation();
     if (onClose) onClose();
   };
-
+  if (isLoading) return <Loading />;
   return (
     <div className="flex justify-center items-center">
       <div
@@ -35,11 +32,11 @@ export const FullRecipe = ({
             />
           )}
           <h2 className="w-fit px-4 py-1 bg-black text-white rounded-lg font-bold text-2xl">
-            {recipe.name}
+            {recipe?.name}
           </h2>
           <div className="">
             <h2 className="font-bold text-lg">Ingredients</h2>
-            {recipe.ingredients.map((ingredient, index) => (
+            {recipe?.ingredients?.map((ingredient, index) => (
               <h3 className="w-fit" key={index}>
                 {ingredient}
               </h3>
@@ -47,26 +44,22 @@ export const FullRecipe = ({
           </div>
           <div className="">
             <h2 className="font-bold text-lg">Instruction</h2>
-            <p>{recipe.instruction}</p>
+            <p>{recipe?.instruction}</p>
           </div>
           <div>
             <h2 className="font-bold text-lg">Kosher Type</h2>
-            <p className="mb-2 text-gray-800">{recipe.kosherType}</p>
+            <p className="mb-2 text-gray-800">{recipe?.kosherType}</p>
           </div>
           <div>
             <h2 className="font-bold text-lg">Cooking Time</h2>
-            <p className="mb-2 text-gray-800">{recipe.cookingTime} (minutes)</p>
+            <p className="mb-2 text-gray-800">
+              {recipe?.cookingTime} (minutes)
+            </p>
           </div>
-          {mode !== "peek" && (
-            <RatingStars
-              initialRating={initialRating}
-              mode={mode}
-              recipeId={recipe._id}
-            />
-          )}
+          {mode !== "peek" && <RatingStars mode={mode} recipeId={recipeId} />}
         </div>
       </div>
-      {mode !== "peek" && <Comments recipeId={recipe._id} />}
+      {mode !== "peek" && <Comments recipeId={recipeId} />}
     </div>
   );
 };

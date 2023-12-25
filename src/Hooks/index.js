@@ -9,11 +9,12 @@ import {
   useGetAllOwnerRecipes,
   useGetComments,
   useAddComment,
+  useRecipeContent,
 } from "./Recipes";
 import {
   useAuth,
   useEditUser,
-  useGetUser,
+  useGetUserRecipes,
   useSaveRecipe,
   useSignInOut,
 } from "./User";
@@ -24,9 +25,9 @@ import useQueryMutation from "./useQueryMutaion";
 
 import useDebounce from "./useDebounce";
 import useGetUserStars from "./useGetUserStars";
-
 export {
   //recipes
+  useRecipeContent,
   useGetUserStars,
   useGetHomeRecipes,
   useCreateRecipe,
@@ -42,7 +43,7 @@ export {
   useAuth,
   useEditUser,
   useSaveRecipe,
-  useGetUser,
+  useGetUserRecipes,
   useSignInOut,
 
   // token

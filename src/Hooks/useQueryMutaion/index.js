@@ -32,11 +32,10 @@ const useQueryMutation = () => {
     mutationFn: async (recipeId) => await deleteOwnerRecipe(recipeId),
     onSuccess: () => queryClient.invalidateQueries(["allOwnerRecipes"]),
   });
-
   const addCommentMutation = useMutation({
     mutationFn: async ({ comment, recipeId }) =>
       await addComment(comment, recipeId),
-    onSuccess: (data, { recipeId }, context) =>
+    onSuccess: (_, { recipeId }) =>
       queryClient.invalidateQueries(["recipeComments", recipeId]),
   });
 
@@ -44,11 +43,14 @@ const useQueryMutation = () => {
     mutationFn: async (recipe) => await createRecipe(recipe),
     onSuccess: () => queryClient.invalidateQueries(["home"]),
   });
+
   const changeRecipeStarsMutation = useMutation({
     mutationFn: async ({ userId, rating, recipeId }) =>
       await changeRecipeRating(userId, rating, recipeId),
-    onSuccess: () => queryClient.invalidateQueries(),
+    onSuccess: (_, { recipeId }) =>
+      queryClient.invalidateQueries(["recipe", recipeId]),
   });
+
   const editRecipeMutation = useMutation({
     mutationFn: async ({ recipe, recipeId }) =>
       await editRecipe(recipe, recipeId),

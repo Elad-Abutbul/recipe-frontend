@@ -8,9 +8,10 @@ import { useDeleteOwnerRecipe, useEditRecipe } from "./Profile";
 import useRecipes from "./useRecipes";
 import useGetComments from "./useGetComments";
 import useAddComment from "./useAddComment";
-
+import useRecipeContent from "./useRecipeContent";
 export {
   useRecipes,
+  useRecipeContent,
   useGetHomeRecipes,
   useCreateRecipe,
   useGetSavedRecipes,
