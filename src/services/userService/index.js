@@ -7,12 +7,12 @@ export const userService = {
   login: async (username, password) =>
     await axiosInstance.post("/login", { username, password }),
 
-  getUser: async (category, page, userId) => {
+    getUserRecipes: async (category, page, userId) => {
     return await axiosInstance.get(
-      `/auth/getUser/${category}/${page}/${userId}`
+      `/auth/getUserRecipes/${category}/${page}/${userId}`
     );
   },
-  savedRecipe: async (userId, category, page) =>
+  savedRecipes: async (userId, category, page) =>
     await axiosInstance.get(`/auth/savedRecipes/${category}/${page}/${userId}`),
 
   editUser: async (userId, username, password, accessToken) =>

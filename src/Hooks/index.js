@@ -7,11 +7,14 @@ import {
   useRecipeCard,
   useDeleteOwnerRecipe,
   useGetAllOwnerRecipes,
+  useGetComments,
+  useAddComment,
+  useRecipeContent,
 } from "./Recipes";
 import {
   useAuth,
   useEditUser,
-  useGetUser,
+  useGetUserRecipes,
   useSaveRecipe,
   useSignInOut,
 } from "./User";
@@ -24,6 +27,7 @@ import useDebounce from "./useDebounce";
 import useGetUserStars from "./useGetUserStars";
 export {
   //recipes
+  useRecipeContent,
   useGetUserStars,
   useGetHomeRecipes,
   useCreateRecipe,
@@ -33,12 +37,13 @@ export {
   useRecipeCard,
   useDeleteOwnerRecipe,
   useGetAllOwnerRecipes,
-
+  useGetComments,
+  useAddComment,
   //user
   useAuth,
   useEditUser,
   useSaveRecipe,
-  useGetUser,
+  useGetUserRecipes,
   useSignInOut,
 
   // token

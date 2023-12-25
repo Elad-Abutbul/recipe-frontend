@@ -1,37 +1,56 @@
 import React, { useState } from "react";
-import { FullRecipe, RatingStars, RecipeIcons } from "../../../components";
+import {
+  FullRecipe,
+  Loading,
+  RatingStars,
+  RecipeIcons,
+} from "../../../components";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../constants";
+import useGetRecipe from "../../../Hooks/Recipes/getRecipe";
 
 export const RecipeCard = ({
-  recipe,
+  recipeId,
   mode = "all-recipes",
   page,
   category,
 }) => {
   const [showFullRecipe, setShowFullRecipe] = useState(false);
+  const { isLoading, data } = useGetRecipe(recipeId);
+  const recipe = data?.recipe;
   const navigate = useNavigate();
+
+  if (isLoading) return <Loading />;
+  
   return (
-    <div onClick={() => navigate(ROUTES.RECIPE, { state: { recipe } })}>
+    <div
+      onClick={(e) => {
+        if (!e.target.closest('.user-link')) {
+          e.stopPropagation();
+          navigate(ROUTES.RECIPE, { state: { recipeId } });
+        }
+      }}
+    >
       <li
-        key={recipe._id}
+        key={recipe?._id}
         className="bg-white shadow-md rounded-lg overflow-hidden opacity-[85%] hover:opacity-100"
       >
         <div className="h-full flex flex-col">
           <img
-            src={recipe.imageUrl}
-            alt={recipe.name}
+            src={recipe?.imageUrl}
+            alt={recipe?.name}
             className="w-full h-48 object-cover"
           />
           <div className="p-4 flex flex-col justify-between h-full ">
-            <h2 className="text-2xl font-semibold mb-2">{recipe.name}</h2>
+            <h2 className="text-2xl font-semibold mb-2">{recipe?.name}</h2>
             <div>
               <div>
                 <h2 className="font-bold inline">type </h2>
-                <p className="inline">{recipe.kosherType}</p>
+                <p className="inline">{recipe?.kosherType}</p>
               </div>
               <div>
                 <div
+                  className="user-link"
                   onClick={() =>
                     navigate(`/user/${recipe?.userOwner?.id}`, {
                       state: { username: recipe?.userOwner?.username },
@@ -45,9 +64,8 @@ export const RecipeCard = ({
                 </div>
                 <div className="flex justify-center mt-2">
                   <RatingStars
-                    recipeId={recipe._id}
-                    mode="recipe-card"
-                    initialRating={recipe.ratings}
+                    recipeId={recipe?._id}
+                    initialRating={data?.sumOfRatings}
                   />
                 </div>
               </div>
@@ -62,9 +80,9 @@ export const RecipeCard = ({
               />
               {showFullRecipe && (
                 <FullRecipe
+                  recipeId={recipeId}
                   onClose={() => setShowFullRecipe(false)}
-                  recipe={recipe}
-                  key={recipe._id}
+                  key={recipe?._id}
                 />
               )}
             </div>

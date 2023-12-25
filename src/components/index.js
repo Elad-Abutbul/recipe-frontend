@@ -7,6 +7,9 @@ import {
   RecipesFeed,
   SelectRecipesType,
   RatingStars,
+  CommentsFeed,
+  RecipeComment,
+  Comments,
 } from "./Recipes";
 import { UserCard, UserFeed, UsersSearch } from "./User";
 import { Loading } from "./loading";
@@ -32,6 +35,9 @@ export {
   RecipesWithSearch,
   SelectRecipesType,
   Form,
+  CommentsFeed,
+  RecipeComment,
+  Comments,
   // ** recipes ***
   Pagination,
 };

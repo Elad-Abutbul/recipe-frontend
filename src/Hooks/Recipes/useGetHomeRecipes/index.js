@@ -11,6 +11,7 @@ const useGetHomeRecipes = (category, page) => {
       apiErrors(error);
     }
   };
+
   const { isLoading, data } = useQuery({
     queryFn: getHomeRecipes,
     queryKey: ["home", category, page],

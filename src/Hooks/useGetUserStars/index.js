@@ -1,22 +1,23 @@
 import { useQuery } from "react-query";
 import { recipeService } from "../../services";
-import { apiErrors } from "../../Functions";
+import { apiErrors, getUser } from "../../Functions";
 
-const useGetUserStars = (recipeId, userId) => {
+const useGetUserStars = (recipeId, mode) => {
+  const user = getUser();
   const userStar = async () => {
     try {
-      const res = await recipeService.getUserStars(recipeId, userId);
-      console.log(res.data);
+      const res = await recipeService.getUserStars(recipeId, user.id);
       return res.data;
     } catch (error) {
       apiErrors(error);
     }
   };
-  const { data, isLoading } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ["userRating", recipeId],
     queryFn: userStar,
+    // enabled: mode === "full-recipe",
   });
 
-  return { data, isLoading };
+  return { isLoading, data };
 };
 export default useGetUserStars;

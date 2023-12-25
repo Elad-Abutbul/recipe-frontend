@@ -20,8 +20,8 @@ export const RecipesWithSearch = ({
   const totalPages = totalRecipesCount
     ? Math.ceil(totalRecipesCount / PAGINATION.RECIPES_PER_PAGE)
     : 0;
-  const recipes =
-    search?.totalRecipesCount > 0 ? search?.recipes : data?.recipes;
+  const recipesId =
+    search?.totalRecipesCount > 0 ? search?.recipesId : data?.recipesId;
 
   useEffect(() => {
     setCurrentPage(1);
@@ -36,7 +36,7 @@ export const RecipesWithSearch = ({
         <Loading />
       ) : (
         <RecipesFeed
-          recipes={recipes}
+          recipesId={recipesId}
           currentPage={currentPage}
           totalPages={totalPages}
           category={category}

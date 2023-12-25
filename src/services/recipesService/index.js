@@ -4,15 +4,26 @@ import { API_URL } from "../../constants";
 export const recipeService = {
   getAllRecipes: async () =>
     await axiosInstance.get(API_URL.RECIPES.GET_ALL_RECIPES),
-
-  getRecipes: async (category, page) => {
-    return await axiosInstance.get(
+  getRecipe: async (recipeId) =>
+    await axiosInstance.get(`${API_URL.RECIPES.GET_RECIPE}/${recipeId}`),
+  getRecipes: async (category, page) =>
+    await axiosInstance.get(
       `${API_URL.RECIPES.GET_RECIPES}/${category}/${page}`
-    );
-  },
+    ),
+  recipeContent: async (recipeId) =>
+    await axiosInstance.get(`${API_URL.RECIPES.CONTENT}/${recipeId}`),
+  getComments: async (recipeId) =>
+    await axiosInstance.get(`${API_URL.RECIPES.COMMENTS}/${recipeId}`),
 
+  addComment: async (comment, recipeId, userId) =>
+    await axiosInstance.post(`${API_URL.RECIPES.ADD_COMMENT}`, {
+      comment,
+      recipeId,
+      userId,
+    }),
   getRatingStars: async () =>
     await axiosInstance.get(`${API_URL.RECIPES.GET_RATING_STARS}`),
+
   getUserStars: async (recipeId, userId) =>
     await axiosInstance.get(
       `${API_URL.RECIPES.GET_USER_STARS}/${recipeId}/${userId}`

@@ -4,13 +4,12 @@ import { useQuery } from "react-query";
 import { useAuth } from "../../User";
 
 const useGetSavedRecipes = (category = "all-recipes", page = 1, search) => {
-  
   const user = getUser();
   const { checkIfUserAuth } = useAuth();
   const savedRecipes = async () => {
     if (checkIfUserAuth()) {
       try {
-        const res = await userService.savedRecipe(
+        const res = await userService.savedRecipes(
           user.id,
           category,
           page,
