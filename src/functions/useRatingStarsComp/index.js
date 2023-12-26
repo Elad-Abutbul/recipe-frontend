@@ -4,13 +4,19 @@ import { getUser } from "../User";
 import { FaStar } from "react-icons/fa";
 
 const useRatingStarComp = (mode, globalRating, recipeId) => {
-  const { changeRecipeStarsMutation } = useQueryMutation();
+  const { changeRecipeStarsMutation, changeRecipeStarsInCommentsMutation } =
+    useQueryMutation();
   const user = getUser();
   const [rating, setRating] = useState(globalRating);
   const handleClickRate = (localRating) => {
     if (mode === "full-recipe") {
       setRating(localRating);
       changeRecipeStarsMutation.mutate({
+        userId: user?.id,
+        rating: localRating,
+        recipeId,
+      });
+      changeRecipeStarsInCommentsMutation.mutate({
         userId: user?.id,
         rating: localRating,
         recipeId,

@@ -1,11 +1,16 @@
 import { RecipeComment } from "../recipeComment";
 
-export const CommentsFeed = ({ comments, recipeId, myComment }) => {
+export const CommentsFeed = ({
+  comments,
+  recipeId,
+  myComment,
+}) => {
   return (
     <>
       {comments.length > 0 ? (
-        comments.map((comment) => (
+        comments.map((comment, index) => (
           <RecipeComment
+            index={index}
             comment={comment}
             key={comment._id}
             recipeId={recipeId}
