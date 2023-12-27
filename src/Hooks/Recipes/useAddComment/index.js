@@ -1,4 +1,4 @@
-import { getUser } from "../../../Functions";
+import { apiErrors, getUser } from "../../../Functions";
 import { recipeService } from "../../../services";
 
 const useAddComment = () => {
@@ -8,7 +8,7 @@ const useAddComment = () => {
       const res = await recipeService.addComment(comment, recipeId, user.id);
       return res;
     } catch (error) {
-      console.error(error);
+      apiErrors(error);
     }
   };
   return { addComment };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useQueryMutation } from "../../Hooks";
 import { getUser } from "../User";
 import { FaStar } from "react-icons/fa";
@@ -8,6 +8,11 @@ const useRatingStarComp = (mode, globalRating, recipeId) => {
     useQueryMutation();
   const user = getUser();
   const [rating, setRating] = useState(globalRating);
+  
+  useEffect(() => {
+    setRating(globalRating);
+  }, [globalRating]);
+
   const handleClickRate = (localRating) => {
     if (mode === "full-recipe") {
       setRating(localRating);
@@ -23,7 +28,6 @@ const useRatingStarComp = (mode, globalRating, recipeId) => {
       });
     }
   };
-
   const renderStars = () => {
     const stars = [];
     for (let localRating = 1; localRating <= 5; localRating++) {

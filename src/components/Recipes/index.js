@@ -7,8 +7,10 @@ import { RecipesWithSearch } from "./recipesWithSearch";
 import { SelectRecipesType } from "./selectRecipesType";
 import { RatingStars } from "./ratingStars";
 import { CommentsFeed, RecipeComment, Comments } from "./RecipeComments";
+import { RecipeContent } from "./recipeContent";
 
 export {
+  RecipeContent,
   RatingStars,
   RecipeCard,
   RecipesFeed,

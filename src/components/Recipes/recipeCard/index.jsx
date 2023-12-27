@@ -21,11 +21,11 @@ export const RecipeCard = ({
   const navigate = useNavigate();
 
   if (isLoading) return <Loading />;
-  
+
   return (
     <div
       onClick={(e) => {
-        if (!e.target.closest('.user-link')) {
+        if (!e.target.closest(".user-link")) {
           e.stopPropagation();
           navigate(ROUTES.RECIPE, { state: { recipeId } });
         }
@@ -33,7 +33,7 @@ export const RecipeCard = ({
     >
       <li
         key={recipe?._id}
-        className="bg-white shadow-md rounded-lg overflow-hidden opacity-[85%] hover:opacity-100"
+        className="bg-white shadow-md rounded-lg overflow-hidden"
       >
         <div className="h-full flex flex-col">
           <img

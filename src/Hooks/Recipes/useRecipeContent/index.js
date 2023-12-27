@@ -12,11 +12,11 @@ const useRecipeContent = (recipeId) => {
     }
   };
 
-  const { isLoading, data } = useQuery({
+  const { data } = useQuery({
     queryKey: ["recipeContent", recipeId],
     queryFn: getRecipeContnet,
   });
 
-  return { isLoading, data };
+  return { data };
 };
 export default useRecipeContent;

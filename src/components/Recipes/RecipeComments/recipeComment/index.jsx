@@ -2,7 +2,7 @@ import React from "react";
 import { RatingStars } from "../../ratingStars";
 import { useNavigate } from "react-router-dom";
 
-export const RecipeComment = ({ comment, recipeId, myComment, index }) => {
+export const RecipeComment = ({ comment, recipeId, myComment }) => {
   const navigate = useNavigate();
   const checkIfUserComment = () => myComment !== -1;
   return (

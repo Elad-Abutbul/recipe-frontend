@@ -3,12 +3,11 @@ import { RatingStars, Comments, Loading } from "../../../components";
 import { useRecipeContent } from "../../../Hooks";
 
 export const FullRecipe = ({ recipeId, onClose = null, mode = "peek" }) => {
-  const { isLoading, data: recipe } = useRecipeContent(recipeId);
+  const { data: recipe } = useRecipeContent(recipeId);
   const handleOuterClick = (event) => {
     event.stopPropagation();
     if (onClose) onClose();
   };
-  if (isLoading) return <Loading />;
   return (
     <div className="flex justify-center items-center">
       <div

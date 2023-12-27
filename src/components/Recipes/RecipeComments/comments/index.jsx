@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import { CommentsFeed } from "../commentsFeed";
 import { Loading } from "../../../loading";
-import { useAuth, useGetComments, useQueryMutation } from "../../../../Hooks";
+import {
+  useAuth,
+  useGetComments,
+  useQueryMutation,
+  useRemoveToken,
+} from "../../../../Hooks";
 import { getUser } from "../../../../Functions";
-import { ROUTES } from "../../../../constants";
 import { useNavigate } from "react-router-dom";
 
 export const Comments = ({ recipeId }) => {
@@ -11,25 +15,27 @@ export const Comments = ({ recipeId }) => {
   const user = getUser();
   const { isLoading, data } = useGetComments(recipeId);
   const { addCommentMutation, editCommentMutation } = useQueryMutation();
+  const { removeToken } = useRemoveToken();
   const { checkIfUserAuth } = useAuth();
-  const navigate = useNavigate();
   const handleCommentClick = () => {
-    if (input !== "" && checkIfUserAuth()) {
-      if (myComment === -1) {
-        addCommentMutation.mutate({ comment: input, recipeId });
-        setInput("");
-      } else {
-        if (input !== data.comments[myComment].text) {
-          editCommentMutation.mutate({
-            comment: input,
-            commentId: data?.comments[myComment]._id,
-            recipeId,
-          });
+    if (checkIfUserAuth()) {
+      if (input !== "") {
+        if (myComment === -1) {
+          addCommentMutation.mutate({ comment: input, recipeId });
           setInput("");
+        } else {
+          if (input !== data.comments[myComment].text) {
+            editCommentMutation.mutate({
+              comment: input,
+              commentId: data?.comments[myComment]._id,
+              recipeId,
+            });
+            setInput("");
+          }
         }
       }
     } else {
-      navigate(ROUTES.LOGIN);
+      removeToken();
     }
   };
   const myComment = data?.comments.findIndex(
@@ -41,7 +47,6 @@ export const Comments = ({ recipeId }) => {
   };
 
   if (isLoading) return <Loading />;
-
   return (
     <div className="border shadow-md flex-grow mx-2 sm:mx-5 md:mx-10 bg-white p-4 rounded-md">
       <h1 className="text-center text-lg font-bold mb-2">Recipe Comments</h1>
