@@ -1,9 +1,9 @@
 import { useQuery } from "react-query";
-import { recipeService } from "../../../services";
+import { recipesApiService } from "../../../services";
 
 const useGetComments = (recipeId) => {
   const getComments = async () => {
-    const res = await recipeService.getComments(recipeId);
+    const res = await recipesApiService.getComments(recipeId);
     return res.data;
   };
   const { isLoading, data } = useQuery(

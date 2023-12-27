@@ -1,5 +1,5 @@
 import { localStorageService } from "./localStorageService";
-import { recipeService } from "./recipesService";
-import { userService } from "./userService";
+import { recipesApiService } from "./recipesApiService";
+import { usersApiService } from "./usersApiService";
 
-export { recipeService, userService, localStorageService }
+export { recipesApiService, usersApiService, localStorageService }

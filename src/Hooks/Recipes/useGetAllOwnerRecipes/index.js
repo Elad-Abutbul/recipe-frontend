@@ -1,4 +1,4 @@
-import { recipeService } from "../../../services";
+import { recipesApiService } from "../../../services";
 import { apiErrors, getUser } from "../../../Functions";
 import { useQuery } from "react-query";
 import { enqueueSnackbar } from "notistack";
@@ -7,7 +7,7 @@ const useGetAllOwnerRecipes = (category, page) => {
   const user = getUser();
   const getAllOwnerRecipes = async () => {
     try {
-      const res = await recipeService.getAllOwnerRecipes(
+      const res = await recipesApiService.getAllOwnerRecipes(
         user.id,
         category,
         page

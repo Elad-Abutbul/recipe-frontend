@@ -7,7 +7,7 @@ import {
 } from "../../../components";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../../constants";
-import useGetRecipe from "../../../Hooks/Recipes/getRecipe";
+import useGetRecipe from "../../../Hooks/Recipes/useGetRecipe";
 
 export const RecipeCard = ({
   recipeId,

@@ -1,6 +1,6 @@
 import { useRemoveToken } from "../../../Hooks";
 import { apiErrors, getUser } from "../../../Functions";
-import { userService } from "../../../services";
+import { usersApiService } from "../../../services";
 import { enqueueSnackbar } from "notistack";
 import { useCookies } from "react-cookie";
 
@@ -10,7 +10,7 @@ const useSaveRecipe = () => {
   const [cookies, setCookies] = useCookies(["access_token"]);
   const saveRecipe = async (recipeId) => {
     try {
-      const res = await userService.saveRecipe(
+      const res = await usersApiService.saveRecipe(
         recipeId,
         user.id,
         cookies.access_token

@@ -1,11 +1,11 @@
 import { useQuery } from "react-query";
 import { apiErrors } from "../../../Functions";
-import { recipeService } from "../../../services";
+import { recipesApiService } from "../../../services";
 
 const useGetRecipe = (recipeId) => {
   const getRecipe = async () => {
     try {
-      const res = await recipeService.getRecipe(recipeId);
+      const res = await recipesApiService.getRecipe(recipeId);
       return res.data;
     } catch (error) {
       apiErrors(error);

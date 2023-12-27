@@ -1,11 +1,11 @@
-import { recipeService } from "../../../services";
+import { recipesApiService } from "../../../services";
 import { apiErrors } from "../../../Functions";
 import { useQuery } from "react-query";
 
 const useGetHomeRecipes = (category, page) => {
   const getHomeRecipes = async () => {
     try {
-      const res = await recipeService.getRecipes(category, page);
+      const res = await recipesApiService.getRecipes(category, page);
       return res.data;
     } catch (error) {
       apiErrors(error);

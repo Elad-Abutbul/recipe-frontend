@@ -1,6 +1,6 @@
 import axiosInstance from "../../axiosConfig";
 
-export const userService = {
+export const usersApiService = {
   register: async (username, password) =>
     await axiosInstance.post("/register", { username, password }),
 

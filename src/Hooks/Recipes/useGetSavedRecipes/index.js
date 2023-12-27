@@ -1,7 +1,7 @@
-import { userService } from "../../../services";
+import { usersApiService } from "../../../services";
 import { apiErrors, getUser } from "../../../Functions";
-import { useQuery } from "react-query";
 import { useAuth } from "../../User";
+import { useQuery } from "react-query";
 
 const useGetSavedRecipes = (category = "all-recipes", page = 1, search) => {
   const user = getUser();
@@ -9,7 +9,7 @@ const useGetSavedRecipes = (category = "all-recipes", page = 1, search) => {
   const savedRecipes = async () => {
     if (checkIfUserAuth()) {
       try {
-        const res = await userService.savedRecipes(
+        const res = await usersApiService.savedRecipes(
           user.id,
           category,
           page,

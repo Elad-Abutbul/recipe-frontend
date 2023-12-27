@@ -1,11 +1,11 @@
-import { userService } from "../../../services";
+import { usersApiService } from "../../../services";
 import { apiErrors } from "../../../Functions";
 import { useQuery } from "react-query";
 
 const useGetUserRecipes = (category, page, userId) => {
   const getUserRecipes = async () => {
     try {
-      const res = await userService.getUserRecipes(category, page, userId);
+      const res = await usersApiService.getUserRecipes(category, page, userId);
       return res.data;
     } catch (error) {
       apiErrors(error);

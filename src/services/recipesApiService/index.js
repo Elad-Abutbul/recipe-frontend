@@ -1,7 +1,7 @@
 import axiosInstance from "../../axiosConfig";
 import { API_URL } from "../../constants";
 
-export const recipeService = {
+export const recipesApiService = {
   getAllRecipes: async () =>
     await axiosInstance.get(API_URL.RECIPES.GET_ALL_RECIPES),
   getRecipe: async (recipeId) =>
