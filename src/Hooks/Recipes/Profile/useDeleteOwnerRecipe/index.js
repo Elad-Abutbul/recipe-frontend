@@ -5,7 +5,7 @@ import { useCookies } from "react-cookie";
 import { enqueueSnackbar } from "notistack";
 
 const useDeleteOwnerRecipe = () => {
-  const [cookies, setCookies] = useCookies(["access_token"]);
+  const [cookies, _] = useCookies(["access_token"]);
   const { checkIfInvalidToken } = useRemoveToken();
   const deleteOwnerRecipe = async (recipeId) => {
     try {

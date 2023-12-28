@@ -5,7 +5,7 @@ import { enqueueSnackbar } from "notistack";
 import { useCookies } from "react-cookie";
 
 const useEditUser = () => {
-  const [cookies, setCookies] = useCookies(["access_token"]);
+  const [cookies, _] = useCookies(["access_token"]);
   const { checkIfInvalidToken } = useRemoveToken();
   const user = getUser();
 

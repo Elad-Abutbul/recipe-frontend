@@ -1,6 +1,3 @@
-import { changeRecipeRating } from "./changeRecipeRating";
-import { changeRecipeStarsInComments } from "./changeRecipeStarsInComments";
-import { editComment } from "./editComment";
 import {
   addIngredient,
   deleteIngredient,
@@ -16,7 +13,4 @@ export {
   handleIngredientChange,
   recipeIngredientsCheck,
   //
-  changeRecipeRating,
-  editComment,
-  changeRecipeStarsInComments,
 };

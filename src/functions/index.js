@@ -1,13 +1,10 @@
 import { handleChangeState } from "./handleChangeState";
-import { apiErrors } from "./Api";
+import { apiErrors, genericApiFunction } from "./Api";
 import { editHandleSubmit } from "./User/editProfile";
 import { handleSearch } from "./search";
 import {
   addIngredient,
-  changeRecipeRating,
-  changeRecipeStarsInComments,
   deleteIngredient,
-  editComment,
   formHandleSubmit,
   handleIngredientChange,
   recipeIngredientsCheck,
@@ -23,9 +20,6 @@ export {
   recipeIngredientsCheck,
   formHandleSubmit,
   //
-  changeRecipeRating,
-  editComment,
-  changeRecipeStarsInComments,
   //  ******* Recipes *******
 
   //******* users *******
@@ -38,4 +32,5 @@ export {
   //******* search *******
   handleChangeState,
   apiErrors,
+  genericApiFunction,
 };

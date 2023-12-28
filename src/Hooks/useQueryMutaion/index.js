@@ -5,14 +5,10 @@ import {
   useDeleteOwnerRecipe,
   useCreateRecipe,
   useEditRecipe,
-  useAddComment,
 } from "../../Hooks";
-import {
-  changeRecipeRating,
-  changeRecipeStarsInComments,
-  editComment,
-} from "../../Functions";
+import { genericApiFunction } from "../../Functions";
 import { QUERY_KEY } from "../../constants";
+import { recipesApiService } from "../../services";
 
 const useQueryMutation = () => {
   const queryClient = useQueryClient();
@@ -21,7 +17,6 @@ const useQueryMutation = () => {
   const { deleteOwnerRecipe } = useDeleteOwnerRecipe();
   const { createRecipe } = useCreateRecipe();
   const { editRecipe } = useEditRecipe();
-  const { addComment } = useAddComment();
 
   const deleteSavedRecipeMutation = useMutation({
     mutationFn: async (userId) => deleteSavedRecipe(userId),
@@ -35,21 +30,29 @@ const useQueryMutation = () => {
 
   const changeRecipeStarsInCommentsMutation = useMutation({
     mutationFn: async ({ userId, rating, recipeId }) =>
-      changeRecipeStarsInComments(userId, rating, recipeId),
+      genericApiFunction(recipesApiService.changeRatingInComments, {
+        userId,
+        rating,
+        recipeId,
+      }),
     onSuccess: (_, { recipeId }) =>
       queryClient.invalidateQueries([QUERY_KEY.RECIPE_COMMNETS, recipeId]),
   });
 
   const editCommentMutation = useMutation({
     mutationFn: async ({ commentId, comment }) =>
-      editComment(commentId, comment),
+      genericApiFunction(recipesApiService.editComment, { commentId, comment }),
     onSuccess: (_, { recipeId }) =>
       queryClient.invalidateQueries([QUERY_KEY.RECIPE_COMMNETS, recipeId]),
   });
 
   const addCommentMutation = useMutation({
-    mutationFn: async ({ comment, recipeId }) =>
-      await addComment(comment, recipeId),
+    mutationFn: async ({ comment, recipeId, userId }) =>
+      genericApiFunction(recipesApiService.addComment, {
+        comment,
+        recipeId,
+        userId,
+      }),
     onSuccess: (_, { recipeId }) =>
       queryClient.invalidateQueries([QUERY_KEY.RECIPE_COMMNETS, recipeId]),
   });
@@ -74,7 +77,11 @@ const useQueryMutation = () => {
 
   const changeRecipeStarsMutation = useMutation({
     mutationFn: async ({ userId, rating, recipeId }) =>
-      await changeRecipeRating(userId, rating, recipeId),
+      genericApiFunction(recipesApiService.changeRecipeRating, {
+        userId,
+        rating,
+        recipeId,
+      }),
     onSuccess: (_, { recipeId }) =>
       queryClient.invalidateQueries([QUERY_KEY.RECIPE, recipeId]),
   });

@@ -9,7 +9,7 @@ import { enqueueSnackbar } from "notistack";
 const useCreateRecipe = () => {
   const { checkIfInvalidToken } = useRemoveToken();
   const navigate = useNavigate();
-  const [cookies, setCookies] = useCookies(["access_token"]);
+  const [cookies, _] = useCookies(["access_token"]);
 
   const createRecipe = async (recipe) => {
     try {

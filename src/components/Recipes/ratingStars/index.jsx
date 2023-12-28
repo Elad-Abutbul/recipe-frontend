@@ -1,13 +1,24 @@
-import { useAuth, useGetUserStars } from "../../../Hooks";
+import { useAuth, useGenericQuery } from "../../../Hooks";
 import useRatingStarComp from "../../../Functions/useRatingStarsComp";
 import { Loading } from "../../loading";
+import { recipesApiService } from "../../../services";
+import { QUERY_KEY } from "../../../constants";
+import { getUser } from "../../../Functions";
 
 export const RatingStars = ({
   initialRating = null,
   mode = "recipe-card",
   recipeId,
 }) => {
-  const { isLoading, data } = useGetUserStars(recipeId, mode);
+  const user = getUser();
+  const { isLoading, data } = useGenericQuery(
+    QUERY_KEY.USER_RATING,
+    {
+      recipeId,
+      userId: user.id,
+    },
+    recipesApiService.getUserStars
+  );
   const rating = initialRating === null ? data?.userRating : initialRating;
   const { checkIfUserAuth } = useAuth();
   const { renderStars } = useRatingStarComp(mode, rating, recipeId);

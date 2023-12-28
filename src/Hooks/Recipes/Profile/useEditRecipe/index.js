@@ -8,7 +8,7 @@ import { useCookies } from "react-cookie";
 
 const useEditRecipe = () => {
   const { checkIfInvalidToken } = useRemoveToken();
-  const [cookies, setCookies] = useCookies(["access_token"]);
+  const [cookies, _] = useCookies(["access_token"]);
   const navigate = useNavigate();
   const editRecipe = async (recipe, recipeId) => {
     try {

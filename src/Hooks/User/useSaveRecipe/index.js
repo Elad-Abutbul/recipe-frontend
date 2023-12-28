@@ -7,7 +7,7 @@ import { useCookies } from "react-cookie";
 const useSaveRecipe = () => {
   let user = getUser();
   const { checkIfInvalidToken } = useRemoveToken();
-  const [cookies, setCookies] = useCookies(["access_token"]);
+  const [cookies, _] = useCookies(["access_token"]);
   const saveRecipe = async (recipeId) => {
     try {
       const res = await usersApiService.saveRecipe(
