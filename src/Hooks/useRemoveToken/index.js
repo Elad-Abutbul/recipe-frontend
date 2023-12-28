@@ -31,6 +31,6 @@ const useRemoveToken = () => {
     removeToken();
   };
 
-  return { checkIfInvalidToken, logOut };
+  return { checkIfInvalidToken, logOut, removeToken };
 };
 export default useRemoveToken;

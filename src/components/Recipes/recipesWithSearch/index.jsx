@@ -12,39 +12,44 @@ export const RecipesWithSearch = ({
   const [search, setSearch] = useState([]);
   const [category, setCategory] = useState("all-recipes");
   const { data, isLoading } = useRecipe(category, currentPage, userId);
+
   const userIdSuffix =
     urlParams === "savedRecipes" || urlParams === "user" ? `/${userId}` : null;
   const dynamicUrl = `${API_URL.RECIPES.SEARCH.RECIPES}/${urlParams}/${category}/${currentPage}${userIdSuffix}`;
+
   const totalRecipesCount =
     search?.totalRecipesCount || data?.totalRecipesCount;
+
   const totalPages = totalRecipesCount
     ? Math.ceil(totalRecipesCount / PAGINATION.RECIPES_PER_PAGE)
     : 0;
+
   const recipesId =
     search?.totalRecipesCount > 0 ? search?.recipesId : data?.recipesId;
 
   useEffect(() => {
     setCurrentPage(1);
   }, [category]);
+  if (isLoading) return <Loading />;
   return (
     <>
-      <div className="flex gap-5">
-        <Search setSearch={setSearch} urlPath={dynamicUrl} />
-        <SelectRecipesType setCategory={setCategory} />
-      </div>
-      {isLoading ? (
-        <Loading />
+      {recipesId?.length > 0 ? (
+        <div className="flex gap-5">
+          <Search setSearch={setSearch} urlPath={dynamicUrl} />
+          <SelectRecipesType setCategory={setCategory} />
+        </div>
       ) : (
-        <RecipesFeed
-          recipesId={recipesId}
-          currentPage={currentPage}
-          totalPages={totalPages}
-          category={category}
-          search={search}
-          setCurrentPage={setCurrentPage}
-          mode={mode}
-        />
+        <p>Nothing To Show..</p>
       )}
+      <RecipesFeed
+        recipesId={recipesId}
+        currentPage={currentPage}
+        totalPages={totalPages}
+        category={category}
+        search={search}
+        setCurrentPage={setCurrentPage}
+        mode={mode}
+      />
     </>
   );
 };

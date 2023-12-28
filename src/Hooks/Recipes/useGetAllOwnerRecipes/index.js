@@ -14,6 +14,7 @@ const useGetAllOwnerRecipes = (category, page) => {
       );
       if (res.data.message)
         return enqueueSnackbar(res.data.message, { variant: "error" });
+      console.log(res.data);
       return res.data;
     } catch (error) {
       apiErrors(error);

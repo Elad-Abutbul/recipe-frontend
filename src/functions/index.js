@@ -5,12 +5,15 @@ import { handleSearch } from "./search";
 import {
   addIngredient,
   changeRecipeRating,
+  changeRecipeStarsInComments,
   deleteIngredient,
+  editComment,
   formHandleSubmit,
   handleIngredientChange,
   recipeIngredientsCheck,
 } from "./Recipes";
 import { getUser } from "./User";
+
 export {
   //******* Recipes *******
   //form
@@ -21,7 +24,8 @@ export {
   formHandleSubmit,
   //
   changeRecipeRating,
-
+  editComment,
+  changeRecipeStarsInComments,
   //  ******* Recipes *******
 
   //******* users *******
