@@ -7,8 +7,7 @@ const useRatingStarComp = (mode, globalRating, recipeId) => {
   const { changeRecipeStarsMutation, changeRecipeStarsInCommentsMutation } =
     useQueryMutation();
   const user = getUser();
-  const [rating, setRating] = useState(globalRating);
-
+  const [rating, setRating] = useState();
   useEffect(() => {
     setRating(globalRating);
   }, [globalRating]);

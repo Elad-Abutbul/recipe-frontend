@@ -6,7 +6,7 @@ import {
   useCreateRecipe,
   useEditRecipe,
 } from "../../Hooks";
-import { genericApiFunction } from "../../Functions";
+import { genericApiFunction } from "../../functions";
 import { QUERY_KEY } from "../../constants";
 import { recipesApiService } from "../../services";
 
@@ -36,14 +36,14 @@ const useQueryMutation = () => {
         recipeId,
       }),
     onSuccess: (_, { recipeId }) =>
-      queryClient.invalidateQueries([QUERY_KEY.RECIPE_COMMNETS, recipeId]),
+      queryClient.invalidateQueries([QUERY_KEY.RECIPE_COMMNETS, { recipeId }]),
   });
 
   const editCommentMutation = useMutation({
     mutationFn: async ({ commentId, comment }) =>
       genericApiFunction(recipesApiService.editComment, { commentId, comment }),
     onSuccess: (_, { recipeId }) =>
-      queryClient.invalidateQueries([QUERY_KEY.RECIPE_COMMNETS, recipeId]),
+      queryClient.invalidateQueries([QUERY_KEY.RECIPE_COMMNETS, {recipeId}]),
   });
 
   const addCommentMutation = useMutation({
@@ -54,7 +54,7 @@ const useQueryMutation = () => {
         userId,
       }),
     onSuccess: (_, { recipeId }) =>
-      queryClient.invalidateQueries([QUERY_KEY.RECIPE_COMMNETS, recipeId]),
+      queryClient.invalidateQueries([QUERY_KEY.RECIPE_COMMNETS, {recipeId}]),
   });
 
   const deleteOwnerRecipeMutation = useMutation({
@@ -82,8 +82,6 @@ const useQueryMutation = () => {
         rating,
         recipeId,
       }),
-    onSuccess: (_, { recipeId }) =>
-      queryClient.invalidateQueries([QUERY_KEY.RECIPE, recipeId]),
   });
 
   return {

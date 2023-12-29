@@ -1,6 +1,6 @@
 import { useRemoveToken } from "../../../../Hooks";
 import { recipesApiService } from "../../../../services";
-import { apiErrors } from "../../../../Functions";
+import { apiErrors } from "../../../../functions";
 import { useCookies } from "react-cookie";
 import { enqueueSnackbar } from "notistack";
 

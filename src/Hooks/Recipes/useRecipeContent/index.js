@@ -1,5 +1,5 @@
 import { useQuery } from "react-query";
-import { apiErrors } from "../../../Functions";
+import { apiErrors } from "../../../functions";
 import { recipesApiService } from "../../../services";
 
 const useRecipeContent = (recipeId) => {

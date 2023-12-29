@@ -8,7 +8,7 @@ import {
   handleIngredientChange,
   formHandleSubmit,
   getUser,
-} from "../../../Functions";
+} from "../../../functions";
 
 export const Form = ({ singleRecipe, location }) => {
   const user = getUser();

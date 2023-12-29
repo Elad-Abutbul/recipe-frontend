@@ -1,6 +1,6 @@
 import { Layout } from "../../pages";
 import { RecipesWithSearch } from "../../components";
-import { getUser } from "../../Functions";
+import { getUser } from "../../functions";
 import { QUERY_KEY } from "../../constants";
 import { recipesApiService } from "../../services";
 

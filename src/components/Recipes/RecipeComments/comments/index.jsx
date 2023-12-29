@@ -7,52 +7,48 @@ import {
   useQueryMutation,
   useRemoveToken,
 } from "../../../../Hooks";
-import { getUser } from "../../../../Functions";
+import { getUser } from "../../../../functions";
 import { QUERY_KEY } from "../../../../constants";
 import { recipesApiService } from "../../../../services";
 
 export const Comments = ({ recipeId }) => {
   const [input, setInput] = useState("");
   const user = getUser();
+
   const { isLoading, data } = useGenericQuery(
     QUERY_KEY.RECIPE_COMMNETS,
     { recipeId },
     recipesApiService.getComments
   );
+
   const { addCommentMutation, editCommentMutation } = useQueryMutation();
   const { removeToken } = useRemoveToken();
   const { checkIfUserAuth } = useAuth();
+
   const handleCommentClick = () => {
-    if (checkIfUserAuth()) {
-      if (input !== "") {
-        if (myComment === -1) {
-          addCommentMutation.mutate({
-            comment: input,
-            recipeId,
-            userId: user.id,
-          });
-          setInput("");
-        } else {
-          if (input !== data.comments[myComment].text) {
-            editCommentMutation.mutate({
-              comment: input,
-              commentId: data?.comments[myComment]._id,
-              recipeId,
-            });
-            setInput("");
-          }
-        }
-      }
-    } else {
+    if (input === "") return;
+    if (!checkIfUserAuth()) {
       removeToken();
+      return;
     }
+    if (currentUserComment === -1) {
+      addCommentMutation.mutate({ comment: input, recipeId });
+    } else if (input !== data.comments[currentUserComment]?.text) {
+      editCommentMutation.mutate({
+        comment: input,
+        commentId: data?.comments[currentUserComment]?._id,
+        recipeId,
+      });
+    }
+    setInput("");
   };
-  const myComment = data?.comments.findIndex(
+
+  const currentUserComment = data?.comments.findIndex(
     (comment) => comment.user.id === user.id
   );
 
   const handleEditComment = () => {
-    if (myComment !== -1) setInput(data.comments[myComment].text);
+    if (currentUserComment !== -1) setInput(data.comments[currentUserComment].text);
   };
 
   if (isLoading) return <Loading />;
@@ -64,7 +60,7 @@ export const Comments = ({ recipeId }) => {
         <CommentsFeed
           comments={data?.comments}
           recipeId={recipeId}
-          myComment={myComment}
+          currentUserComment={currentUserComment}
         />
       </div>
       <hr />
@@ -73,7 +69,7 @@ export const Comments = ({ recipeId }) => {
           type="search"
           value={input}
           placeholder={
-            myComment !== -1 ? "Edit Your Comment" : "Enter A Comment"
+            currentUserComment !== -1 ? "Edit Your Comment" : "Enter A Comment"
           }
           className="border-2 flex mb-2 sm:mb-0 sm:mr-2 border-gray-300 rounded-md p-2 w-full sm:w-auto focus:outline-none"
           onChange={(e) => setInput(e.target.value)}

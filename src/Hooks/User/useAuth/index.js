@@ -1,4 +1,4 @@
-import { apiErrors } from "../../../Functions";
+import { apiErrors } from "../../../functions";
 import { usersApiService } from "../../../services";
 import { ROUTES } from "../../../constants";
 import { enqueueSnackbar } from "notistack";

@@ -1,7 +1,7 @@
 import { useRemoveToken } from "../../../../Hooks";
 import { recipesApiService } from "../../../../services";
 import { ROUTES } from "../../../../constants";
-import { apiErrors } from "../../../../Functions";
+import { apiErrors } from "../../../../functions";
 import { useNavigate } from "react-router-dom";
 import { enqueueSnackbar } from "notistack";
 import { useCookies } from "react-cookie";
