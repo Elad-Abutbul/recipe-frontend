@@ -5,13 +5,9 @@ import {
   useRecipeCard,
   useDeleteOwnerRecipe,
   useRecipeContent,
+  useRatingStarComp,
 } from "./Recipes";
-import {
-  useAuth,
-  useEditUser,
-  useSaveRecipe,
-  useSignInOut,
-} from "./User";
+import { useAuth, useEditUser, useSaveRecipe, useSignInOut } from "./User";
 
 import useRemoveToken from "./useRemoveToken";
 
@@ -20,6 +16,7 @@ import useDebounce from "./useDebounce";
 import useGenericQuery from "./useGenericQuery";
 export {
   //recipes
+  useRatingStarComp,
   useRecipeContent,
   useCreateRecipe,
   useDeleteSavedRecipe,
