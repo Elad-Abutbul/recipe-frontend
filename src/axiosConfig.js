@@ -1,7 +1,6 @@
 import axios from "axios";
 const axiosInstance = axios.create({
-  baseURL: "https://recipe-backend-tau.vercel.app/"
-
+  baseURL: process.env.BASE_URL
 });
-
+console.log(process.env.BASE_URL);
 export default axiosInstance;
