@@ -1,16 +1,13 @@
 import React, { useState } from "react";
-import { useGetSavedRecipes,useAuth,useRemoveToken } from "../../Hooks";
+import { useAuth, useRemoveToken } from "../../Hooks";
 import { ROUTES } from "../../constants";
 import { Link } from "react-router-dom";
-import {  UsersSearch } from "../User";
-import { getUser } from "../../Functions";
+import { UsersSearch } from "../User";
 
 export const Navbar = () => {
-  const { data } = useGetSavedRecipes();
   const { checkIfUserAuth } = useAuth();
   const { logOut } = useRemoveToken();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const user=getUser()
   return (
     <nav className="bg-gray-800 text-white sticky top-0 z-20">
       <div className="container mx-auto flex items-center justify-between py-4">
@@ -32,7 +29,7 @@ export const Navbar = () => {
             isMobileMenuOpen ? "block" : "hidden"
           }`}
         >
-        <UsersSearch/>
+          <UsersSearch />
           {checkIfUserAuth() && (
             <Link
               to={`${ROUTES.PROFILE}/${ROUTES.EDIT_RECIPES}`}
@@ -41,7 +38,7 @@ export const Navbar = () => {
               Profile
             </Link>
           )}
-          
+
           {checkIfUserAuth() && (
             <Link
               to={ROUTES.CREATE_RECIPE}
@@ -58,14 +55,14 @@ export const Navbar = () => {
               >
                 Saved Recipes
               </Link>
-              {data?.totalRecipesCount > 0 && (
+              {/* {data?.totalRecipesCount > 0 && (
                 <span className=" bg-white text-gray-800 rounded-full px-2 ">
                   {data.totalRecipesCount}
                 </span>
-              )}
+              )} */}
             </div>
           )}
-          
+
           {checkIfUserAuth() ? (
             <button
               onClick={logOut}

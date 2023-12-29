@@ -1,18 +1,18 @@
 import axiosInstance from "../../axiosConfig";
 
-export const userService = {
+export const usersApiService = {
   register: async (username, password) =>
     await axiosInstance.post("/register", { username, password }),
 
   login: async (username, password) =>
     await axiosInstance.post("/login", { username, password }),
 
-    getUserRecipes: async (category, page, userId) => {
+  getUserRecipes: async ({category, page, userId}) => {
     return await axiosInstance.get(
       `/auth/getUserRecipes/${category}/${page}/${userId}`
     );
   },
-  savedRecipes: async (userId, category, page) =>
+  savedRecipes: async ({category, page, userId}) =>
     await axiosInstance.get(`/auth/savedRecipes/${category}/${page}/${userId}`),
 
   editUser: async (userId, username, password, accessToken) =>

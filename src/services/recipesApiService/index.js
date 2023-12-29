@@ -1,30 +1,54 @@
 import axiosInstance from "../../axiosConfig";
 import { API_URL } from "../../constants";
 
-export const recipeService = {
+export const recipesApiService = {
   getAllRecipes: async () =>
     await axiosInstance.get(API_URL.RECIPES.GET_ALL_RECIPES),
-  getRecipe: async (recipeId) =>
+  getRecipe: async ({ recipeId }) =>
     await axiosInstance.get(`${API_URL.RECIPES.GET_RECIPE}/${recipeId}`),
-  getRecipes: async (category, page) =>
+
+  getRecipes: async ({ category, page }) =>
     await axiosInstance.get(
       `${API_URL.RECIPES.GET_RECIPES}/${category}/${page}`
     ),
+
   recipeContent: async (recipeId) =>
     await axiosInstance.get(`${API_URL.RECIPES.CONTENT}/${recipeId}`),
-  getComments: async (recipeId) =>
+
+  getComments: async ({ recipeId }) =>
     await axiosInstance.get(`${API_URL.RECIPES.COMMENTS}/${recipeId}`),
 
   addComment: async (comment, recipeId, userId) =>
-    await axiosInstance.post(`${API_URL.RECIPES.ADD_COMMENT}`, {
+    await axiosInstance.post(API_URL.RECIPES.ADD_COMMENT, {
       comment,
       recipeId,
       userId,
     }),
-  getRatingStars: async () =>
-    await axiosInstance.get(`${API_URL.RECIPES.GET_RATING_STARS}`),
 
-  getUserStars: async (recipeId, userId) =>
+  getRatingStars: async () =>
+    await axiosInstance.get(API_URL.RECIPES.GET_RATING_STARS),
+
+  changeRecipeRating: async ({ userId, rating, recipeId }) =>
+    await axiosInstance.post(API_URL.RECIPES.CHANGE_RATING, {
+      userId,
+      rating,
+      recipeId,
+    }),
+
+  editComment: async ({ commentId, comment }) =>
+    await axiosInstance.post(API_URL.RECIPES.EDIT_COMMENT, {
+      commentId,
+      comment,
+    }),
+
+  changeRatingInComments: async ({ userId, rating, recipeId }) =>
+    await axiosInstance.post(API_URL.RECIPES.EDIT_RATING_IN_COMMENTS, {
+      userId,
+      rating,
+      recipeId,
+    }),
+
+  getUserStars: async ({ recipeId, userId }) =>
     await axiosInstance.get(
       `${API_URL.RECIPES.GET_USER_STARS}/${recipeId}/${userId}`
     ),
@@ -53,7 +77,7 @@ export const recipeService = {
       { headers: { authorization: accessToken } }
     ),
 
-  getAllOwnerRecipes: async (userId, category, page) =>
+  getAllOwnerRecipes: async ({ category, page, userId }) =>
     await axiosInstance.get(
       `${API_URL.RECIPES.GET_ALL_OWNER_RECIPE}/${category}/${page}/${userId}`
     ),

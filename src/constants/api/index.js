@@ -19,7 +19,7 @@ export const API_URL = {
     ADD_COMMENT: `${RECIPES_BASE}/comments/addComment`,
     CONTENT: `${RECIPES_BASE}/content`,
     EDIT_COMMENT: `${RECIPES_BASE}/editComment`,
-    RATING: `${RECIPES_BASE}/rating`,
+    CHANGE_RATING: `${RECIPES_BASE}/changeRating`,
     EDIT_RATING_IN_COMMENTS: `${RECIPES_BASE}/editRatingInComments`,
     DELETE: {
       SAVED_RECIPE: `${RECIPE_DELETE_BASE}/saved-recipe`,

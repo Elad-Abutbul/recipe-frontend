@@ -1,5 +1,5 @@
 import { apiErrors } from "../../../Functions";
-import { userService } from "../../../services";
+import { usersApiService } from "../../../services";
 import { ROUTES } from "../../../constants";
 import { enqueueSnackbar } from "notistack";
 import { useCookies } from "react-cookie";
@@ -16,7 +16,7 @@ const useAuth = () => {
 
   const register = async (username, password) => {
     try {
-      const res = await userService.register(username, password);
+      const res = await usersApiService.register(username, password);
       if (res.data.message === "User Already Exists!") {
         return enqueueSnackbar(res.data.message, { variant: "error" });
       }
@@ -29,7 +29,7 @@ const useAuth = () => {
 
   const login = async (username, password) => {
     try {
-      const res = await userService.login(username, password);
+      const res = await usersApiService.login(username, password);
       if (res.data.message) {
         return enqueueSnackbar(res.data.message, { variant: "error" });
       }

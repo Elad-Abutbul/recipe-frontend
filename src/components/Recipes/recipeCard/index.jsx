@@ -6,8 +6,9 @@ import {
   RecipeIcons,
 } from "../../../components";
 import { useNavigate } from "react-router-dom";
-import { ROUTES } from "../../../constants";
-import useGetRecipe from "../../../Hooks/Recipes/getRecipe";
+import { QUERY_KEY, ROUTES } from "../../../constants";
+import { useGenericQuery } from "../../../Hooks";
+import { recipesApiService } from "../../../services";
 
 export const RecipeCard = ({
   recipeId,
@@ -16,7 +17,11 @@ export const RecipeCard = ({
   category,
 }) => {
   const [showFullRecipe, setShowFullRecipe] = useState(false);
-  const { isLoading, data } = useGetRecipe(recipeId);
+  const { isLoading, data } = useGenericQuery(
+    QUERY_KEY.RECIPE,
+    { recipeId },
+    recipesApiService.getRecipe,
+  );
   const recipe = data?.recipe;
   const navigate = useNavigate();
 

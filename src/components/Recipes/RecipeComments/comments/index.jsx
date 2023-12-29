@@ -3,17 +3,22 @@ import { CommentsFeed } from "../commentsFeed";
 import { Loading } from "../../../loading";
 import {
   useAuth,
-  useGetComments,
+  useGenericQuery,
   useQueryMutation,
   useRemoveToken,
 } from "../../../../Hooks";
 import { getUser } from "../../../../Functions";
-import { useNavigate } from "react-router-dom";
+import { QUERY_KEY } from "../../../../constants";
+import { recipesApiService } from "../../../../services";
 
 export const Comments = ({ recipeId }) => {
   const [input, setInput] = useState("");
   const user = getUser();
-  const { isLoading, data } = useGetComments(recipeId);
+  const { isLoading, data } = useGenericQuery(
+    QUERY_KEY.RECIPE_COMMNETS,
+    { recipeId },
+    recipesApiService.getComments
+  );
   const { addCommentMutation, editCommentMutation } = useQueryMutation();
   const { removeToken } = useRemoveToken();
   const { checkIfUserAuth } = useAuth();
@@ -21,7 +26,11 @@ export const Comments = ({ recipeId }) => {
     if (checkIfUserAuth()) {
       if (input !== "") {
         if (myComment === -1) {
-          addCommentMutation.mutate({ comment: input, recipeId });
+          addCommentMutation.mutate({
+            comment: input,
+            recipeId,
+            userId: user.id,
+          });
           setInput("");
         } else {
           if (input !== data.comments[myComment].text) {

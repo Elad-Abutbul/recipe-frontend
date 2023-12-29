@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react";
 import { API_URL, PAGINATION } from "../../../constants";
 import { Search, Loading, RecipesFeed, SelectRecipesType } from "../..";
+import { useGenericQuery } from "../../../Hooks";
 
 export const RecipesWithSearch = ({
   urlParams,
-  useRecipe,
   mode,
   userId = null,
+  queryKey,
+  service,
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState([]);
   const [category, setCategory] = useState("all-recipes");
-  const { data, isLoading } = useRecipe(category, currentPage, userId);
+  const { data, isLoading } = useGenericQuery(
+    queryKey,
+    { category, currentPage, userId },
+    service
+  );
 
   const userIdSuffix =
-    urlParams === "savedRecipes" || urlParams === "user" ? `/${userId}` : null;
+  queryKey === "savedRecipes" || urlParams === "user" ? `/${userId}` : null;
   const dynamicUrl = `${API_URL.RECIPES.SEARCH.RECIPES}/${urlParams}/${category}/${currentPage}${userIdSuffix}`;
 
   const totalRecipesCount =

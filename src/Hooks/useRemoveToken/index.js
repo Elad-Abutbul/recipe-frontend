@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "react-query";
 
 const useRemoveToken = () => {
-  const [cookies, setCookies] = useCookies(["access_token"]);
+  const [_, setCookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const removeToken = () => {

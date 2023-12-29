@@ -1,17 +1,17 @@
 import useRemoveToken from "../../useRemoveToken";
-import { userService } from "../../../services";
+import { usersApiService } from "../../../services";
 import { apiErrors, getUser } from "../../../Functions";
 import { enqueueSnackbar } from "notistack";
 import { useCookies } from "react-cookie";
 
 const useEditUser = () => {
-  const [cookies, setCookies] = useCookies(["access_token"]);
+  const [cookies, _] = useCookies(["access_token"]);
   const { checkIfInvalidToken } = useRemoveToken();
   const user = getUser();
 
   const editUser = async (username, password) => {
     try {
-      const res = await userService.editUser(
+      const res = await usersApiService.editUser(
         user.id,
         username,
         password,

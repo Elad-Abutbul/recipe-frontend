@@ -1,5 +1,5 @@
 import useRemoveToken from "../../useRemoveToken";
-import { recipeService } from "../../../services";
+import { recipesApiService } from "../../../services";
 import { ROUTES } from "../../../constants";
 import { apiErrors } from "../../../Functions";
 import { useNavigate } from "react-router-dom";
@@ -9,11 +9,11 @@ import { enqueueSnackbar } from "notistack";
 const useCreateRecipe = () => {
   const { checkIfInvalidToken } = useRemoveToken();
   const navigate = useNavigate();
-  const [cookies, setCookies] = useCookies(["access_token"]);
+  const [cookies, _] = useCookies(["access_token"]);
 
   const createRecipe = async (recipe) => {
     try {
-      const res = await recipeService.createRecipe(
+      const res = await recipesApiService.createRecipe(
         recipe,
         cookies.access_token
       );

@@ -1,4 +1,4 @@
-import { recipeService } from "../../../services";
+import { recipesApiService } from "../../../services";
 import { apiErrors, getUser } from "../../../Functions";
 import { useCookies } from "react-cookie";
 import { enqueueSnackbar } from "notistack";
@@ -11,7 +11,7 @@ const useDeleteSavedRecipe = () => {
 
   const deleteSavedRecipe = async (recipeId) => {
     try {
-      const res = await recipeService.deleteSavedRecipe(
+      const res = await recipesApiService.deleteSavedRecipe(
         recipeId,
         user.id,
         cookies.access_token
