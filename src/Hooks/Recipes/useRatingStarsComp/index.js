@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useQueryMutation } from "../../Hooks";
-import { getUser } from "../User";
+import { useQueryMutation } from "../..";
+import { getUser } from "../../../functions/User";
 import { FaStar } from "react-icons/fa";
 
 const useRatingStarComp = (mode, globalRating, recipeId) => {
