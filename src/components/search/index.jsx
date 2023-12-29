@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { handleSearch } from "../../Functions";
+import { handleSearch } from "../../functions";
 import { useDebounce } from "../../Hooks";
 
 export const Search = ({

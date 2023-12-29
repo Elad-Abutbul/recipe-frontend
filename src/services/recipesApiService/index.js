@@ -7,7 +7,7 @@ export const recipesApiService = {
   getRecipe: async ({ recipeId }) =>
     await axiosInstance.get(`${API_URL.RECIPES.GET_RECIPE}/${recipeId}`),
 
-  getRecipes: async ({ category, page }) =>
+  getRecipes: async ({ category, currentPage: page }) =>
     await axiosInstance.get(
       `${API_URL.RECIPES.GET_RECIPES}/${category}/${page}`
     ),

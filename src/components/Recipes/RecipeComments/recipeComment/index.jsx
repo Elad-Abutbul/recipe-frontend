@@ -2,19 +2,19 @@ import React from "react";
 import { RatingStars } from "../../ratingStars";
 import { useNavigate } from "react-router-dom";
 
-export const RecipeComment = ({ comment, recipeId, myComment }) => {
+export const RecipeComment = ({ comment, recipeId, currentUserComment }) => {
   const navigate = useNavigate();
-  const checkIfUserComment = () => myComment !== -1;
+  const isUserComment = () => currentUserComment !== -1;
   return (
     <div
       className={`${
-        checkIfUserComment ? "bg-blue-600" : "bg-gray-200"
+        isUserComment ? "bg-blue-600" : "bg-gray-200"
       } p-4 my-2 rounded-md  gap-1  `}
     >
       <div className="flex-col">
         <p
           className={`${
-            checkIfUserComment ? "text-white" : "text-gray"
+            isUserComment ? "text-white" : "text-gray"
           } font-semibold`}
           onClick={() =>
             navigate(`/user/${comment.user.id}`, {
@@ -25,7 +25,7 @@ export const RecipeComment = ({ comment, recipeId, myComment }) => {
           {comment.user.username}
         </p>
 
-        <p className={`${checkIfUserComment ? "text-white" : "text-gray"}`}>
+        <p className={`${isUserComment ? "text-white" : "text-gray"}`}>
           {comment?.text}
         </p>
         <div className="flex gap-5">
@@ -36,7 +36,7 @@ export const RecipeComment = ({ comment, recipeId, myComment }) => {
           />
         </div>
       </div>
-      <p className={`${checkIfUserComment ? "text-white" : "text-gray"} text-xs`}>
+      <p className={`${isUserComment ? "text-white" : "text-gray"} text-xs`}>
         {new Date(comment.createdAt).toLocaleString()}
       </p>
     </div>

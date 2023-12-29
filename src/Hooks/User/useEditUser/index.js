@@ -1,6 +1,6 @@
 import useRemoveToken from "../../useRemoveToken";
 import { usersApiService } from "../../../services";
-import { apiErrors, getUser } from "../../../Functions";
+import { apiErrors, getUser } from "../../../functions";
 import { enqueueSnackbar } from "notistack";
 import { useCookies } from "react-cookie";
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { editHandleSubmit, getUser, handleChangeState } from "../../../Functions";
+import { editHandleSubmit, getUser, handleChangeState } from "../../../functions";
 import { useEditUser } from "../../../Hooks";
 
 export const EditProfile = () => {

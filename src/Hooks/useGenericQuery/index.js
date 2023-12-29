@@ -1,11 +1,10 @@
 import { useQuery } from "react-query";
-import { genericApiFunction } from "../../Functions";
+import { genericApiFunction } from "../../functions";
 
 const useGenericQuery = (queryKey, queryKeyParmas, service) => {
-  debugger
   const { isLoading, data } = useQuery({
     queryFn: () => genericApiFunction(service, queryKeyParmas),
-    queryKey: [queryKey, { ...queryKeyParmas }],
+    queryKey: [queryKey, queryKeyParmas],
   });
 
   return { isLoading, data };

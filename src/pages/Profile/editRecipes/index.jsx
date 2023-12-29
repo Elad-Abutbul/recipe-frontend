@@ -1,5 +1,5 @@
 import { RecipesWithSearch } from "../../../components";
-import { getUser } from "../../../Functions";
+import { getUser } from "../../../functions";
 import { recipesApiService } from "../../../services";
 import { QUERY_KEY } from "../../../constants";
 

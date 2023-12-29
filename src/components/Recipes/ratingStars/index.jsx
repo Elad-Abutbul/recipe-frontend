@@ -1,9 +1,8 @@
 import { useAuth, useGenericQuery } from "../../../Hooks";
-import useRatingStarComp from "../../../Functions/useRatingStarsComp";
 import { Loading } from "../../loading";
 import { recipesApiService } from "../../../services";
 import { QUERY_KEY } from "../../../constants";
-import { getUser } from "../../../Functions";
+import { getUser, useRatingStarComp } from "../../../functions";
 
 export const RatingStars = ({
   initialRating = null,
