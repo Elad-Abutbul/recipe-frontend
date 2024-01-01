@@ -14,7 +14,7 @@ export const RatingStars = ({
     QUERY_KEY.USER_RATING,
     {
       recipeId,
-      userId: user.id,
+      userId: user?.id,
     },
     recipesApiService.getUserStars
   );
