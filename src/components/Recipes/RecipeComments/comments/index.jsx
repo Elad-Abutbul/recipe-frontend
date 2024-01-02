@@ -44,7 +44,7 @@ export const Comments = ({ recipeId }) => {
   };
 
   const currentUserComment = data?.comments.findIndex(
-    (comment) => comment.user.id === user.id
+    (comment) => comment?.user?.id === user?.id
   );
 
   const handleEditComment = () => {
