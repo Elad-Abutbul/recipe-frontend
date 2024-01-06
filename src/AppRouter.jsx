@@ -3,7 +3,7 @@ import { Loading } from "./components";
 import { ROUTES } from "./constants";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-const Home = lazy(() => import("./pages/Home"));
+const Home = lazy(() => import("./pages/home"));
 const SignInOut = lazy(() => import("./pages/signInOut"));
 const EditProfile = lazy(() => import("./pages/Profile/editProfile"));
 const EditRecipes = lazy(() => import("./pages/Profile/editRecipes"));
