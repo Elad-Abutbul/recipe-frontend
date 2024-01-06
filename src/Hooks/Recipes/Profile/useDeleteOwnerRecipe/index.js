@@ -1,10 +1,9 @@
-import { useRemoveToken } from "../../../../Hooks";
 import { recipesApiService } from "../../../../services";
-import { apiErrors } from "../../../../functions";
 import { useCookies } from "react-cookie";
 import { enqueueSnackbar } from "notistack";
-
-const useDeleteOwnerRecipe = () => {
+import { useRemoveToken } from "../../../../Hooks";
+import { apiErrors } from "../../../../Utils";
+export const useDeleteOwnerRecipe = () => {
   const [cookies, _] = useCookies(["access_token"]);
   const { checkIfInvalidToken } = useRemoveToken();
   const deleteOwnerRecipe = async (recipeId) => {
@@ -26,4 +25,3 @@ const useDeleteOwnerRecipe = () => {
   return { deleteOwnerRecipe };
 };
 
-export default useDeleteOwnerRecipe;

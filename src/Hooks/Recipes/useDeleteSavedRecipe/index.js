@@ -1,10 +1,10 @@
-import { recipesApiService } from "../../../services";
-import { apiErrors, getUser } from "../../../functions";
-import { useCookies } from "react-cookie"; 
-import { enqueueSnackbar } from "notistack";
 import { useRemoveToken } from "../../../Hooks";
- 
-const useDeleteSavedRecipe = () => {
+import { recipesApiService } from "../../../services";
+import { apiErrors, getUser } from "../../../Utils";
+import { useCookies } from "react-cookie";
+import { enqueueSnackbar } from "notistack";
+
+export const useDeleteSavedRecipe = () => {
   const [cookies, _] = useCookies(["access_token"]);
   const { checkIfInvalidToken } = useRemoveToken();
   const user = getUser();
@@ -25,5 +25,3 @@ const useDeleteSavedRecipe = () => {
 
   return { deleteSavedRecipe };
 };
-
-export default useDeleteSavedRecipe;

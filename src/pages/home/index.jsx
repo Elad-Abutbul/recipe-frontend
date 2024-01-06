@@ -1,10 +1,9 @@
-import { Layout } from "../../pages";
-import { RecipesWithSearch } from "../../components";
-import { getUser } from "../../functions";
-import { QUERY_KEY } from "../../constants";
+import { Layout, RecipesWithSearch } from "../../components";
 import { recipesApiService } from "../../services";
+import { getUser } from "../../Utils";
+import { QUERY_KEY } from "../../constants";
 
-export const Home = () => {
+const Home = () => {
   const user = getUser();
   return (
     <Layout>
@@ -17,3 +16,4 @@ export const Home = () => {
     </Layout>
   );
 };
+export default Home;

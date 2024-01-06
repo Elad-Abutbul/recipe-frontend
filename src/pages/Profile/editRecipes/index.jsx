@@ -1,13 +1,13 @@
 import { RecipesWithSearch } from "../../../components";
-import { getUser } from "../../../functions";
 import { recipesApiService } from "../../../services";
 import { QUERY_KEY } from "../../../constants";
+import { getUser } from "../../../Utils";
 
-export const EditRecipes = () => {
+const EditRecipes = () => {
   const user = getUser();
   return (
     <RecipesWithSearch
-      userId={user.id}
+      userId={user?.id}
       urlParams={"user"}
       service={recipesApiService.getAllOwnerRecipes}
       mode={"edit-recipes"}
@@ -15,3 +15,4 @@ export const EditRecipes = () => {
     />
   );
 };
+export default EditRecipes;

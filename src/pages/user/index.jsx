@@ -1,11 +1,10 @@
 import React from "react";
-import { Layout } from "../layout";
-import { RecipesWithSearch } from "../../components";
+import { Layout, RecipesWithSearch } from "../../components";
 import { useLocation, useParams } from "react-router-dom";
 import { usersApiService } from "../../services";
 import { QUERY_KEY } from "../../constants";
 
-export const User = () => {
+const User = () => {
   const { id } = useParams();
   const { state } = useLocation();
   const username = state?.username;
@@ -23,3 +22,4 @@ export const User = () => {
     </Layout>
   );
 };
+export default User;

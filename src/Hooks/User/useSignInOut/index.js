@@ -1,7 +1,7 @@
 import { useAuth } from "../../../Hooks";
 import { ROUTES } from "../../../constants";
 
-const useSignInOut = () => {
+export const useSignInOut = () => {
   const { register, login } = useAuth();
 
   const handleSubmit = async (event, location, username, password) => {
@@ -15,4 +15,3 @@ const useSignInOut = () => {
   };
   return { handleSubmit };
 };
-export default useSignInOut;

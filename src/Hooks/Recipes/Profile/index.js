@@ -1,4 +1,3 @@
-import useDeleteOwnerRecipe from "./useDeleteOwnerRecipe";
-import useEditRecipe from "./useEditRecipe";
+export * from "./useDeleteOwnerRecipe";
+export * from "./useEditRecipe";
 
-export { useDeleteOwnerRecipe, useEditRecipe };

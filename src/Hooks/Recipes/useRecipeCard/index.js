@@ -1,7 +1,7 @@
 import { useAuth, useQueryMutation } from "../../../Hooks";
 import { ROUTES } from "../../../constants";
 import { useNavigate } from "react-router-dom";
-const useRecipeCard = () => {
+export const useRecipeCard = () => {
   const navigate = useNavigate();
   const { checkIfUserAuth } = useAuth();
   const { saveRecipeseMutation } = useQueryMutation();
@@ -15,4 +15,3 @@ const useRecipeCard = () => {
     handleSaveRecipe,
   };
 };
-export default useRecipeCard;

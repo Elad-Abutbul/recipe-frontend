@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { useQueryMutation } from "../..";
-import { getUser } from "../../../functions/User";
 import { FaStar } from "react-icons/fa";
+import { getUser } from "../../../Utils";
 
-const useRatingStarComp = (mode, globalRating, recipeId) => {
+export const useRatingStarComp = (mode, globalRating, recipeId) => {
   const { changeRecipeStarsMutation, changeRecipeStarsInCommentsMutation } =
     useQueryMutation();
   const user = getUser();
@@ -49,4 +49,3 @@ const useRatingStarComp = (mode, globalRating, recipeId) => {
   };
   return { renderStars };
 };
-export default useRatingStarComp;

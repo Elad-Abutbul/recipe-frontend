@@ -1,4 +1,4 @@
-import { apiErrors } from "..";
+import { apiErrors } from "../../Utils";
 import axiosInstance from "../../axiosConfig";
 
 const search = async (input, urlPath, userId) => {
