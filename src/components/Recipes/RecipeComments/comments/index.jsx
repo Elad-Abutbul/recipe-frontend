@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CommentsFeed } from "../commentsFeed";
-import { Loading } from "../../../loading";
+import { Loading } from "../../../common/loading";
 import {
   useAuth,
   useGenericQuery,

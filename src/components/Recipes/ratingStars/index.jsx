@@ -1,5 +1,5 @@
 import { useAuth, useGenericQuery, useRatingStarComp } from "../../../Hooks";
-import { Loading } from "../../loading";
+import { Loading } from "../../common/loading";
 import { recipesApiService } from "../../../services";
 import { getUser } from "../../../Utils";
 import { QUERY_KEY } from "../../../constants";
