@@ -1,8 +1,8 @@
-import { useQuery } from "react-query";
-import { apiErrors } from "../../../functions";
 import { recipesApiService } from "../../../services";
+import { apiErrors } from "../../../Utils";
+import { useQuery } from "react-query";
 
-const useRecipeContent = (recipeId) => {
+export const useRecipeContent = (recipeId) => {
   const getRecipeContnet = async () => {
     try {
       const res = await recipesApiService.recipeContent(recipeId);
@@ -19,4 +19,3 @@ const useRecipeContent = (recipeId) => {
 
   return { data };
 };
-export default useRecipeContent;

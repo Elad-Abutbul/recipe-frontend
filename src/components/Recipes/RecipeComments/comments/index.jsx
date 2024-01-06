@@ -7,9 +7,9 @@ import {
   useQueryMutation,
   useRemoveToken,
 } from "../../../../Hooks";
-import { getUser } from "../../../../functions";
-import { QUERY_KEY } from "../../../../constants";
 import { recipesApiService } from "../../../../services";
+import { getUser } from "../../../../Utils";
+import { QUERY_KEY } from "../../../../constants";
 
 export const Comments = ({ recipeId }) => {
   const [input, setInput] = useState("");
@@ -24,7 +24,6 @@ export const Comments = ({ recipeId }) => {
   const { addCommentMutation, editCommentMutation } = useQueryMutation();
   const { removeToken } = useRemoveToken();
   const { checkIfUserAuth } = useAuth();
-
   const handleCommentClick = () => {
     if (input === "") return;
     if (!checkIfUserAuth()) {
@@ -32,7 +31,7 @@ export const Comments = ({ recipeId }) => {
       return;
     }
     if (currentUserComment === -1) {
-      addCommentMutation.mutate({ comment: input, recipeId });
+      addCommentMutation.mutate({ comment: input, recipeId, userId: user?.id });
     } else if (input !== data.comments[currentUserComment]?.text) {
       editCommentMutation.mutate({
         comment: input,
@@ -48,7 +47,8 @@ export const Comments = ({ recipeId }) => {
   );
 
   const handleEditComment = () => {
-    if (currentUserComment !== -1) setInput(data.comments[currentUserComment].text);
+    if (currentUserComment !== -1)
+      setInput(data.comments[currentUserComment].text);
   };
 
   if (isLoading) return <Loading />;

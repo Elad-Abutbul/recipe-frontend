@@ -1,10 +1,10 @@
-import useRemoveToken from "../../useRemoveToken";
+import { useRemoveToken } from "../../../Hooks";
 import { usersApiService } from "../../../services";
-import { apiErrors, getUser } from "../../../functions";
 import { enqueueSnackbar } from "notistack";
 import { useCookies } from "react-cookie";
+import { apiErrors, getUser } from "../../../Utils";
 
-const useEditUser = () => {
+export const useEditUser = () => {
   const [cookies, _] = useCookies(["access_token"]);
   const { checkIfInvalidToken } = useRemoveToken();
   const user = getUser();
@@ -12,7 +12,7 @@ const useEditUser = () => {
   const editUser = async (username, password) => {
     try {
       const res = await usersApiService.editUser(
-        user.id,
+        user?.id,
         username,
         password,
         cookies.access_token
@@ -27,5 +27,3 @@ const useEditUser = () => {
   };
   return { editUser };
 };
-
-export default useEditUser;

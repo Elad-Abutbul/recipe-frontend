@@ -1,11 +1,14 @@
-import React from "react";
-import { Form } from "../../components";
-import { Layout } from "../../pages";
+import { Form, Layout } from "../../components";
 import { useLocation } from "react-router-dom";
 
-export const RecipeForm = () => {
+const RecipeForm = () => {
   const location = useLocation();
-  const singleRecipe = location.state?.singleRecipe;
+  const fullRecipe = location.state?.singleRecipe;
 
-  return<Layout><Form singleRecipe={singleRecipe} location={location} /></Layout> ;
+  return (
+    <Layout>
+      <Form fullRecipe={fullRecipe} location={location} />
+    </Layout>
+  );
 };
+export default RecipeForm

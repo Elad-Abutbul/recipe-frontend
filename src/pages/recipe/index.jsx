@@ -1,10 +1,16 @@
 import React from "react";
+import { FullRecipe, Layout } from "../../components";
 import { useLocation } from "react-router-dom";
-import { FullRecipe } from "../../components";
 
-export const Recipe = () => {
+const Recipe = () => {
   const { state } = useLocation();
   const recipeId = state?.recipeId;
-  
-  return <FullRecipe recipeId={recipeId} mode="full-recipe" />;
+
+  return (
+    <Layout>
+      <FullRecipe recipeId={recipeId} mode="full-recipe" />;
+    </Layout>
+  );
 };
+
+export default Recipe;

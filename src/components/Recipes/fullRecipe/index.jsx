@@ -1,5 +1,5 @@
 import { AiOutlineClose } from "react-icons/ai";
-import { RatingStars, Comments, Loading } from "../../../components";
+import { RatingStars, Comments } from "../../../components";
 import { useRecipeContent } from "../../../Hooks";
 
 export const FullRecipe = ({ recipeId, onClose = null, mode = "peek" }) => {

@@ -1,12 +1,12 @@
 import { useRemoveToken } from "../../../../Hooks";
 import { recipesApiService } from "../../../../services";
 import { ROUTES } from "../../../../constants";
-import { apiErrors } from "../../../../functions";
 import { useNavigate } from "react-router-dom";
 import { enqueueSnackbar } from "notistack";
 import { useCookies } from "react-cookie";
+import { apiErrors } from "../../../../Utils";
 
-const useEditRecipe = () => {
+export const useEditRecipe = () => {
   const { checkIfInvalidToken } = useRemoveToken();
   const [cookies, _] = useCookies(["access_token"]);
   const navigate = useNavigate();
@@ -26,4 +26,3 @@ const useEditRecipe = () => {
   };
   return { editRecipe };
 };
-export default useEditRecipe;

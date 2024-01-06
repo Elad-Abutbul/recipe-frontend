@@ -4,7 +4,7 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import { useQueryClient } from "react-query";
 
-const useRemoveToken = () => {
+export const useRemoveToken = () => {
   const [_, setCookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
   const queryClient = useQueryClient();
@@ -33,4 +33,3 @@ const useRemoveToken = () => {
 
   return { checkIfInvalidToken, logOut, removeToken };
 };
-export default useRemoveToken;

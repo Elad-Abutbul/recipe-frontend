@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Layout } from "../../components";
 import { ROUTES } from "../../constants";
-import { Layout } from "../layout";
+import { Outlet, Link } from "react-router-dom";
 
 export const Profile = () => {
   const [select, setSelect] = useState("edit-recipes");

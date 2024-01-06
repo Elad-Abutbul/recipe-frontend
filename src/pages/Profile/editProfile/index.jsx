@@ -1,21 +1,32 @@
 import React, { useState } from "react";
-import { editHandleSubmit, getUser, handleChangeState } from "../../../functions";
 import { useEditUser } from "../../../Hooks";
+import { getUser, handleChangeState } from "../../../Utils";
+import { enqueueSnackbar } from "notistack";
 
-export const EditProfile = () => {
+const EditProfile = () => {
   const { editUser } = useEditUser();
-  const user= getUser()
+  const user = getUser();
+
+  const editHandleSubmit = async (event, editUserField, editUser) => {
+    event.preventDefault();
+    if (!editUserField.username || !editUserField.password) {
+      return enqueueSnackbar("Must Fill Every Field.", { variant: "warning" });
+    }
+    return await editUser(editUserField.username, editUserField.password);
+  };
+
   const [editUserField, setEditUserField] = useState({
-    username: user.username,
+    username:user?.username,
     password: "",
   });
+
   const handlChange = (event) => {
     handleChangeState(event, setEditUserField, editUserField);
   };
 
   return (
     <div className="mx-10">
-    <h1 className="text-3xl font-semibold mb-4 text-blue-500">
+      <h1 className="text-3xl font-semibold mb-4 text-blue-500">
         Edit Profile
       </h1>
       <form
@@ -58,3 +69,5 @@ export const EditProfile = () => {
     </div>
   );
 };
+
+export default EditProfile;

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { API_URL, PAGINATION } from "../../../constants";
+import {  PAGINATION, RECIPES_API } from "../../../constants";
 import { Search, Loading, RecipesFeed, SelectRecipesType } from "../..";
 import { useGenericQuery } from "../../../Hooks";
 
@@ -21,7 +21,7 @@ export const RecipesWithSearch = ({
 
   const userIdSuffix =
   queryKey === "savedRecipes" || urlParams === "user" ? `/${userId}` : null;
-  const dynamicUrl = `${API_URL.RECIPES.SEARCH.RECIPES}/${urlParams}/${category}/${currentPage}${userIdSuffix}`;
+  const dynamicUrl = `${RECIPES_API.SEARCH.RECIPES}/${urlParams}/${category}/${currentPage}${userIdSuffix}`;
 
   const totalRecipesCount =
     search?.totalRecipesCount || data?.totalRecipesCount;

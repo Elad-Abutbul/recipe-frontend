@@ -1,42 +1,30 @@
-import React, { useState } from "react";
 import { useQueryMutation } from "../../../Hooks";
+import useForm from "./useForm";
 import { ROUTES } from "../../../constants";
-import {
-  addIngredient,
-  deleteIngredient,
-  handleChangeState,
-  handleIngredientChange,
-  formHandleSubmit,
-  getUser,
-} from "../../../functions";
+import { handleChangeState } from "../../../Utils";
 
-export const Form = ({ singleRecipe, location }) => {
-  const user = getUser();
+export const Form = ({ fullRecipe, location }) => {
   const { createRecipeMutation, editRecipeMutation } = useQueryMutation();
-  const [recipe, setRecipe] = useState({
-    name: singleRecipe?.name || "",
-    ingredients: singleRecipe?.ingredients || [],
-    instruction: singleRecipe?.instruction || "",
-    imageUrl: singleRecipe?.imageUrl || "",
-    kosherType: singleRecipe?.kosherType || "",
-    cookingTime: singleRecipe?.cookingTime || 0,
-    userOwner: {
-      id: user.id,
-      username: user.username,
-    },
-  });
-  
+
+  const {
+    recipe,
+    setRecipe,
+    handleIngredientChange,
+    formHandleSubmit,
+    addIngredient,
+    deleteIngredient,
+  } = useForm(fullRecipe);
+
   const handleChange = (event) => {
     handleChangeState(event, setRecipe, recipe);
   };
-
   const inputClassName =
     "w-full p-2 rounded border border-gray-300 focus:outline-none focus:border-blue-400";
 
   return (
     <div className=" space-y-6">
       <h1 className="text-3xl font-bold text-center">
-        {singleRecipe ? "Edit Recipes" : "Create Recipes"}
+        {fullRecipe ? "Edit Recipes" : "Create Recipes"}
       </h1>
       <form
         onSubmit={(event) =>
@@ -45,7 +33,7 @@ export const Form = ({ singleRecipe, location }) => {
             recipe,
             location,
             editRecipeMutation,
-            singleRecipe,
+            fullRecipe,
             createRecipeMutation
           )
         }
@@ -110,25 +98,19 @@ export const Form = ({ singleRecipe, location }) => {
         />
         <select onChange={handleChange} name="kosherType" required>
           <option
-            disabled={!singleRecipe?.kosherType}
+            disabled={!fullRecipe?.kosherType}
             value={""}
-            selected={!singleRecipe}
+            selected={!fullRecipe}
           >
             Kosher Type
           </option>
-          <option
-            value={"parve"}
-            selected={singleRecipe?.kosherType === "parve"}
-          >
+          <option value={"parve"} selected={fullRecipe?.kosherType === "parve"}>
             Parve
           </option>
-          <option
-            value={"dairy"}
-            selected={singleRecipe?.kosherType === "dairy"}
-          >
+          <option value={"dairy"} selected={fullRecipe?.kosherType === "dairy"}>
             Dairy
           </option>
-          <option value={"meat"} selected={singleRecipe?.kosherType === "meat"}>
+          <option value={"meat"} selected={fullRecipe?.kosherType === "meat"}>
             Meat
           </option>
         </select>

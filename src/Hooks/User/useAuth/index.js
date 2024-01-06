@@ -1,11 +1,11 @@
-import { apiErrors } from "../../../functions";
 import { usersApiService } from "../../../services";
+import { apiErrors } from "../../../Utils";
 import { ROUTES } from "../../../constants";
 import { enqueueSnackbar } from "notistack";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
-const useAuth = () => {
+export const useAuth = () => {
   const [cookies, setCookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
 
@@ -44,4 +44,3 @@ const useAuth = () => {
   return { register, login, checkIfUserAuth };
 };
 
-export default useAuth;
