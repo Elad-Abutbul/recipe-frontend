@@ -1,56 +1,17 @@
-import React, { useState } from "react";
+import { Loading } from "../../../common";
 import { CommentsFeed } from "../commentsFeed";
-import { Loading } from "../../../common/loading";
-import {
-  useAuth,
-  useGenericQuery,
-  useQueryMutation,
-  useRemoveToken,
-} from "../../../../Hooks";
-import { recipesApiService } from "../../../../services";
-import { getUser } from "../../../../Utils";
-import { QUERY_KEY } from "../../../../constants";
+import { useComments } from "./useComments";
 
 export const Comments = ({ recipeId }) => {
-  const [input, setInput] = useState("");
-  const user = getUser();
-
-  const { isLoading, data } = useGenericQuery(
-    QUERY_KEY.RECIPE_COMMNETS,
-    { recipeId },
-    recipesApiService.getComments
-  );
-
-  const { addCommentMutation, editCommentMutation } = useQueryMutation();
-  const { removeToken } = useRemoveToken();
-  const { checkIfUserAuth } = useAuth();
-  const handleCommentClick = () => {
-    if (input === "") return;
-    if (!checkIfUserAuth()) {
-      removeToken();
-      return;
-    }
-    if (currentUserComment === -1) {
-      addCommentMutation.mutate({ comment: input, recipeId, userId: user?.id });
-    } else if (input !== data.comments[currentUserComment]?.text) {
-      editCommentMutation.mutate({
-        comment: input,
-        commentId: data?.comments[currentUserComment]?._id,
-        recipeId,
-      });
-    }
-    setInput("");
-  };
-
-  const currentUserComment = data?.comments.findIndex(
-    (comment) => comment?.user?.id === user?.id
-  );
-
-  const handleEditComment = () => {
-    if (currentUserComment !== -1)
-      setInput(data.comments[currentUserComment].text);
-  };
-
+  const {
+    data,
+    isLoading,
+    currentUserComment,
+    input,
+    setInput,
+    handleEditComment,
+    handleCommentClick,
+  } = useComments(recipeId);
   if (isLoading) return <Loading />;
   return (
     <div className="border shadow-md flex-grow mx-2 sm:mx-5 md:mx-10 bg-white p-4 rounded-md">

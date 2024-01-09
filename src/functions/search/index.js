@@ -1,10 +1,9 @@
 import { apiErrors } from "../../Utils";
 import axiosInstance from "../../axiosConfig";
 
-const search = async (input, urlPath, userId) => {
+const search = async (input, urlPath) => {
   try {
     const res = await axiosInstance.post(urlPath, {
-      userId,
       input,
     });
     return res.data;
@@ -13,12 +12,7 @@ const search = async (input, urlPath, userId) => {
   }
 };
 
-export const handleSearch = async (
-  debounceValue,
-  urlPath,
-  setSearch,
-  userId
-) => {
-  const searchResults = await search(debounceValue, urlPath, userId);
+export const handleSearch = async (debounceValue, urlPath, setSearch) => {
+  const searchResults = await search(debounceValue, urlPath);
   setSearch(searchResults);
 };
