@@ -38,5 +38,7 @@ export const useRecipesWithSearch = (queryKey, userId, service, urlParams) => {
     recipesId,
     totalPages,
     dynamicUrl,
+    setCurrentPage,
+    currentPage
   };
 };

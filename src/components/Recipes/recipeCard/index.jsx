@@ -38,7 +38,7 @@ export const RecipeCard = ({
     >
       <li
         key={recipe?._id}
-        className="bg-white shadow-md rounded-lg overflow-hidden"
+        className="bg-white dark:bg-slate-500 shadow-md rounded-lg overflow-hidden"
       >
         <div className="h-full flex flex-col">
           <img
@@ -47,11 +47,11 @@ export const RecipeCard = ({
             className="w-full h-48 object-cover"
           />
           <div className="p-4 flex flex-col justify-between h-full ">
-            <h2 className="text-2xl font-semibold mb-2">{recipe?.name}</h2>
+            <h2 className="text-2xl dark:text-white font-semibold mb-2">{recipe?.name}</h2>
             <div>
               <div>
-                <h2 className="font-bold inline">type </h2>
-                <p className="inline">{recipe?.kosherType}</p>
+                <h2 className="font-bold inline dark:text-white">type </h2>
+                <p className="inline dark:text-white">{recipe?.kosherType}</p>
               </div>
               <div>
                 <div
@@ -62,8 +62,8 @@ export const RecipeCard = ({
                     })
                   }
                 >
-                  <h2 className="font-bold text-lg inline">By </h2>
-                  <p className="mb-2 text-gray-800 hover:text-blue-500 inline">
+                  <h2 className="font-bold text-lg dark:text-white inline">By </h2>
+                  <p className="mb-2 text-gray-800 hover:text-blue-500 inline dark:text-white">
                     {recipe?.userOwner?.username}
                   </p>
                 </div>

@@ -1,4 +1,4 @@
-import { useAuth, useGenericQuery, useRatingStarComp } from "../../../Hooks";
+import { useAuth, useGenericQuery, useRatingStar } from "../../../Hooks";
 import { Loading } from "../../common/loading";
 import { recipesApiService } from "../../../services";
 import { getUser } from "../../../Utils";
@@ -20,13 +20,13 @@ export const RatingStars = ({
   );
   const rating = initialRating === null ? data?.userRating : initialRating;
   const { checkIfUserAuth } = useAuth();
-  const { renderStars } = useRatingStarComp(mode, rating, recipeId);
+  const { renderStars } = useRatingStar(mode, rating, recipeId);
   if (isLoading) return <Loading />;
   return (
     <div>
       {checkIfUserAuth() && mode === "full-recipe" ? (
         <>
-          <p className="font-bold text-lg">Your Rating:</p>
+          <p className="font-bold text-lg  dark:text-slate-300 underline">Your Rating:</p>
           <div className="flex space-x-2">{renderStars()}</div>
         </>
       ) : (

@@ -2,15 +2,13 @@ import React from "react";
 import { ROUTES } from "../../../constants";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineDelete, AiOutlineEdit } from "react-icons/ai";
-import { GrFormView } from "react-icons/gr";
+import { IoIosEye } from "react-icons/io";
 import { LiaSave } from "react-icons/lia";
 import { useQueryMutation, useRecipeCard } from "../../../Hooks";
 export const RecipeIcons = ({
   setShowFullRecipe,
   mode,
   recipe,
-  page,
-  category
 }) => {
   const navigate = useNavigate();
   const { handleSaveRecipe } = useRecipeCard();
@@ -25,29 +23,29 @@ export const RecipeIcons = ({
       {(mode === "all-recipes" || mode === 'user') && (
         <LiaSave
           size={40}
-          className="cursor-pointer"
+          className="cursor-pointer dark:text-white"
           disabled={saveRecipeseMutation.isLoading}
           onClick={(event) => {
-            event.stopPropagation(); // Stop event propagation
+            event.stopPropagation(); 
             handleSaveRecipe(recipe._id);
           }}
         />
       )}
-      <GrFormView
+      <IoIosEye 
         size={40}
+        className="cursor-pointer dark:text-white"
         onClick={(event) => {
-          event.stopPropagation(); // Stop event propagation
+          event.stopPropagation(); 
           setShowFullRecipe(true);
         }}
-        className="cursor-pointer"
-      />
+        />
       {mode === "edit-recipes" && (
         <>
           <AiOutlineEdit
             size={40}
-            className="cursor-pointer"
+            className="cursor-pointer dark:text-white"
             onClick={(event) => {
-              event.stopPropagation(); // Stop event propagation
+              event.stopPropagation(); 
               navigate(ROUTES.EDIT_RECIPE, {
                 state: { singleRecipe: recipe },
               });
@@ -58,9 +56,9 @@ export const RecipeIcons = ({
       {(mode === "edit-recipes" || mode === "saved-recipes") && (
         <AiOutlineDelete
           size={40}
-          className="cursor-pointer"
+          className="cursor-pointer dark:text-white"
           onClick={(event) => {
-            event.stopPropagation(); // Stop event propagation
+            event.stopPropagation(); 
             mode === "edit-recipes"
               ? deleteOwnerRecipeMutation.mutate(recipe._id)
               : deleteSavedRecipeMutation.mutate(recipe._id);

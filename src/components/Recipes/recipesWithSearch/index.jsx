@@ -20,7 +20,6 @@ export const RecipesWithSearch = ({
     category,
     setCurrentPage,
   } = useRecipesWithSearch(queryKey, userId, service, urlParams);
-
   if (isLoading) return <Loading />;
   return (
     <>

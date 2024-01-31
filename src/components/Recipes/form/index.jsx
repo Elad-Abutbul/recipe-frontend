@@ -1,5 +1,5 @@
 import { useQueryMutation } from "../../../Hooks";
-import useForm from "./useForm";
+import { useForm } from "./useForm";
 import { ROUTES } from "../../../constants";
 import { handleChangeState } from "../../../Utils";
 
@@ -23,7 +23,7 @@ export const Form = ({ fullRecipe, location }) => {
 
   return (
     <div className=" space-y-6">
-      <h1 className="text-3xl font-bold text-center">
+      <h1 className="text-3xl font-bold text-center dark:text-white">
         {fullRecipe ? "Edit Recipes" : "Create Recipes"}
       </h1>
       <form

@@ -7,7 +7,7 @@ const Home = () => {
   const user = getUser();
   return (
     <Layout>
-      {user && <h2 className="text-center text-2xl">Hello {user?.username}</h2>}
+      {user && <h2 className="text-center text-2xl dark:text-white">Hello {user?.username}</h2>}
       <RecipesWithSearch
         urlParams={"home"}
         queryKey={QUERY_KEY.HOME}

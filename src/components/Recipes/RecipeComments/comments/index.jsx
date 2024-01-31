@@ -14,8 +14,8 @@ export const Comments = ({ recipeId }) => {
   } = useComments(recipeId);
   if (isLoading) return <Loading />;
   return (
-    <div className="border shadow-md flex-grow mx-2 sm:mx-5 md:mx-10 bg-white p-4 rounded-md">
-      <h1 className="text-center text-lg font-bold mb-2">Recipe Comments</h1>
+    <div className="border shadow-md flex-grow mx-2  dark:bg-slate-500 sm:mx-5 md:mx-10 bg-white p-4 rounded-md">
+      <h1 className="text-center text-lg font-bold mb-2 dark:text-white">Recipe Comments</h1>
       <hr />
       <div className="overflow-y-auto h-72">
         <CommentsFeed

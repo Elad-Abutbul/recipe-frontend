@@ -23,7 +23,7 @@ export const useComments = (recipeId) => {
   const { removeToken } = useRemoveToken();
   const { checkIfUserAuth } = useAuth();
   const handleCommentClick = () => {
-    if (input === "") return;
+    if (!input) return;
     if (!checkIfUserAuth()) {
       removeToken();
       return;

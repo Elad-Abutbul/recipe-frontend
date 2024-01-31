@@ -1,8 +1,7 @@
-import { Navbar } from "../..";
+export const Layout = ({ children }) =>  (
+    <div className={"dark:bg-slate-700"}>
+      <div className="p-5">{children}</div>
+    </div>
+  );
 
-export const Layout = ({ children, margin = true }) => (
-  <div>
-    <Navbar />
-    <div className={margin ? "m-4" : ""}>{children}</div>
-  </div>
-);
+

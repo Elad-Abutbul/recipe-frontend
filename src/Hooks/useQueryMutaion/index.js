@@ -31,13 +31,13 @@ export const useQueryMutation = () => {
 
   const changeRecipeStarsInCommentsMutation = useMutation({
     mutationFn: async ({ userId, rating, recipeId }) =>
-    genericApiRequest(recipesApiService.changeRatingInComments, {
+      genericApiRequest(recipesApiService.changeRatingInComments, {
         userId,
         rating,
         recipeId,
       }),
-    onSuccess: (_, { recipeId }) =>
-      queryClient.invalidateQueries([QUERY_KEY.RECIPE_COMMNETS, { recipeId }]),
+    onSuccess: (_, { recipeId }) => 
+    queryClient.invalidateQueries([QUERY_KEY.RECIPE_COMMNETS, { recipeId }]),
   });
 
   const editCommentMutation = useMutation({
