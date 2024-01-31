@@ -3,7 +3,7 @@ import { useQueryMutation } from "../..";
 import { FaStar } from "react-icons/fa";
 import { getUser } from "../../../Utils";
 
-export const useRatingStarComp = (mode, globalRating, recipeId) => {
+export const useRatingStar = (mode, globalRating, recipeId) => {
   const { changeRecipeStarsMutation, changeRecipeStarsInCommentsMutation } =
     useQueryMutation();
   const user = getUser();

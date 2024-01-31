@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { Loading } from "./components";
+import { Loading, Navbar } from "./components";
 import { ROUTES } from "./constants";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
@@ -17,6 +17,7 @@ export const AppRouter = () => {
   return (
     <BrowserRouter>
       <Suspense fallback={<Loading />}>
+        <Navbar/>
         <Routes>
           <Route path={ROUTES.HOME} element={<Home />} />
           <Route path={ROUTES.LOGIN} element={<SignInOut />} />

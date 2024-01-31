@@ -3,7 +3,7 @@ import { Layout } from "../../components";
 import { ROUTES } from "../../constants";
 import { Outlet, Link } from "react-router-dom";
 
-export const Profile = () => {
+const Profile = () => {
   const [select, setSelect] = useState("edit-recipes");
 
   return (
@@ -12,7 +12,7 @@ export const Profile = () => {
         <Link
           to={ROUTES.EDIT_RECIPES}
           onClick={() => setSelect("edit-recipes")}
-          className={`text-gray-800 font-semibold text-lg mx-4 transition duration-300 transform hover:scale-105 hover:shadow-md p-2 rounded-md  border-b-2 bg-gray-200  ${
+          className={`text-gray-800 font-semibold text-lg mx-4 transition duration-300 transform hover:scale-105 hover:shadow-md p-2 rounded-md  border-b-2 bg-gray-200 dark:bg-slate-400 dark:text-white dark:border-white ${
             select === "edit-recipes" ? " border-black  " : "border-gray-200"
           }`}
         >
@@ -21,7 +21,7 @@ export const Profile = () => {
         <Link
           to={ROUTES.EDIT_PROFILE}
           onClick={() => setSelect("edit-profile")}
-          className={`text-gray-800 font-semibold text-lg mx-4 cursor-pointer transition duration-300 transform hover:scale-105 hover:shadow-md p-2 rounded-md  border-b-2 bg-gray-200  ${
+          className={`text-gray-800 font-semibold text-lg mx-4 cursor-pointer transition duration-300 transform hover:scale-105 hover:shadow-md p-2 rounded-md  border-b-2 bg-gray-200 dark:bg-slate-400 dark:text-white dark:border-white ${
             select === "edit-profile" ? " border-black  " : "border-gray-200"
           }`}
         >
@@ -32,3 +32,4 @@ export const Profile = () => {
     </Layout>
   );
 };
+export default Profile;

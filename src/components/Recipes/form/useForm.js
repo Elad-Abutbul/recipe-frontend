@@ -4,7 +4,7 @@ import { getUser } from "../../../Utils";
 import { ROUTES } from "../../../constants";
 import { enqueueSnackbar } from "notistack";
 
-const useForm = (fullRecipe) => {
+export const useForm = (fullRecipe) => {
   const { createRecipeMutation, editRecipeMutation } = useQueryMutation();
   const user = getUser();
   const [recipe, setRecipe] = useState({
@@ -66,4 +66,3 @@ const useForm = (fullRecipe) => {
     recipeIngredientsCheck,
   };
 };
-export default useForm;

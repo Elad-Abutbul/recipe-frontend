@@ -8,8 +8,9 @@ export const FullRecipe = ({ recipeId, onClose = null, mode = "peek" }) => {
     event.stopPropagation();
     if (onClose) onClose();
   };
+
   return (
-    <div className="flex justify-center items-center">
+    <div className={`grid grid-cols-1 sm:grid-cols-2 gap-8`}>
       <div
         className={`${
           mode === "peek" &&
@@ -20,7 +21,7 @@ export const FullRecipe = ({ recipeId, onClose = null, mode = "peek" }) => {
         <div
           className={`${
             mode === "peek"
-              ? "w-[600px] h-[400px] bg-white rounded-xl p-4 flex flex-col relative overflow-y-auto gap-4"
+              ? "w-[600px] h-[400px] bg-white dark:bg-slate-800 rounded-xl p-4 flex flex-col relative overflow-y-auto gap-4"
               : "p-4"
           }`}
         >
@@ -30,28 +31,28 @@ export const FullRecipe = ({ recipeId, onClose = null, mode = "peek" }) => {
               onClick={onClose}
             />
           )}
-          <h2 className="w-fit px-4 py-1 bg-black text-white rounded-lg font-bold text-2xl">
+          <h2 className="w-fit px-4 py-1 bg-black dark:bg-white dark:text-black text-white rounded-lg font-bold text-2xl">
             {recipe?.name}
           </h2>
-          <div className="">
-            <h2 className="font-bold text-lg">Ingredients</h2>
+          <div>
+            <h2 className="font-bold text-lg dark:text-slate-300 underline">Ingredients</h2>
             {recipe?.ingredients?.map((ingredient, index) => (
-              <h3 className="w-fit" key={index}>
+              <h3 className="w-fit dark:text-white" key={index}>
                 {ingredient}
               </h3>
             ))}
           </div>
-          <div className="">
-            <h2 className="font-bold text-lg">Instruction</h2>
-            <p>{recipe?.instruction}</p>
+          <div>
+            <h2 className="font-bold text-lg  dark:text-slate-300 underline">Instruction</h2>
+            <p className="dark:text-white">{recipe?.instruction}</p>
           </div>
           <div>
-            <h2 className="font-bold text-lg">Kosher Type</h2>
-            <p className="mb-2 text-gray-800">{recipe?.kosherType}</p>
+            <h2 className="font-bold text-lg  dark:text-slate-300 underline">Kosher Type</h2>
+            <p className="mb-2 text-gray-800 dark:text-white">{recipe?.kosherType}</p>
           </div>
           <div>
-            <h2 className="font-bold text-lg">Cooking Time</h2>
-            <p className="mb-2 text-gray-800">
+            <h2 className="font-bold text-lg dark:text-slate-300 underline">Cooking Time</h2>
+            <p className="mb-2 dark:text-white">
               {recipe?.cookingTime} (minutes)
             </p>
           </div>

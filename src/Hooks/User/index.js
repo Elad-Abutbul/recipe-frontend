@@ -1,4 +1,4 @@
 export * from "./useAuth";
-export * from "./useEditUser";
+export * from "./useEditProfile";
 export * from "./useSaveRecipe";
 export * from "./useSignInOut";

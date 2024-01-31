@@ -1,24 +1,22 @@
 import React, { useState } from "react";
-import { useEditUser } from "../../../Hooks";
 import { getUser, handleChangeState } from "../../../Utils";
 import { enqueueSnackbar } from "notistack";
+import { useEditProfile } from "../../../Hooks/User/useEditProfile";
 
 const EditProfile = () => {
-  const { editUser } = useEditUser();
+  const { editProfile } = useEditProfile();
   const user = getUser();
-
-  const editHandleSubmit = async (event, editUserField, editUser) => {
+  const [editUserField, setEditUserField] = useState({
+    username: user?.username,
+    password: "",
+  });
+  const editHandleSubmit = async (event, editUserField) => {
     event.preventDefault();
     if (!editUserField.username || !editUserField.password) {
       return enqueueSnackbar("Must Fill Every Field.", { variant: "warning" });
     }
-    return await editUser(editUserField.username, editUserField.password);
+    return await editProfile(editUserField.username, editUserField.password);
   };
-
-  const [editUserField, setEditUserField] = useState({
-    username:user?.username,
-    password: "",
-  });
 
   const handlChange = (event) => {
     handleChangeState(event, setEditUserField, editUserField);
@@ -30,7 +28,7 @@ const EditProfile = () => {
         Edit Profile
       </h1>
       <form
-        onSubmit={(event) => editHandleSubmit(event, editUserField, editUser)}
+        onSubmit={(event) => editHandleSubmit(event, editUserField)}
         className="space-y-4"
       >
         <div className="flex flex-col">

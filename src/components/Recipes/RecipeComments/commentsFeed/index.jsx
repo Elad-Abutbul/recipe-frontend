@@ -1,10 +1,9 @@
 import { RecipeComment } from "../recipeComment";
 
-export const CommentsFeed = ({ comments, recipeId, currentUserComment }) => {
-  return (
+export const CommentsFeed = ({ comments, recipeId, currentUserComment }) => (
     <>
       {comments.length > 0 ? (
-        comments.map((comment, index) => (
+        comments.map((comment) => (
           <RecipeComment
             comment={comment}
             key={comment._id}
@@ -17,4 +16,3 @@ export const CommentsFeed = ({ comments, recipeId, currentUserComment }) => {
       )}
     </>
   );
-};

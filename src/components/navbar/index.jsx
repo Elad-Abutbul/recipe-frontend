@@ -1,10 +1,13 @@
 import React, { useState } from "react";
-import { useAuth, useRemoveToken } from "../../Hooks";
+import { useAuth, useDarkMode, useRemoveToken } from "../../Hooks";
 import { ROUTES } from "../../constants";
-import { Link } from "react-router-dom";
 import { UsersSearch } from "../User";
+import { Link } from "react-router-dom";
+import { MdOutlineDarkMode } from "react-icons/md";
+import { MdDarkMode } from "react-icons/md";
 
 export const Navbar = () => {
+  const { theme, handleThemeSwitch } = useDarkMode()
   const { checkIfUserAuth } = useAuth();
   const { logOut } = useRemoveToken();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -78,6 +81,9 @@ export const Navbar = () => {
               Login
             </Link>
           )}
+          <button onClick={handleThemeSwitch}>{theme==="dark"?<MdDarkMode size={25} />
+:<MdOutlineDarkMode size={25}/>
+}</button>
         </div>
       </div>
     </nav>
